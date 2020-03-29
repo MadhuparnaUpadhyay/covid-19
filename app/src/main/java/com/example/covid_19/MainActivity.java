@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String defaultValue = sharedPref.getString("name", null);
-        Toast.makeText(this, defaultValue, Toast.LENGTH_LONG).show();
 
         if(defaultValue != null) {
             Fragment fragment = new CurrentLocation();

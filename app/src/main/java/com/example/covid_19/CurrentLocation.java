@@ -1,10 +1,8 @@
 package com.example.covid_19;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -21,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -35,37 +34,29 @@ public class CurrentLocation extends Fragment {
     FusedLocationProviderClient mFusedLocationClient;
     TextView latTextView, lonTextView;
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.current_location);
-//
-//        Toast.makeText(this, "Turn on location", Toast.LENGTH_LONG).show();
-//        latTextView = findViewById(R.id.latTextView);
-//        lonTextView = findViewById(R.id.lonTextView);
-//        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-//
-//        getLastLocation();
-//    }
-@Override
-public View onCreateView(
-        LayoutInflater inflater, ViewGroup container,
-        Bundle savedInstanceState
-) {
-    // Inflate the layout for this fragment
-    Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
-    return inflater.inflate(R.layout.fragment_second, container, false);
-}
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState
+    ) {
+        // Inflate the layout for this fragment
+        Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        return inflater.inflate(R.layout.fragment_second, container, false);
+    }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
+        latTextView = view.findViewById(R.id.latTextView);
+        lonTextView = view.findViewById(R.id.lonTextView);
         getLastLocation();
     }
 
     @SuppressLint("MissingPermission")
-    private void getLastLocation(){
+    private void getLastLocation() {
         Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
         if (checkPermissions()) {
             if (isLocationEnabled()) {
@@ -77,8 +68,8 @@ public View onCreateView(
                                 if (location == null) {
                                     requestNewLocationData();
                                 } else {
-                                    latTextView.setText(location.getLatitude()+"");
-                                    lonTextView.setText(location.getLongitude()+"");
+                                    latTextView.setText(location.getLatitude() + "");
+                                    lonTextView.setText(location.getLongitude() + "");
                                 }
                             }
                         }
@@ -95,7 +86,7 @@ public View onCreateView(
 
 
     @SuppressLint("MissingPermission")
-    private void requestNewLocationData(){
+    private void requestNewLocationData() {
 
         LocationRequest mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -115,8 +106,8 @@ public View onCreateView(
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            latTextView.setText(mLastLocation.getLatitude()+"");
-            lonTextView.setText(mLastLocation.getLongitude()+"");
+            latTextView.setText(mLastLocation.getLatitude() + "");
+            lonTextView.setText(mLastLocation.getLongitude() + "");
         }
     };
 
@@ -154,7 +145,7 @@ public View onCreateView(
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         if (checkPermissions()) {
             getLastLocation();
