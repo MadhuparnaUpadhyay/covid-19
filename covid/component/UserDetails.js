@@ -3,26 +3,28 @@ import {
   View,
   Button,
   TextInput,
-  StyleSheet
-} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+  StyleSheet,
+  AsyncStorage
+} from 'react-native'
 
-
-export default class Registration extends React.Component {
+export default class UserDetails extends React.Component {
   state = {
-    username: '', email: '', phone_number: ''
+    username: '', password: '', email: '', phone_number: ''
   }
+
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
+
   signUp = async () => {
+    debugger
+    console.log("hello")
     const { username, email, phone_number } = this.state
     try {
-      await AsyncStorage.setItem('username', username);
-      await AsyncStorage.setItem('email', email);
-      await AsyncStorage.setItem('phone_number', phone_number);
-      console.log('user successfully signed up!: ', "success")
-      console.log('user successfully signed up!: ', await AsyncStorage.get('username'))
+        await AsyncStorage.setItem('username', username);
+        await AsyncStorage.setItem('email', email);
+        await AsyncStorage.setItem('phone_number', phone_number);
+        console.log('user successfully signed up!: ', await AsyncStorage.get('username'))
     } catch (err) {
       console.log('error signing up: ', err)
     }
