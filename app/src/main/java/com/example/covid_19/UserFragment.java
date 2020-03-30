@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 
 import android.util.Patterns;
@@ -92,7 +94,18 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 //        if (awesomeValidation.validate()) {
             Toast.makeText(getActivity(), "Registration Successfull", Toast.LENGTH_LONG).show();
             //process the data further
+        swapFragment();
 //        }
+
+    }
+
+    private void swapFragment(){
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();//declaring Fragment Manager
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();
+        Fragment fragment = new CurrentLocation();
+        fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+        fragmentTransaction.addToBackStack(fragment.toString());
+        fragmentTransaction.commit();
     }
 
     @Override

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/profile">
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.covid_19.RegistrationProfileFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_registration_profile">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/emergency" />
+    </fragment>
+    <fragment
+        android:id="@+id/emergency"
+        android:name="com.example.covid_19.ContactList"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_contact_list_list">
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/profile" />
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/qa"
+        android:name="com.example.covid_19.QuestionAnswer"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_question_answer_list">
+    </fragment>
+
+</navigation>

@@ -13,4 +13,19 @@
     <string name="emailerror">Enter Valid Email</string>
     <string name="preference_file_key">covid 19</string>
     <string name="mobileerror">Enter Valid Mobile Number</string>
+    <string name="title_activity_side_bar">SideBar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Profile</string>
+    <string name="menu_gallery">Emergency Contact</string>
+    <string name="menu_slideshow">Q and A</string>
+
+    <string name="home_second">Emergency Contact</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

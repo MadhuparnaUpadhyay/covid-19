@@ -8,6 +8,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -32,7 +33,7 @@ public class CurrentLocation extends Fragment {
 
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
-    TextView latTextView, lonTextView;
+    TextView latTextView, lonTextView, nameTextView, emailTextView, phoneTextView;
 
     @Override
     public View onCreateView(
@@ -40,24 +41,39 @@ public class CurrentLocation extends Fragment {
             Bundle savedInstanceState
     ) {
         // Inflate the layout for this fragment
-        Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
-        return inflater.inflate(R.layout.fragment_second, container, false);
+        return inflater.inflate(R.layout.current_location, container, false);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
         latTextView = view.findViewById(R.id.latTextView);
         lonTextView = view.findViewById(R.id.lonTextView);
-        getLastLocation();
+        nameTextView = view.findViewById(R.id.name);
+        emailTextView = view.findViewById(R.id.email);
+        phoneTextView = view.findViewById(R.id.phone);
+
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String name = sharedPref.getString("name", null);
+        String email = sharedPref.getString("email", null);
+        String phone = sharedPref.getString("phone", null);
+        String lat = sharedPref.getString("lat", null);
+        String lng = sharedPref.getString("long", null);
+        nameTextView.setText(name);
+        emailTextView.setText(email);
+        phoneTextView.setText(phone);
+        latTextView.setText(lat);
+        lonTextView.setText(lng);
+        if(lat == null && lng == null) {
+            getLastLocation();
+        }
     }
 
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
-        Toast.makeText(getActivity(), "Turn on location", Toast.LENGTH_LONG).show();
         if (checkPermissions()) {
             if (isLocationEnabled()) {
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(
@@ -68,6 +84,20 @@ public class CurrentLocation extends Fragment {
                                 if (location == null) {
                                     requestNewLocationData();
                                 } else {
+                                    SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                                            getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor myEdit = sharedPref.edit();
+
+                                    // Storing the key and its value
+                                    // as the data fetched from edittext
+                                    myEdit.putString("lat", location.getLatitude() + "");
+                                    myEdit.putString("long", location.getLongitude() + "");
+
+                                    // Once the changes have been made,
+                                    // we need to commit to apply those changes made,
+                                    // otherwise, it will throw an error
+                                    myEdit.commit();
+
                                     latTextView.setText(location.getLatitude() + "");
                                     lonTextView.setText(location.getLongitude() + "");
                                 }
@@ -106,6 +136,20 @@ public class CurrentLocation extends Fragment {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
+            SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+            SharedPreferences.Editor myEdit = sharedPref.edit();
+
+            // Storing the key and its value
+            // as the data fetched from edittext
+            myEdit.putString("lat", mLastLocation.getLatitude() + "");
+            myEdit.putString("long", mLastLocation.getLongitude() + "");
+
+            // Once the changes have been made,
+            // we need to commit to apply those changes made,
+            // otherwise, it will throw an error
+            myEdit.commit();
+
             latTextView.setText(mLastLocation.getLatitude() + "");
             lonTextView.setText(mLastLocation.getLongitude() + "");
         }
@@ -151,5 +195,17 @@ public class CurrentLocation extends Fragment {
             getLastLocation();
         }
 
+    }
+    @Override
+    public void onDestroy() {
+        Toast.makeText(getActivity(), "dnfkndfdsgfdhgfhsgklnsl", Toast.LENGTH_LONG).show();
+        super.onDestroy();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getActivity(), "dnfkndfdsgfdhgfhsgklnsl", Toast.LENGTH_LONG).show();
     }
 }

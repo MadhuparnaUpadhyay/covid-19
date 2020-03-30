@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
+        Intent intent = new Intent(this, LocationTrack.class);
+        startService(intent);
+
         Intent intentAlarm = new Intent(this, AlarmReceiver.class);
         System.out.println("calling Alarm receiver ");
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -57,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // set unique id to the pending item, so we can call it when needed
         PendingIntent pi = PendingIntent.getBroadcast(this, 001, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setInexactRepeating(AlarmManager.RTC, SystemClock.elapsedRealtime() +
-                startTime, 60*1000, pi);
+                startTime, 15*60*1000, pi);
     }
 
     @Override
