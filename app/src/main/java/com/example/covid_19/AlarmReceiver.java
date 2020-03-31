@@ -50,8 +50,8 @@ public class AlarmReceiver extends BroadcastReceiver {
         try {
             Uri ring = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(context, ring);
-//            r.play();
-//            sendNotification(context);
+            r.play();
+            sendNotification(context);
 //            @SuppressLint("WrongConstant") Notification notification  = new Notification.Builder(context)
 //                    .setCategory(Notification.CATEGORY_MESSAGE)
 //                    .setContentTitle("title")

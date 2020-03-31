@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    tools:context="com.example.vetri.formvalidarion.MainActivity">
+    android:padding="20dp">
 
     <EditText
         android:id="@+id/editTextName"
@@ -35,6 +34,11 @@
 
     <include layout="@layout/fragment_maps"/>
 
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:name="com.example.covid_19.MapsFragment"-->
+<!--        />-->
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"

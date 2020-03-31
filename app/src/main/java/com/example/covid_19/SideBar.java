@@ -21,17 +21,30 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
+import androidx.navigation.NavGraph;
+import androidx.navigation.NavInflater;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
+import androidx.work.Constraints;
+import androidx.work.Data;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
-public class SideBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.concurrent.TimeUnit;
+
+public class SideBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     TextView nameTextView, emailPhoneTextView;
+    private Menu menu;
+    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +52,11 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_side_bar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("sfbsfhj");
 
-        SharedPreferences sharedPref = this.getSharedPreferences(
+        sharedPref = this.getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        sharedPref.registerOnSharedPreferenceChangeListener(this);
         String name = sharedPref.getString("name", null);
         String email = sharedPref.getString("email", null);
         String phone = sharedPref.getString("phone", null);
@@ -50,9 +65,13 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         View header = navigationView.getHeaderView(0);
+        menu = navigationView.getMenu();
         nameTextView = header.findViewById(R.id.username);
         emailPhoneTextView = header.findViewById(R.id.email_phone);
-        nameTextView.setText(name);
+        if(name != null) {
+            menu.getItem(0).setTitle("Profile");
+            nameTextView.setText(name);
+        }
         emailPhoneTextView.setText(email);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -65,16 +84,28 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
 
+        NavInflater navInflater = navController.getNavInflater();
+        NavGraph graph = navInflater.inflate(R.navigation.mobile_navigation);
+
+//        if (name != null) {
+//            graph.setStartDestination(R.id.maps);
+//            navController.setGraph(graph);
+//        } else {
+//            graph.setStartDestination(R.id.profile);
+//            navController.setGraph(graph);
+//        }
+
         Intent intent = new Intent(this, LocationTrack.class);
         startService(intent);
 
-        Intent intentAlarm = new Intent(this, AlarmReceiver.class);
-        System.out.println("calling Alarm receiver ");
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        // set unique id to the pending item, so we can call it when needed
-        PendingIntent pi = PendingIntent.getBroadcast(this, 001, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
-        System.out.println("" + SystemClock.elapsedRealtime() + "sdba" + AlarmManager.INTERVAL_HALF_HOUR);
-        alarmManager.setRepeating(AlarmManager.RTC, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, pi);
+        schedulePeriodicWork(navigationView);
+//        Intent intentAlarm = new Intent(this, AlarmReceiver.class);
+//        System.out.println("calling Alarm receiver ");
+//        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+//        // set unique id to the pending item, so we can call it when needed
+//        PendingIntent pi = PendingIntent.getBroadcast(this, 001, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
+//        System.out.println("" + SystemClock.elapsedRealtime() + "sdba" + AlarmManager.INTERVAL_HALF_HOUR);
+//        alarmManager.setRepeating(AlarmManager.RTC, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, pi);
     }
 
     @Override
@@ -125,5 +156,65 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void schedulePeriodicWork(View v){
+        setupCouponRefreshPeriodicTask();
+    }
+
+    private void setupCouponRefreshPeriodicTask(){
+
+        SharedPreferences preferences = PreferenceManager.
+                getDefaultSharedPreferences(this);
+
+        Toast.makeText(this, "" + preferences.getBoolean("refreshTask", false), Toast.LENGTH_SHORT).show();
+        //schedule recurring task only once
+//        if(!preferences.getBoolean("refreshTask", false)){
+            refreshCouponPeriodicWork();
+//            SharedPreferences.Editor editor = preferences.edit();
+//            editor.putBoolean("refreshTask", true);
+//            editor.commit();
+//        }
+    }
+
+    public void refreshCouponPeriodicWork() {
+
+        //define constraints
+        Constraints myConstraints = new Constraints.Builder()
+                .setRequiresDeviceIdle(false)
+                .setRequiresCharging(false)
+                .setRequiresBatteryNotLow(true)
+                .setRequiresStorageNotLow(true)
+                .build();
+
+        Data source = new Data.Builder()
+                .putString("workType", "PeriodicTime")
+                .build();
+
+        PeriodicWorkRequest refreshCpnWork =
+                new PeriodicWorkRequest.Builder(AlarmWorker.class, 15, TimeUnit.MINUTES)
+                        .setConstraints(myConstraints)
+                        .setInputData(source)
+                        .build();
+
+        Toast.makeText(this, "th m,nf,dsf ", Toast.LENGTH_SHORT).show();
+        WorkManager.getInstance().enqueue(refreshCpnWork);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        String value = sharedPreferences.getString(key, null);
+        switch (key) {
+            case "name":
+                nameTextView.setText(value);
+                menu.getItem(0).setTitle("Profile");
+                return;
+            case "email":
+                emailPhoneTextView.setText(value);
+                return;
+//            case "phone":
+//                emailPhoneTextView.setText(email);
+//                return;
+        }
     }
 }

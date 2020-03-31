@@ -36,4 +36,11 @@
         tools:layout="@layout/fragment_question_answer_list">
     </fragment>
 
+    <fragment
+        android:id="@+id/maps"
+        android:name="com.example.covid_19.RegistrationFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_registration">
+    </fragment>
+
 </navigation>

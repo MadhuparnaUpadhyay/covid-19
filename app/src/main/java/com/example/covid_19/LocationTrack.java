@@ -68,21 +68,21 @@ public class LocationTrack extends Service {
         long timeDelta = location.getTime() - currentBestLocation.getTime();
         boolean isSignificantlyNewer = timeDelta > TWO_MINUTES;
         boolean isSignificantlyOlder = timeDelta < -TWO_MINUTES;
-        boolean isNewer = timeDelta > 0;
+        boolean isNewer = timeDelta > TWO_MINUTES;
 
         // If it's been more than two minutes since the current location, use the new location
         // because the user has likely moved
-        if (isSignificantlyNewer) {
-            return true;
-            // If the new location is more than two minutes older, it must be worse
-        } else if (isSignificantlyOlder) {
-            return false;
-        }
+//        if (isSignificantlyNewer) {
+//            return true;
+//            // If the new location is more than two minutes older, it must be worse
+//        } else if (isSignificantlyOlder) {
+//            return false;
+//        }
 
         // Check whether the new location fix is more or less accurate
         int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
-        boolean isLessAccurate = accuracyDelta > 10;
-        boolean isMoreAccurate = accuracyDelta < 10;
+        boolean isLessAccurate = accuracyDelta >= 0;
+        boolean isMoreAccurate = accuracyDelta <= 0;
         boolean isSignificantlyLessAccurate = accuracyDelta > 200;
 
         // Check if the old and new location are from the same provider
