@@ -32,13 +32,20 @@
         android:hint="Enter Mobile Number"
         android:inputType="textEmailAddress" />
 
-    <include layout="@layout/fragment_maps"/>
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        tools:context=".MapsFragment" />
 
-<!--    <fragment-->
+<!--    <com.google.android.youtube.player.YouTubePlayerView-->
+<!--        android:id="@+id/youtubeview"-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:name="com.example.covid_19.MapsFragment"-->
-<!--        />-->
+<!--        android:layout_height="match_parent" />-->
+
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"

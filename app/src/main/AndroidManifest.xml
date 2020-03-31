@@ -26,12 +26,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionAnswerActivity"></activity>
+        <activity android:name=".QuestionAnswerActivity"/>
         <activity android:name=".ContactActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegistrationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -50,19 +51,17 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".SideBar"
-            android:label="@string/title_activity_side_bar"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="@string/title_activity_side_bar" />
         <activity android:name=".CurrentLocation" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <receiver android:name=".AlarmReceiver" />
 

@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,32 +17,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();//declaring Fragment Manager
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();// declaring Fragment Transaction
-
         SharedPreferences sharedPref = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String defaultValue = sharedPref.getString("name", null);
 
-        if(defaultValue != null) {
-            Intent intent = new Intent(this, ProfileActivity.class);
+        if (defaultValue != null) {
+            Intent intent = new Intent(this, SideBar.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
-//            Fragment fragment = new CurrentLocation();
-//            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
-//            fragmentTransaction.addToBackStack(fragment.toString());
-//            fragmentTransaction.commit();
-        }
-        else {
+        } else {
             Intent intent = new Intent(this, RegistrationActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();
-//            Fragment fragment = new RegistrationFragment();
-//            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
-//            fragmentTransaction.addToBackStack(fragment.toString());
-//            fragmentTransaction.commit();
         }
     }
 

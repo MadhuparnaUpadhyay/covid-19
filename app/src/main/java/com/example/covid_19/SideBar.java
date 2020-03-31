@@ -72,7 +72,9 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
             menu.getItem(0).setTitle("Profile");
             nameTextView.setText(name);
         }
-        emailPhoneTextView.setText(email);
+        if(email != null){
+            emailPhoneTextView.setText(email);
+        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -87,13 +89,13 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         NavInflater navInflater = navController.getNavInflater();
         NavGraph graph = navInflater.inflate(R.navigation.mobile_navigation);
 
-//        if (name != null) {
-//            graph.setStartDestination(R.id.maps);
-//            navController.setGraph(graph);
-//        } else {
-//            graph.setStartDestination(R.id.profile);
-//            navController.setGraph(graph);
-//        }
+        if (name != null) {
+            graph.setStartDestination(R.id.maps);
+            navController.setGraph(graph);
+        } else {
+            graph.setStartDestination(R.id.profile);
+            navController.setGraph(graph);
+        }
 
         Intent intent = new Intent(this, LocationTrack.class);
         startService(intent);
