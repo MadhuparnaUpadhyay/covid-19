@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         String defaultValue = sharedPref.getString("name", null);
 
         if (defaultValue != null) {
-            Intent intent = new Intent(this, SideBar.class);
+            Intent intent = new Intent(this, SideBarActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             finish();

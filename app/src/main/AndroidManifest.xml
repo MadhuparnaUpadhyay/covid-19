@@ -26,13 +26,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionAnswerActivity"/>
+        <activity android:name=".QuestionAnswerActivity" />
         <activity android:name=".ContactActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_settings" />
         <activity android:name=".RegistrationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -50,8 +49,13 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
-            android:name=".SideBar"
-            android:label="@string/title_activity_side_bar" />
+            android:name=".SideBarActivity"
+            android:label="@string/title_activity_side_bar"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
         <activity android:name=".CurrentLocation" />
         <activity
             android:name=".MainActivity"

@@ -66,7 +66,7 @@ public class QuestionAnswer extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(com.example.covid_19.model.QuestionAnswer.ITEMS, mListener));
+            recyclerView.setAdapter(new QuestionAnswerRecyclerViewAdapter(com.example.covid_19.model.QuestionAnswer.ITEMS, mListener));
         }
         return view;
     }

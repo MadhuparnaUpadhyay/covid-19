@@ -43,7 +43,7 @@ public class ExcelReadWrite {
                         try {
                             JSONArray userArray = response.getJSONArray("emergencies");
                             System.out.println(userArray);
-                            view.setAdapter(new MyItemRecyclerViewAdapter(userArray, mListener));
+                            view.setAdapter(new ContactListRecyclerViewAdapter(userArray, mListener));
                         } catch (JSONException e) {
                             System.out.println(e);
                             e.printStackTrace();

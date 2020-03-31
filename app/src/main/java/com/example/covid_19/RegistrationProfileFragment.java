@@ -1,6 +1,5 @@
 package com.example.covid_19;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 
 /**
@@ -75,7 +73,7 @@ public class RegistrationProfileFragment extends Fragment {
 
         if(defaultValue != null) {
 //            return inflater.inflate(R.layout.current_location, container, false);
-            ((SideBar) getActivity()).getSupportActionBar().setTitle("Profile");
+            ((SideBarActivity) getActivity()).getSupportActionBar().setTitle("Profile");
             Fragment fragment = new CurrentLocation();
             fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
             fragmentTransaction.addToBackStack(fragment.toString());
@@ -83,7 +81,7 @@ public class RegistrationProfileFragment extends Fragment {
         }
         else {
 //            return inflater.inflate(R.layout.fragment_registration, container, false);
-            ((SideBar) getActivity()).getSupportActionBar().setTitle("Registration");
+            ((SideBarActivity) getActivity()).getSupportActionBar().setTitle("Registration");
             Fragment fragment = new RegistrationFragment();
             fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
             fragmentTransaction.addToBackStack(fragment.toString());

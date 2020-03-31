@@ -1,2 +1,2 @@
-rootProject.name='covid-19'
+rootProject.name='HashBugs'
 include ':app'

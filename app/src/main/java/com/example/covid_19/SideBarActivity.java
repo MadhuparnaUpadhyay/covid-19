@@ -39,7 +39,7 @@ import androidx.work.WorkManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class SideBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class SideBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     TextView nameTextView, emailPhoneTextView;
@@ -52,6 +52,7 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_side_bar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Toast.makeText(this, ""+toolbar, Toast.LENGTH_SHORT).show();
         getSupportActionBar().setTitle("sfbsfhj");
 
         sharedPref = this.getSharedPreferences(
@@ -89,13 +90,13 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         NavInflater navInflater = navController.getNavInflater();
         NavGraph graph = navInflater.inflate(R.navigation.mobile_navigation);
 
-        if (name != null) {
-            graph.setStartDestination(R.id.maps);
-            navController.setGraph(graph);
-        } else {
-            graph.setStartDestination(R.id.profile);
-            navController.setGraph(graph);
-        }
+//        if (name != null) {
+//            graph.setStartDestination(R.id.maps);
+//            navController.setGraph(graph);
+//        } else {
+//            graph.setStartDestination(R.id.profile);
+//            navController.setGraph(graph);
+//        }
 
         Intent intent = new Intent(this, LocationTrack.class);
         startService(intent);
