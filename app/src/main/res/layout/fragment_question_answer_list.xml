@@ -6,8 +6,7 @@
     android:name="com.example.covid_19.QuestionAnswer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".QuestionAnswer"
-    tools:listitem="@layout/fragment_question_answer" />
+    tools:listitem="@layout/fragment_question_answer"
+    android:layout_margin="@dimen/text_margin"/>

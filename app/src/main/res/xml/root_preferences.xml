@@ -1,0 +1,12 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ListPreference
+        app:defaultValue="30 Minutes"
+        app:entries="@array/alarm_entries"
+        app:entryValues="@array/alarm_values"
+        app:key="alarm"
+        app:title="@string/alarm_title"
+        app:useSimpleSummaryProvider="true" />
+
+</PreferenceScreen>

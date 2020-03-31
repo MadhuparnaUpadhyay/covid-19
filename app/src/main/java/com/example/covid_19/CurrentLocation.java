@@ -10,6 +10,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -29,11 +31,16 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.io.IOException;
+import java.util.List;
+
 public class CurrentLocation extends Fragment {
 
     int PERMISSION_ID = 44;
     FusedLocationProviderClient mFusedLocationClient;
-    TextView latTextView, lonTextView, nameTextView, emailTextView, phoneTextView;
+    TextView addressTextView, nameTextView, emailTextView, phoneTextView;
+    List<Address> geocodeMatches = null;
+    private String Address;
 
     @Override
     public View onCreateView(
@@ -49,8 +56,7 @@ public class CurrentLocation extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        latTextView = view.findViewById(R.id.latTextView);
-        lonTextView = view.findViewById(R.id.lonTextView);
+        addressTextView = view.findViewById(R.id.latTextView);
         nameTextView = view.findViewById(R.id.name);
         emailTextView = view.findViewById(R.id.email);
         phoneTextView = view.findViewById(R.id.phone);
@@ -60,16 +66,14 @@ public class CurrentLocation extends Fragment {
         String name = sharedPref.getString("name", null);
         String email = sharedPref.getString("email", null);
         String phone = sharedPref.getString("phone", null);
-        String lat = sharedPref.getString("lat", null);
-        String lng = sharedPref.getString("long", null);
+        String address = sharedPref.getString("Address", null);
         nameTextView.setText(name);
         emailTextView.setText(email);
         phoneTextView.setText(phone);
-        latTextView.setText(lat);
-        lonTextView.setText(lng);
-        if(lat == null && lng == null) {
-            getLastLocation();
-        }
+        addressTextView.setText(address);
+//        if(address == null) {
+//            getLastLocation();
+//        }
     }
 
     @SuppressLint("MissingPermission")
@@ -84,22 +88,7 @@ public class CurrentLocation extends Fragment {
                                 if (location == null) {
                                     requestNewLocationData();
                                 } else {
-                                    SharedPreferences sharedPref = getActivity().getSharedPreferences(
-                                            getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor myEdit = sharedPref.edit();
-
-                                    // Storing the key and its value
-                                    // as the data fetched from edittext
-                                    myEdit.putString("lat", location.getLatitude() + "");
-                                    myEdit.putString("long", location.getLongitude() + "");
-
-                                    // Once the changes have been made,
-                                    // we need to commit to apply those changes made,
-                                    // otherwise, it will throw an error
-                                    myEdit.commit();
-
-                                    latTextView.setText(location.getLatitude() + "");
-                                    lonTextView.setText(location.getLongitude() + "");
+                                    SaveLocation(location);
                                 }
                             }
                         }
@@ -132,26 +121,48 @@ public class CurrentLocation extends Fragment {
 
     }
 
+    public void SaveLocation(Location location) {
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPref.edit();
+
+        System.out.println(location.describeContents() + "");
+        // Storing the key and its value
+        // as the data fetched from edittext
+        myEdit.putString("lat", location.getLatitude() + "");
+        myEdit.putString("long", location.getLongitude() + "");
+
+        try {
+            geocodeMatches =
+                    new Geocoder(getActivity()).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (!geocodeMatches.isEmpty())
+            {
+                Address = geocodeMatches.get(0).getAddressLine(0);
+//                Address2 = geocodeMatches.get(0).getAddressLine(1);
+//                State = geocodeMatches.get(0).getAdminArea();
+//                Zipcode = geocodeMatches.get(0).getPostalCode();
+//                Country = geocodeMatches.get(0).getCountryName();
+                myEdit.putString("Address", geocodeMatches.get(0).getAddressLine(0) + "");
+                myEdit.putString("Address2", geocodeMatches.get(0).getAddressLine(1) + "");
+                addressTextView.setText(Address);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        // Once the changes have been made,
+        // we need to commit to apply those changes made,
+        // otherwise, it will throw an error
+        myEdit.commit();
+    }
+
     private LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            SharedPreferences sharedPref = getActivity().getSharedPreferences(
-                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-            SharedPreferences.Editor myEdit = sharedPref.edit();
-
-            // Storing the key and its value
-            // as the data fetched from edittext
-            myEdit.putString("lat", mLastLocation.getLatitude() + "");
-            myEdit.putString("long", mLastLocation.getLongitude() + "");
-
-            // Once the changes have been made,
-            // we need to commit to apply those changes made,
-            // otherwise, it will throw an error
-            myEdit.commit();
-
-            latTextView.setText(mLastLocation.getLatitude() + "");
-            lonTextView.setText(mLastLocation.getLongitude() + "");
+            SaveLocation(mLastLocation);
         }
     };
 
@@ -198,7 +209,6 @@ public class CurrentLocation extends Fragment {
     }
     @Override
     public void onDestroy() {
-        Toast.makeText(getActivity(), "dnfkndfdsgfdhgfhsgklnsl", Toast.LENGTH_LONG).show();
         super.onDestroy();
 
     }
@@ -206,6 +216,5 @@ public class CurrentLocation extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        Toast.makeText(getActivity(), "dnfkndfdsgfdhgfhsgklnsl", Toast.LENGTH_LONG).show();
     }
 }

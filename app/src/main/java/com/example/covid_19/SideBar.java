@@ -9,12 +9,11 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.telephony.emergency.EmergencyNumber;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.core.view.GravityCompat;
@@ -32,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 public class SideBar extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+    TextView nameTextView, emailPhoneTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,20 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String name = sharedPref.getString("name", null);
+        String email = sharedPref.getString("email", null);
+        String phone = sharedPref.getString("phone", null);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View header = navigationView.getHeaderView(0);
+        nameTextView = header.findViewById(R.id.username);
+        emailPhoneTextView = header.findViewById(R.id.email_phone);
+        nameTextView.setText(name);
+        emailPhoneTextView.setText(email);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -59,12 +71,10 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         Intent intentAlarm = new Intent(this, AlarmReceiver.class);
         System.out.println("calling Alarm receiver ");
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        //set the notification to repeat every fifteen minutes
-        long startTime = 1 * 60 * 1000; // 2 min
         // set unique id to the pending item, so we can call it when needed
         PendingIntent pi = PendingIntent.getBroadcast(this, 001, intentAlarm, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setInexactRepeating(AlarmManager.RTC, SystemClock.elapsedRealtime() +
-                startTime, 15 * 60 * 1000, pi);
+        System.out.println("" + SystemClock.elapsedRealtime() + "sdba" + AlarmManager.INTERVAL_HALF_HOUR);
+        alarmManager.setRepeating(AlarmManager.RTC, SystemClock.elapsedRealtime() + AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, pi);
     }
 
     @Override
@@ -89,18 +99,29 @@ public class SideBar extends AppCompatActivity implements NavigationView.OnNavig
         FragmentManager fragmentManager = getSupportFragmentManager();//declaring Fragment Manager
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();// declaring Fragment Transaction
 
+        Intent intent;
         if (id == R.id.profile) {
-            Fragment fragment = new RegistrationProfileFragment();
-            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+//            Fragment fragment = new RegistrationProfileFragment();
+//            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+            intent=new Intent(this, MainActivity.class);
+            startActivity(intent);
+//            finish();
         } else if (id == R.id.emergency) {
-            Fragment fragment = new ContactList();
-            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+//            Fragment fragment = new ContactList();
+//            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+            intent=new Intent(this, ContactActivity.class);
+            startActivity(intent);
         } else if (id == R.id.qa) {
-            Fragment fragment = new QuestionAnswer();
-            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+//            Fragment fragment = new QuestionAnswer();
+//            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
+            intent=new Intent(this, QuestionAnswerActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.settings) {
+            intent=new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_first"/>
+        tools:layout="@layout/fragment_registration"/>
     <FrameLayout
         android:id="@+id/SecondFragment"
         android:name="com.example.covid_19.SecondFragment"

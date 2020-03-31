@@ -33,6 +33,8 @@
         android:hint="Enter Mobile Number"
         android:inputType="textEmailAddress" />
 
+    <include layout="@layout/fragment_maps"/>
+
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="match_parent"

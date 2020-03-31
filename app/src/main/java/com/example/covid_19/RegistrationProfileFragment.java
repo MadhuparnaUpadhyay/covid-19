@@ -79,8 +79,8 @@ public class RegistrationProfileFragment extends Fragment {
             fragmentTransaction.commit();
         }
         else {
-//            return inflater.inflate(R.layout.fragment_first, container, false);
-            Fragment fragment = new UserFragment();
+//            return inflater.inflate(R.layout.fragment_registration, container, false);
+            Fragment fragment = new RegistrationFragment();
             fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
             fragmentTransaction.addToBackStack(fragment.toString());
             fragmentTransaction.commit();
@@ -91,25 +91,25 @@ public class RegistrationProfileFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();//declaring Fragment Manager
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();// declaring Fragment Transaction
-
-        SharedPreferences sharedPref = getActivity().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String defaultValue = sharedPref.getString("name", null);
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();//declaring Fragment Manager
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction ();// declaring Fragment Transaction
 //
-        if(defaultValue != null) {
-//            return inflater.inflate(R.layout.current_location, container, false);
-            Fragment fragment = new CurrentLocation();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
-        }
-        else {
-//            return inflater.inflate(R.layout.fragment_first, container, false);
-            Fragment fragment = new UserFragment();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
-        }
+//        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+//                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        String defaultValue = sharedPref.getString("name", null);
+////
+//        if(defaultValue != null) {
+////            return inflater.inflate(R.layout.current_location, container, false);
+//            Fragment fragment = new CurrentLocation();
+//            fragmentTransaction.remove(fragment);
+//            fragmentTransaction.commit();
+//        }
+//        else {
+////            return inflater.inflate(R.layout.fragment_registration, container, false);
+//            Fragment fragment = new RegistrationFragment();
+//            fragmentTransaction.remove(fragment);
+//            fragmentTransaction.commit();
+//        }
     }
 
     @Override

@@ -43,8 +43,10 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
         try {
             JSONObject jsonObject = mValues.getJSONObject(position);
 //            holder.mItem = jsonObject.getString("Company");
-            holder.mIdView.setText(jsonObject.getString("Company"));
-            holder.mContentView.setText(jsonObject.getString("Company"));
+            holder.mIdView.setText("Country:- " +jsonObject.getString("Country"));
+            holder.mContentView.setText("Ambulance:- " +jsonObject.getString("Ambulance"));
+            holder.mIdView1.setText("Fire:- " +jsonObject.getString("Fire"));
+            holder.mContentView1.setText("Police:- " +jsonObject.getString("Police"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -68,15 +70,17 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mIdView, mIdView1;
+        public final TextView mContentView, mContentView1;
         public ExcelReadWrite.ExcelModel mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mIdView = (TextView) view.findViewById(R.id.state);
+            mContentView = (TextView) view.findViewById(R.id.ambulance);
+            mIdView1 = (TextView) view.findViewById(R.id.fire);
+            mContentView1 = (TextView) view.findViewById(R.id.police);
         }
 
         @Override
