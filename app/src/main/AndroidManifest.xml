@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".QuestionAnswerActivity" />
-        <activity android:name=".ContactActivity" />
+        <activity android:name=".ContactActivity"
+            android:theme="@style/AppTheme"/>
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".SettingsActivity"
@@ -56,7 +57,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".CurrentLocation" />
+        <activity android:name=".ProfileFragment" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

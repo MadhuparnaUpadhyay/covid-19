@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.covid_19.QuestionAnswer.OnListFragmentInteractionListener;
+import com.example.covid_19.QuestionAnswerFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class QuestionAnswerRecyclerViewAdapter extends RecyclerView.Adapter<Ques
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_question_answer, parent, false);
+                .inflate(R.layout.fragment_question_answer_group, parent, false);
         return new ViewHolder(view);
     }
 
@@ -65,7 +65,7 @@ public class QuestionAnswerRecyclerViewAdapter extends RecyclerView.Adapter<Ques
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            mIdView = (TextView) view.findViewById(R.id.question_header);
             mContentView = (TextView) view.findViewById(R.id.content);
         }
 

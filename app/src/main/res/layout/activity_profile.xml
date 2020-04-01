@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".ProfileActivity">
 
-    <include layout="@layout/current_location"/>
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.covid_19.ProfileFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

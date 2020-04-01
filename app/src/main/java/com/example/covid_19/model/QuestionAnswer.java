@@ -39,7 +39,7 @@ public class QuestionAnswer {
     }
 
     private static QuestionAnswerModel createQuestionAnswer(String question, String answer) {
-        return new QuestionAnswerModel("Question:-  " + question, "Answer:-  " + answer);
+        return new QuestionAnswerModel(question, answer);
     }
     /**
      * A dummy item representing a piece of content.

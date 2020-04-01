@@ -11,6 +11,6 @@
         android:id="@+id/contact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.covid_19.ContactList"/>
+        android:name="com.example.covid_19.ContactListFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

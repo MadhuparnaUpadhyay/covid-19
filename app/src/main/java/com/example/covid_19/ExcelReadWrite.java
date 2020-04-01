@@ -25,7 +25,7 @@ public class ExcelReadWrite {
 
 
 
-    public void getDataFromWeb(final RecyclerView view, Context myContext, final ContactList.OnListFragmentInteractionListener mListener) {
+    public void getDataFromWeb(final RecyclerView view, Context myContext, final ContactListFragment.OnListFragmentInteractionListener mListener) {
         mRequestQueue = Volley.newRequestQueue(myContext);
         final ProgressDialog pDialog = new ProgressDialog(myContext);
         pDialog.setMessage("Loading...");

@@ -52,7 +52,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_side_bar);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Toast.makeText(this, ""+toolbar, Toast.LENGTH_SHORT).show();
         getSupportActionBar().setTitle("sfbsfhj");
 
         sharedPref = this.getSharedPreferences(
@@ -79,7 +78,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.profile, R.id.emergency, R.id.qa)
+                R.id.video, R.id.emergency, R.id.qa)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -98,10 +97,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 //            navController.setGraph(graph);
 //        }
 
-        Intent intent = new Intent(this, LocationTrack.class);
-        startService(intent);
-
-        schedulePeriodicWork(navigationView);
+//        Intent intent = new Intent(this, LocationTrack.class);
+//        startService(intent);
+//
+//        schedulePeriodicWork(navigationView);
 //        Intent intentAlarm = new Intent(this, AlarmReceiver.class);
 //        System.out.println("calling Alarm receiver ");
 //        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -134,10 +133,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();// declaring Fragment Transaction
 
         Intent intent;
-        if (id == R.id.profile) {
+        if (id == R.id.video) {
 //            Fragment fragment = new RegistrationProfileFragment();
 //            fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
-            intent=new Intent(this, MainActivity.class);
+            intent=new Intent(this, ProfileActivity.class);
             startActivity(intent);
 //            finish();
         } else if (id == R.id.emergency) {
@@ -170,7 +169,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         SharedPreferences preferences = PreferenceManager.
                 getDefaultSharedPreferences(this);
 
-        Toast.makeText(this, "" + preferences.getBoolean("refreshTask", false), Toast.LENGTH_SHORT).show();
         //schedule recurring task only once
 //        if(!preferences.getBoolean("refreshTask", false)){
             refreshCouponPeriodicWork();
@@ -200,7 +198,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                         .setInputData(source)
                         .build();
 
-        Toast.makeText(this, "th m,nf,dsf ", Toast.LENGTH_SHORT).show();
         WorkManager.getInstance().enqueue(refreshCpnWork);
     }
 

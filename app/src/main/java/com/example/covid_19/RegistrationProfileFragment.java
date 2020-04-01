@@ -72,9 +72,9 @@ public class RegistrationProfileFragment extends Fragment {
         String defaultValue = sharedPref.getString("name", null);
 
         if(defaultValue != null) {
-//            return inflater.inflate(R.layout.current_location, container, false);
+//            return inflater.inflate(R.layout.fragment_profile, container, false);
             ((SideBarActivity) getActivity()).getSupportActionBar().setTitle("Profile");
-            Fragment fragment = new CurrentLocation();
+            Fragment fragment = new ProfileFragment();
             fragmentTransaction.replace(R.id.SecondFragment, fragment, fragment.toString());
             fragmentTransaction.addToBackStack(fragment.toString());
             fragmentTransaction.commit();
@@ -101,7 +101,7 @@ public class RegistrationProfileFragment extends Fragment {
 //        String defaultValue = sharedPref.getString("name", null);
 ////
 //        if(defaultValue != null) {
-////            return inflater.inflate(R.layout.current_location, container, false);
+////            return inflater.inflate(R.layout.fragment_profile, container, false);
 //            Fragment fragment = new CurrentLocation();
 //            fragmentTransaction.remove(fragment);
 //            fragmentTransaction.commit();

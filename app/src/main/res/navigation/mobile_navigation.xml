@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/profile">
+    app:startDestination="@+id/video">
 
     <fragment
-        android:id="@+id/profile"
-        android:name="com.example.covid_19.RegistrationProfileFragment"
+        android:id="@+id/video"
+        android:name="com.example.covid_19.VideoFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_registration_profile">
+        tools:layout="@layout/fragment_video">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
@@ -17,12 +17,12 @@
     </fragment>
     <fragment
         android:id="@+id/emergency"
-        android:name="com.example.covid_19.ContactList"
+        android:name="com.example.covid_19.ContactListFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_contact_list_list">
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/profile" />
+            app:destination="@id/video" />
 
         <argument
             android:name="myArg"
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/qa"
-        android:name="com.example.covid_19.QuestionAnswer"
+        android:name="com.example.covid_19.QuestionAnswerFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_question_answer_list">
     </fragment>

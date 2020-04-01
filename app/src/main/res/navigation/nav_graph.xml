@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.covid_19.CurrentLocation"
+        android:name="com.example.covid_19.ProfileFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/current_location">
+        tools:layout="@layout/fragment_profile">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

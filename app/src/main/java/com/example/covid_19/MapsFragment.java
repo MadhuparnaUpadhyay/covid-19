@@ -17,10 +17,12 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -35,12 +37,17 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 import android.Manifest;
 import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener {
@@ -78,13 +85,43 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
         mContext = getActivity();
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext);
-        FragmentManager fm = getActivity().getSupportFragmentManager();/// getChildFragmentManager();
+        FragmentManager fm = getChildFragmentManager();/// getChildFragmentManager();
         supportMapFragment = (SupportMapFragment) fm.findFragmentById(R.id.map);
         if (supportMapFragment == null) {
             supportMapFragment = SupportMapFragment.newInstance();
             fm.beginTransaction().replace(R.id.map, supportMapFragment).commit();
         }
         supportMapFragment.getMapAsync(this);
+
+//        // Initialize the AutocompleteSupportFragment.
+//        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) fm.findFragmentById(R.id.autocomplete);
+//
+//        if (autocompleteFragment == null) {
+//            autocompleteFragment = new AutocompleteSupportFragment();
+//            fm.beginTransaction().add(R.id.autocomplete, autocompleteFragment).commit();
+//        }
+//        // Initialize place API
+//        if (!Places.isInitialized()) {
+//            Places.initialize(mContext, mContext.getString(R.string.google_maps_key));
+//        }
+//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+//
+//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            private static final String TAG = "ndjfnksf";
+//
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                // TODO: Get info about the selected place.
+//                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//                // TODO: Handle the error.
+//                Log.i(TAG, "An error occurred: " + status);
+//            }
+//        });
+
     }
 
     @Override
@@ -167,6 +204,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
         LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
         MarkerOptions a = new MarkerOptions()
                 .position(current);
+        mMap.clear();
         Marker m = mMap.addMarker(a);
         m.setPosition(current);
         m.setTitle("Current Location");

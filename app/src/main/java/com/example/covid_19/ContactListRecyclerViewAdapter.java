@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.covid_19.ContactList.OnListFragmentInteractionListener;
+import com.example.covid_19.ContactListFragment.OnListFragmentInteractionListener;
 import com.example.covid_19.model.Contact.DummyItem;
 
 import org.json.JSONArray;

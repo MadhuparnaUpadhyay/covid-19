@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title></title>
+
+    <style type="text/css">
+
+    iframe {
+      position: absolute;
+      border: none;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+
+    </style>
+
+    <script>
+
+    var player;
+
+    // init player
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '1080',
+        width: '1920',
+        //videoId: 'Orw8CZpzIDU',
+        suggestedQuality: 'hd720',
+        playerVars: {rel: 0,showinfo:0},
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+
+    }
+
+    function loadVideo(target){
+      target.loadVideoById('Orw8CZpzIDU', 0, 'hd720');
+    }
+
+    function onPlayerStateChange(event) {
+
+        var playbackQuality = event.target.getPlaybackQuality();
+        var suggestedQuality = 'hd720';
+
+        console.log("Quality changed to: " + playbackQuality );
+
+        if( playbackQuality !== 'hd720') {
+            console.log("Setting quality to " + suggestedQuality );
+            event.target.setPlaybackQuality( suggestedQuality );
+        }
+
+        console.log(event.data + " et " + YT.PlayerState.PLAYING);
+    }
+
+    // when ready, wait for clicks
+    function onPlayerReady(event) {
+      event.target.setPlaybackQuality('hd720');
+      var player = event.target;
+      loadVideo(player);
+      return false;
+    }
+
+
+    </script>
+</head>
+
+<body id="body">
+
+<div id="video_div">
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <div id="bottom">
+        <div id="player"></div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
