@@ -1,34 +1,26 @@
 package com.example.covid_19;
 
 import android.annotation.SuppressLint;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.telephony.emergency.EmergencyNumber;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.NavGraph;
 import androidx.navigation.NavInflater;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -38,7 +30,6 @@ import androidx.preference.PreferenceManager;
 import androidx.viewpager.widget.ViewPager;
 import androidx.work.Constraints;
 import androidx.work.Data;
-import androidx.work.NetworkType;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
@@ -284,7 +275,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public void onPageSelected(int position) {
 //        menu.getItem(0).setTitle(tabsTitles[position]);
         if (position == 0) {
-            CovidDataFragment.newInstance(position);
+            CovidDataFragment.newInstance(position, this);
             getSupportActionBar().setTitle("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -302,7 +293,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         final Integer position = tab.getPosition();
         mViewPager.setCurrentItem(position);
         if (position == 0) {
-            CovidDataFragment.newInstance(position);
+            CovidDataFragment.newInstance(position,this);
             getSupportActionBar().setTitle("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -317,6 +308,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+
+    public void callOnTabSelectedManually(){
 
     }
 }
