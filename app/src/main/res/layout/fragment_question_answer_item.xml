@@ -8,10 +8,11 @@
         android:id="@+id/question_answer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+        android:paddingRight="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="10dp"
+        android:paddingLeft="10dp"
         android:paddingBottom="10dp"
-        android:paddingRight="10dp"
+        android:textColor="@android:color/black"
         android:textAppearance="?attr/textAppearanceListItem"
         android:text="Answer"
         android:autoLink="web"/>

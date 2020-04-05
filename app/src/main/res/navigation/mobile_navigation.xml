@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/video"
-        android:name="com.example.covid_19.VideoFragment"
+        android:name="com.example.covid_19.CovidDataFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_video">
+        tools:layout="@layout/fragment_covid_data_list">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
@@ -32,14 +32,14 @@
     <fragment
         android:id="@+id/qa"
         android:name="com.example.covid_19.QuestionAnswerFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_faq"
         tools:layout="@layout/fragment_question_answer_list">
     </fragment>
 
     <fragment
         android:id="@+id/maps"
         android:name="com.example.covid_19.RegistrationFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_faq"
         tools:layout="@layout/fragment_registration">
     </fragment>
 

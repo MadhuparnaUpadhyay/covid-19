@@ -9,6 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.covid_19.Common.ServerCallback;
+import com.example.covid_19.Common.VollyServerCall;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * A fragment representing a list of Items.
@@ -57,21 +65,23 @@ public class ContactListFragment extends Fragment {
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            //        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//
-//        StrictMode.setThreadPolicy(policy);
-            ExcelReadWrite excelModel = new ExcelReadWrite();
-//            JSONObject list = null;
-//            System.out.println(list);
-//            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            excelModel.getDataFromWeb(recyclerView, getActivity(), mListener);
-//            if (mColumnCount <= 1) {
-//                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-//            } else {
-//                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-//            }
-//            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(list<ExcelReadWrite.ExcelModel>, mListener));
+            final RecyclerView recyclerView = (RecyclerView) view;
+            VollyServerCall controller = new VollyServerCall();
+            final String MAIN_URL = "https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=13xSu6SRnOhMyGBiJGw6fncacXIf7X6gelC-L-7I76oA&sheet=country emergencies";
+            controller.JsonObjectRequest(getContext(), MAIN_URL, new ServerCallback() {
+                        @Override
+                        public void onSuccess(JSONObject response) {
+                            // do stuff here
+                            try {
+                                JSONArray userArray = response.getJSONArray("country emergencies");
+                                recyclerView.setAdapter(new ContactListRecyclerViewAdapter(userArray, mListener));
+                            } catch (JSONException e) {
+                                System.out.println(e);
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+            );
         }
         return view;
     }
@@ -80,12 +90,6 @@ public class ContactListFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnListFragmentInteractionListener) {
-//            mListener = (OnListFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnListFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -106,7 +110,7 @@ public class ContactListFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(ExcelReadWrite.ExcelModel item);
+        void onListFragmentInteraction(TextView mContentView1);
     }
 
 }

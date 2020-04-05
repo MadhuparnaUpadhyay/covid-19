@@ -7,6 +7,15 @@
         app:entryValues="@array/alarm_values"
         app:key="alarm"
         app:title="@string/alarm_title"
+        app:useSimpleSummaryProvider="true"
+        />
+
+    <ListPreference
+        app:defaultValue="30 Minutes"
+        app:entries="@array/alert_entries"
+        app:entryValues="@array/alert_values"
+        app:key="alert"
+        app:title="@string/alert_title"
         app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>

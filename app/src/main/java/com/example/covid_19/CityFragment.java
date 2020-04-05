@@ -1,7 +1,9 @@
 package com.example.covid_19;
 
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +13,6 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  * Use the {@link CityFragment#newInstance} factory method to
  * create an instance of this fragment.
- *
  */
 public class CityFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -22,6 +23,10 @@ public class CityFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    public CityFragment() {
+        // Required empty public constructor
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -39,9 +44,6 @@ public class CityFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
-    }
-    public CityFragment() {
-        // Required empty public constructor
     }
 
     @Override

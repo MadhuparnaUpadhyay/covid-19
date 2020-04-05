@@ -18,7 +18,8 @@ public class RegistrationActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
 //            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Registration");
+//            actionBar.setTitle("Welcome...");
+            actionBar.hide();
         }
         FragmentManager fragmentManager = this.getSupportFragmentManager();//declaring Fragment Manager
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

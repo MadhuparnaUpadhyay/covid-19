@@ -1,4 +1,4 @@
-package com.example.covid_19;
+package com.example.covid_19.Common;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.covid_19.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -45,17 +46,22 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
     List<android.location.Address> geocodeMatches = null;
     private SharedPreferences sharedPref;
     private boolean isconnected = false;
+    private OnLocationUpdateListener onLocationUpdateListener;
 
     public boolean isConnected() {
         return isconnected;
     }
 
-    CurrentLocationManager(Context mContext) {
+    public void getCurrentLocation(OnLocationUpdateListener onLocationUpdateListener) {
+        this.onLocationUpdateListener = onLocationUpdateListener;
+        getLastLocation();
+    }
+
+    public CurrentLocationManager(Context mContext) {
         this.mContext = mContext;
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(mContext);
         sharedPref = mContext.getSharedPreferences(
                 mContext.getApplicationContext().getString(R.string.preference_file_key), mContext.MODE_PRIVATE);
-        getLastLocation();
     }
 
 
@@ -136,7 +142,7 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
         // otherwise, it will throw an error
         myEdit.commit();
         this.isconnected = true;
-        Toast.makeText(mContext, "" + sharedPref.getString("country", ""), Toast.LENGTH_SHORT).show();
+        onLocationUpdateListener.onLocationChange(location);
     }
 
     private LocationCallback mLocationCallback = new LocationCallback() {

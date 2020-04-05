@@ -44,6 +44,7 @@ public class LocationTrack extends Service {
 
     @Override
     public void onStart(Intent intent, int startId) {
+        Toast.makeText(this, "locayion star", Toast.LENGTH_SHORT).show();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         listener = new MyLocationListener();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -156,7 +157,7 @@ public class LocationTrack extends Service {
                     intent.putExtra("Longitude", loc.getLongitude());
                     intent.putExtra("Provider", loc.getProvider());
                     sendBroadcast(intent);
-//                    sendNotification(getApplicationContext());
+                    sendNotification(getApplicationContext());
                 }
             }
         }

@@ -41,10 +41,10 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
         try {
             JSONObject jsonObject = mValues.getJSONObject(position);
 //            holder.mItem = jsonObject.getString("Company");
-            holder.mIdView.setText("Country:- " +jsonObject.getString("Country"));
-            holder.mContentView.setText("Ambulance:- " +jsonObject.getString("Ambulance"));
-            holder.mIdView1.setText("Fire:- " +jsonObject.getString("Fire"));
-            holder.mContentView1.setText("Police:- " +jsonObject.getString("Police"));
+            holder.mIdView.setText(jsonObject.getString("Country"));
+            holder.mContentView.setText(jsonObject.getString("Ambulance"));
+            holder.mIdView1.setText(jsonObject.getString("Fire"));
+            holder.mContentView1.setText(jsonObject.getString("Police"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction(holder.mContentView1);
                 }
             }
         });
@@ -70,7 +70,6 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
         public final View mView;
         public final TextView mIdView, mIdView1;
         public final TextView mContentView, mContentView1;
-        public ExcelReadWrite.ExcelModel mItem;
 
         public ViewHolder(View view) {
             super(view);

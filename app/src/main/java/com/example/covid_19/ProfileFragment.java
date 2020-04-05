@@ -17,7 +17,7 @@ import com.google.android.gms.location.LocationServices;
 public class ProfileFragment extends Fragment {
 
     FusedLocationProviderClient mFusedLocationClient;
-    TextView addressTextView, nameTextView, emailPhoneTextView;
+    TextView addressTextView, nameTextView, emailPhoneTextView, userIconTextView;
 
     @Override
     public View onCreateView(
@@ -36,14 +36,16 @@ public class ProfileFragment extends Fragment {
         addressTextView = view.findViewById(R.id.user_address);
         nameTextView = view.findViewById(R.id.user_name);
         emailPhoneTextView = view.findViewById(R.id.user_email_phone);
+        userIconTextView = view.findViewById(R.id.user_icon);
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-        String name = sharedPref.getString("name", null);
+        String name = sharedPref.getString("name", "");
         String email = sharedPref.getString("email", null);
         String phone = sharedPref.getString("phone", null);
         String address = sharedPref.getString("Address", null);
         nameTextView.setText(name);
+        userIconTextView.setText(name.substring(0, 2).toUpperCase());
         String text = email.length() > 0 ? email : phone;
         emailPhoneTextView.setText(text);
         addressTextView.setText(address);

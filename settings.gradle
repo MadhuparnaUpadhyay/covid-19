@@ -1,2 +1,2 @@
-rootProject.name='HashBugs'
+rootProject.name='combatdemic'
 include ':app'

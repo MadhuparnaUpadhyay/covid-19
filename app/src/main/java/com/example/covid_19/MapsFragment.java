@@ -60,6 +60,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
     FusedLocationProviderClient mFusedLocationClient;
     List<android.location.Address> geocodeMatches = null;
     private Object Address;
+    private SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(
@@ -70,6 +71,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
         View view = inflater.inflate(R.layout.fragment_maps, container, false);
         buttonSubmit = (Button) view.findViewById(R.id.mapSubmit);
 
+        sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         buttonSubmit.setOnClickListener(this);
         return view;
     }
@@ -93,46 +96,58 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
         }
         supportMapFragment.getMapAsync(this);
 
-//        // Initialize the AutocompleteSupportFragment.
-//        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) fm.findFragmentById(R.id.autocomplete);
-//
-//        if (autocompleteFragment == null) {
-//            autocompleteFragment = new AutocompleteSupportFragment();
-//            fm.beginTransaction().add(R.id.autocomplete, autocompleteFragment).commit();
-//        }
-//        // Initialize place API
-//        if (!Places.isInitialized()) {
-//            Places.initialize(mContext, mContext.getString(R.string.google_maps_key));
-//        }
-//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-//
-//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-//            private static final String TAG = "ndjfnksf";
-//
-//            @Override
-//            public void onPlaceSelected(Place place) {
-//                // TODO: Get info about the selected place.
-//                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-//            }
-//
-//            @Override
-//            public void onError(Status status) {
-//                // TODO: Handle the error.
-//                Log.i(TAG, "An error occurred: " + status);
-//            }
-//        });
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment) fm.findFragmentById(R.id.autocomplete);
+
+        if (autocompleteFragment == null) {
+            autocompleteFragment = new AutocompleteSupportFragment();
+            fm.beginTransaction().add(R.id.autocomplete, autocompleteFragment).commit();
+        }
+        // Initialize place API
+        if (!Places.isInitialized()) {
+            Places.initialize(mContext, mContext.getString(R.string.google_maps_key));
+        }
+        autocompleteFragment.setHint("Search your location");
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            private static final String TAG = "map fragment";
+
+            @Override
+            public void onPlaceSelected(Place place) {
+                // TODO: Get info about the selected place.
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+            }
+
+            @Override
+            public void onError(Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
 
     }
 
     @Override
     public void onClick(View view) {
         if (view == buttonSubmit) {
-            Intent intent = new Intent(getContext(), SideBarActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            Toast.makeText(getContext(), "Registration Successful", Toast.LENGTH_LONG).show();
-            getActivity().finish();
+            saveDetails();
         }
+    }
+
+    public void saveDetails() {
+        Bundle arguments = getArguments();
+        String editNameValue = arguments.getString("name");
+        String editEmailValue = arguments.getString("email");
+        SharedPreferences.Editor myEdit = sharedPref.edit();
+        myEdit.putString("name", editNameValue);
+        myEdit.putString("email", editEmailValue);
+        myEdit.commit();
+        Intent intent = new Intent(getContext(), SideBarActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Toast.makeText(getContext(), "Registration Successful", Toast.LENGTH_LONG).show();
+        getActivity().finish();
     }
 
     /**
@@ -210,8 +225,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, View.O
         m.setTitle("Current Location");
         mMap.moveCamera(CameraUpdateFactory.newLatLng(current));
 
-        SharedPreferences sharedPref = getContext().getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         SharedPreferences.Editor myEdit = sharedPref.edit();
 
         System.out.println(location.describeContents() + "");

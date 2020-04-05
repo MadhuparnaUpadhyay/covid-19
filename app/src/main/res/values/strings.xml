@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HashBugs</string>
+    <string name="app_name">combatdemic</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -20,9 +20,9 @@
     <string name="nav_header_subtitle">User Email</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Video</string>
+    <string name="menu_home">Statistics</string>
     <string name="menu_gallery">Emergency Contact</string>
-    <string name="menu_slideshow">Q and A</string>
+    <string name="menu_faq">FAQs</string>
 
     <string name="home_second">Emergency Contact</string>
 
@@ -40,7 +40,8 @@
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
-    <string name="alarm_title">Choose alarm</string>
+    <string name="alarm_title">Set notification time</string>
+    <string name="alert_title">Set alert time</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
@@ -48,4 +49,6 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="title_activity_city_scrolling">CityScrollingActivity</string>
+    <string name="fcm_token">000000000000000</string>
 </resources>
