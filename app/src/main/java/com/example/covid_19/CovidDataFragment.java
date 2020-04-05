@@ -42,21 +42,10 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
     private ExpandableListView expListView;
     private int lastExpandedPosition = -1;
 
-    private SideBarActivity sideBarActivity;
-
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     * @param sideBarActivity
-     */
-    public CovidDataFragment(SideBarActivity sideBarActivity) {
-        this.sideBarActivity = sideBarActivity;
-    }
-
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static CovidDataFragment newInstance(int columnCount, SideBarActivity sideBarActivity) {
-        CovidDataFragment fragment = new CovidDataFragment(sideBarActivity);
+    public static CovidDataFragment newInstance(int columnCount) {
+        CovidDataFragment fragment = new CovidDataFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -94,8 +83,6 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
 //                Intent intent = new Intent(getContext(), CityScrollingActivity.class);
 //                intent.putExtra("city", cities.toString());
 //                startActivity(intent);
-
-                (sideBarActivity).callOnTabSelectedManually();
             }
         };
 

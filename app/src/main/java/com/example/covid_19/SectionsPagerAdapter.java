@@ -14,7 +14,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         if (position == 0) {
-            return CovidDataFragment.newInstance(position, this);
+            return CovidDataFragment.newInstance(position);
         } else {
             return VideoFragment.newInstance(position);
         }

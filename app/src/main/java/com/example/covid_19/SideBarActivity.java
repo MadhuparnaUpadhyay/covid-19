@@ -275,7 +275,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public void onPageSelected(int position) {
 //        menu.getItem(0).setTitle(tabsTitles[position]);
         if (position == 0) {
-            CovidDataFragment.newInstance(position, this);
+            CovidDataFragment.newInstance(position);
             getSupportActionBar().setTitle("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -293,7 +293,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         final Integer position = tab.getPosition();
         mViewPager.setCurrentItem(position);
         if (position == 0) {
-            CovidDataFragment.newInstance(position,this);
+            CovidDataFragment.newInstance(position);
             getSupportActionBar().setTitle("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -313,6 +313,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
 
     public void callOnTabSelectedManually(){
-
+        mViewPager.setCurrentItem(3);
     }
 }
