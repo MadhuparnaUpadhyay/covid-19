@@ -172,11 +172,13 @@
                 android:textColor="@android:color/black" />
 
             <TextView
+                android:id="@+id/line"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/line" />
 
             <LinearLayout
+                android:id="@+id/details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

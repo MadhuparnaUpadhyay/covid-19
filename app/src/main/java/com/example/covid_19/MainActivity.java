@@ -66,24 +66,24 @@ public class MainActivity extends AppCompatActivity {
 //            finish();
 //        }
 
-//        if (state == null) {
-//            currentLocationManager = new CurrentLocationManager(this);
-//            currentLocationManager.getCurrentLocation(new OnLocationUpdateListener() {
-//                @Override
-//                public void onLocationChange(Location location) {
-//                    Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//
-//                @Override
-//                public void onError(String error) {
-//                    Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
-//            });
-//        } else {
+        if (state == null) {
+            currentLocationManager = new CurrentLocationManager(this);
+            currentLocationManager.getCurrentLocation(new OnLocationUpdateListener() {
+                @Override
+                public void onLocationChange(Location location) {
+                    Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
+                @Override
+                public void onError(String error) {
+                    Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        } else {
             new Handler().postDelayed(new Runnable() {
                 // Using handler with postDelayed called runnable run method
                 @Override
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
 
-            }, 2 * 1000); // wait for 2 seconds
+            }, 1 * 1000); // wait for 1 seconds
 
-//        }
+        }
     }
 
     @Override

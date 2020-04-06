@@ -15,5 +15,6 @@
         android:textColor="@android:color/black"
         android:textAppearance="?attr/textAppearanceListItem"
         android:text="Answer"
-        android:autoLink="web"/>
+        android:autoLink="web"
+        android:textColorLink="@color/colorBackground"/>
 </LinearLayout>

@@ -1,11 +1,15 @@
 package com.example.covid_19;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,8 +20,12 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.covid_19.Common.ServerCallback;
+import com.example.covid_19.Common.VollyServerCall;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -26,19 +34,27 @@ import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+import java.util.Objects;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link VideoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializedListener {
-
+public class VideoFragment extends Fragment {
+    //implements YouTubePlayer.OnInitializedListener
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
     private YouTubePlayerFragment supportMapFragment;
     private YouTubePlayerSupportFragment youTubePlayerFragment;
     private WebView webview;
+    private ListView listViewVideo;
 
     public VideoFragment() {
         // Required empty public constructor
@@ -69,11 +85,22 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_video, container, false);
+        View view = inflater.inflate(R.layout.fragment_video_list, container, false);
 
+        listViewVideo = view.findViewById(R.id.list_view_video);
 //        webview = new WebView(getContext());
 //
 //        final WebSettings settings = webview.getSettings();
+//        settings.setJavaScriptEnabled(true);
+//
+//        String frameVideo = "<html><body>Youtube video .. <br> <iframe width=\"320\" height=\"315\" src=\"https://www.youtube.com/\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
+//
+//        webview.loadData(frameVideo, "text/html", "utf-8");
+//
+//        webview.loadUrl("http://www.youtube.com/");
+//
+//
+//        webview.setWebViewClient(new WebViewClient());
 //        settings.setJavaScriptEnabled(true);
 //        settings.setJavaScriptCanOpenWindowsAutomatically(true);
 //        settings.setPluginState(WebSettings.PluginState.ON);
@@ -85,15 +112,17 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 //
 ////        webview.loadUrl("file:///android_asset/youtube.html");
 //
-//        webview.loadUrl("http://www.youtube.com/embed/" + "voBuLsstp2s" + "?autoplay=1&vq=small");
+////        webview.loadUrl("http://www.youtube.com/embed/" + "voBuLsstp2s" + "?autoplay=1&vq=small");
+//        webview.loadData('<iframe width="560" height="315" src="https://www.youtube.com/embed/hBlO1i_WTiY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', "text/html", "utf-8");
 //        webview.setWebChromeClient(new WebChromeClient());
 
-        youTubePlayerFragment = new YouTubePlayerSupportFragment();
-        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
-        fragmentTransaction.commit();
+        getVideo();
+//        youTubePlayerFragment = new YouTubePlayerSupportFragment();
+//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
+//        fragmentTransaction.commit();
 
 //        youTubeView = (YouTubePlayerFragment) view.findViewById(R.id.youtubesupportfragment);
 //        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -131,6 +160,40 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
         return view;
     }
 
+    private void getVideo() {
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String state = sharedPref.getString("state", "");
+        String city = sharedPref.getString("city", "");
+        String pincode = sharedPref.getString("pincode", "");
+        VollyServerCall controller = new VollyServerCall();
+        final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/videos?location=" + state + "&state=" + state + "&city=" + city + "&pincode=" + pincode;
+        controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // do stuff here
+                        JSONArray general = new JSONArray();
+                        try {
+                            System.out.println(response);
+                            System.out.println(response.getJSONArray("general"));
+                            general = response.getJSONArray("general");
+                            JSONArray location = response.getJSONArray("location");
+//                            general.addAll(location);
+                            for (int i = 0; i < location.length(); i++) {
+                                String jsonObject = location.getString(i);
+                                general.put(jsonObject);
+                            }
+                            final VideoAdapter adapter = new VideoAdapter(getActivity(), 0, general);
+                            listViewVideo.setAdapter(adapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -154,35 +217,35 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 //        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-        if (!wasRestored) {
-            youTubePlayer.cueVideo("voBuLsstp2s"); // Plays https://www.youtube.com/watch?v=-epZ12OclMg
-//            youTubePlayer.loadVideo("voBuLsstp2s");
-
-//            youTubePlayer.play();
-        }
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-        if (youTubeInitializationResult.isUserRecoverableError()) {
-            youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
-        } else {
-            String error = String.format("R.string.menu_gallery", youTubeInitializationResult.toString());
-            Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == RECOVERY_REQUEST) {
-            // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
-        }
-    }
-
-    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
-        return youTubeView;
-    }
+//    @Override
+//    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+//        if (!wasRestored) {
+//            youTubePlayer.cueVideo("voBuLsstp2s"); // Plays https://www.youtube.com/watch?v=-epZ12OclMg
+////            youTubePlayer.loadVideo("voBuLsstp2s");
+//
+////            youTubePlayer.play();
+//        }
+//    }
+//
+//    @Override
+//    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+//        if (youTubeInitializationResult.isUserRecoverableError()) {
+//            youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
+//        } else {
+//            String error = String.format("R.string.menu_gallery", youTubeInitializationResult.toString());
+//            Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+//        }
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if (requestCode == RECOVERY_REQUEST) {
+//            // Retry initialization if user performed a recovery action
+//            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
+//        }
+//    }
+//
+//    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+//        return youTubeView;
+//    }
 }

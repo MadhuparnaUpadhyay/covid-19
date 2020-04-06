@@ -2,27 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="10dp">
 
     <TextView
-        android:id="@+id/city_name"
-        android:layout_width="0dp"
+        android:id="@+id/first_char"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:autoLink="web"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text="City Name"/>
+        android:layout_gravity="center"
+        android:background="@drawable/circle"
+        android:gravity="center"
+        android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/city_confirmed"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:autoLink="web"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:text=""/>
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
+
+        <TextView
+            android:id="@+id/city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="City Name"
+            android:textColor="@android:color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="Confirmed Cases:"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/city_confirmed"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="20"
+
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
 </LinearLayout>

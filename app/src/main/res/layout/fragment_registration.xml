@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:src="@mipmap/ic_launcher_foreground_app"
+        android:src="@drawable/ic_launcher_foreground_final"
         android:scaleType="fitXY"
         />
 

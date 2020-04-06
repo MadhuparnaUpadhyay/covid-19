@@ -1,6 +1,8 @@
 package com.example.covid_19;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.example.covid_19.Common.ServerCallback;
 import com.example.covid_19.Common.VollyServerCall;
@@ -38,7 +41,8 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
     private JSONArray statewise;
     private JSONObject citywise;
     private SwipeRefreshLayout swipeRefreshLayout;
-        private RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private TextView lastLocation;
     private ExpandableListView expListView;
     private int lastExpandedPosition = -1;
 
@@ -68,21 +72,32 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
 
         statewise = new JSONArray();
         citywise = new JSONObject();
+        lastLocation = view.findViewById(R.id.last_location);
         swipeRefreshLayout = view.findViewById(R.id.pullToRefresh);
         Context context = view.getContext();
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
         swipeRefreshLayout.setOnRefreshListener(this);
 //        expListView = (ExpandableListView) view.findViewById(R.id.covid_data_expan);
 
+        SharedPreferences sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        String address = sharedPref.getString("address", "");
+        if(address.length() == 0){
+            address = "Your location has not been yet updated";
+        }
+        lastLocation.setText(address);
+
         getData();
         mListener = new OnListFragmentInteractionListener() {
             @Override
-            public void onListFragmentInteraction(int position) {
-                JSONArray cities = getCity(position);
-//                Toast.makeText(CovidDataFragment.this.getContext(), "Position " + "position", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(getContext(), CityScrollingActivity.class);
-//                intent.putExtra("city", cities.toString());
-//                startActivity(intent);
+            public void onListFragmentInteraction(int position, String finalStateName) {
+                if(!finalStateName.toLowerCase().equals("total")) {
+                    JSONArray cities = getCity(position);
+                    Intent intent = new Intent(getContext(), CityScrollingActivity.class);
+                    intent.putExtra("city", cities.toString());
+                    intent.putExtra("state", finalStateName);
+                    startActivity(intent);
+                }
             }
         };
 
@@ -121,8 +136,8 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
 
     private void getData() {
         VollyServerCall controller = new VollyServerCall();
-        final String MAIN_URL_STATE = "http://34.93.188.103/api/v1/covid/data";
-        final String MAIN_URL_CITY = "http://34.93.188.103/api/v1/covid/detail-data";
+        final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/data";
+        final String MAIN_URL_CITY = "http://combatemic.live/api/v1/covid/detail-data";
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {
@@ -181,6 +196,12 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
@@ -204,6 +225,6 @@ public class CovidDataFragment extends Fragment implements SwipeRefreshLayout.On
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(int view);
+        void onListFragmentInteraction(int view, String finalStateName);
     }
 }

@@ -18,7 +18,7 @@
     <fragment
         android:id="@+id/emergency"
         android:name="com.example.covid_19.ContactListFragment"
-        android:label="@string/home_second"
+        android:label="@string/menu_imp_contact"
         tools:layout="@layout/fragment_contact_list_list">
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

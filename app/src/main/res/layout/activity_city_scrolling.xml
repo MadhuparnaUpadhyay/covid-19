@@ -8,17 +8,32 @@
     android:orientation="vertical"
     tools:context=".CityScrollingActivity">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="State"-->
-<!--        android:textSize="20dp"-->
-<!--        android:padding="10dp"-->
-<!--        />-->
+    <!--    <fragment-->
+    <!--        android:id="@+id/city_fragment"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:name="com.example.covid_19.CityFragment"-->
+    <!--        />-->
+    <!--    <TextView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="State"-->
+    <!--        android:textSize="20dp"-->
+    <!--        android:padding="10dp"-->
+    <!--        />-->
+
+    <!--    <ImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:adjustViewBounds="true"-->
+    <!--        android:cropToPadding="false"-->
+    <!--        android:scaleType="fitXY"-->
+    <!--        android:src="@mipmap/ic_launcher_city_foreground"-->
+    <!--        />-->
 
     <ListView
         android:id="@+id/city_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

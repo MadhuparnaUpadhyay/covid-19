@@ -20,87 +20,116 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="state"
-            android:textColor="@android:color/black"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textColor="@android:color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_weight="0.5"
+                android:drawableStart="@drawable/ic_emergency_ambulance_svgrepo_com"
+                android:drawablePadding="10dp"
                 android:text="Ambulance:"
-                android:textColor="@android:color/black"
                 android:textAppearance="?attr/textAppearanceListItem"
-                 />
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/ambulance"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="number"
-                android:layout_weight="0.7"
-                android:textColor="@android:color/black"
+                android:layout_weight="0.5"
+                android:autoLink="phone"
+                android:drawableRight="@drawable/ic_call_black_24dp"
+                android:linksClickable="true"
+                android:text="102"
                 android:textAppearance="?attr/textAppearanceListItem"
-                 />
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:drawableStart="@drawable/ic_whatshot_black_24dp"
+                android:drawablePadding="10dp"
                 android:text="Fire:"
-                android:layout_weight="0.3"
-                android:textColor="@android:color/black"
                 android:textAppearance="?attr/textAppearanceListItem"
-                 />
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/fire"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="number"
-                android:layout_weight="0.7"
-                android:textColor="@android:color/black"
+                android:layout_weight="0.5"
+                android:text="101"
                 android:textAppearance="?attr/textAppearanceListItem"
-                 />
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.3"
+                android:layout_weight="0.5"
+                android:drawableLeft="@drawable/ic_iconmonstr_police_1"
+                android:drawablePadding="10dp"
                 android:text="Police:"
-                android:textColor="@android:color/black"
                 android:textAppearance="?attr/textAppearanceListItem"
-                />
+                android:textColor="@android:color/black" />
 
             <TextView
                 android:id="@+id/police"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:text="number"
-                android:textColor="@android:color/black"
+                android:layout_weight="0.5"
+                android:text="100"
                 android:textAppearance="?attr/textAppearanceListItem"
-                 />
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:drawableLeft="@drawable/ic_headphones_with_microphone"
+                android:drawablePadding="10dp"
+                android:text="Helpline:"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/help_line"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text=""
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textColor="@android:color/black" />
         </LinearLayout>
 
 

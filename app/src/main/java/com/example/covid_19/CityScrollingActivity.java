@@ -10,6 +10,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,16 +30,16 @@ public class CityScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city_scrolling);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
+        ListView listView = (ListView) findViewById(R.id.city_list);
+        Intent intent = getIntent();
+        String jsonArray = intent.getStringExtra("city");
+        String stateName = intent.getStringExtra("state");
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Profile");
+            actionBar.setTitle(stateName);
         }
-
-        ListView listView = (ListView) findViewById(R.id.city_list);
-        Intent intent = getIntent();
-        String jsonArray = intent.getStringExtra("city");
 
         try {
             cities = new JSONArray(jsonArray);
@@ -46,5 +48,18 @@ public class CityScrollingActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return true;
     }
 }

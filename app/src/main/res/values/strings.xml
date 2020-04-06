@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">combatdemic</string>
+    <string name="app_name">combatemic</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -21,10 +21,8 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="menu_home">Statistics</string>
-    <string name="menu_gallery">Emergency Contact</string>
+    <string name="menu_imp_contact">Important Contacts</string>
     <string name="menu_faq">FAQs</string>
-
-    <string name="home_second">Emergency Contact</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -51,4 +49,14 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_city_scrolling">CityScrollingActivity</string>
     <string name="fcm_token">000000000000000</string>
+    <string name="title_activity_you_tube">YouTubeActivity</string>
+    <string name="summary_fb">Facebook</string>
+    <string name="title_fb">Facebook</string>
+    <string name="url_fb">https://www.facebook.com/combatemic</string>
+    <string name="summary_insta">Instagram</string>
+    <string name="title_insta">Instagram</string>
+    <string name="url_insta"></string>
+    <string name="summary_yt">Youtube</string>
+    <string name="title_yt">Youtube</string>
+    <string name="url_yt">https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw</string>
 </resources>

@@ -18,8 +18,19 @@
             android:layout_height="?attr/actionBarSize"
             android:gravity="center_horizontal"
             android:textAlignment="center"
-            app:theme="@style/ToolbarColoredBackArrow"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/ToolbarColoredBackArrow">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Toolbar Title"
+                android:textSize="20dp"
+                android:textColor="@android:color/white"/>
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
+            android:layout_marginBottom="70dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         </androidx.viewpager.widget.ViewPager>
@@ -43,9 +55,9 @@
             android:layout_alignParentBottom="true"
             android:background="@color/colorBackground"
             app:tabGravity="fill"
-            app:tabTextColor="@android:color/white"
             app:tabIndicatorHeight="0dp"
-            app:tabMode="fixed" />
+            app:tabMode="fixed"
+            app:tabTextColor="@android:color/white" />
     </RelativeLayout>
 
     <include layout="@layout/app_bar_main" />

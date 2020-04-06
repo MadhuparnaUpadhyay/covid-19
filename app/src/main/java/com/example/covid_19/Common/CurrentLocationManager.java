@@ -125,8 +125,8 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
                     new Geocoder(this.mContext).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             if (!geocodeMatches.isEmpty()) {
                 Address address = geocodeMatches.get(0);
-                myEdit.putString("Address", address.getAddressLine(0) + "");
-                myEdit.putString("Address1", address.getAddressLine(1) + "");
+                myEdit.putString("address", address.getAddressLine(0) + "");
+                myEdit.putString("address1", address.getAddressLine(1) + "");
                 myEdit.putString("state", address.getAdminArea() + "");
                 myEdit.putString("zipcode", address.getPostalCode() + "");
                 myEdit.putString("country", address.getCountryName() + "");

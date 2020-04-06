@@ -1,6 +1,8 @@
 package com.example.covid_19;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 public class CityAdapter<J> extends ArrayAdapter {
@@ -48,18 +51,28 @@ public class CityAdapter<J> extends ArrayAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        System.out.println(cities);
+//        if (position == 0)
+//            return LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item, null);
+//        else {
+//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item_list, parent, false);
+//        }
+
         JSONObject city = (JSONObject) getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item_list, parent, false);
         }
         // Lookup view for data population
+        TextView firstChar = convertView.findViewById(R.id.first_char);
         TextView cityName = (TextView) convertView.findViewById(R.id.city_name);
         TextView cityConfirmed = (TextView) convertView.findViewById(R.id.city_confirmed);
         // Populate the data into the template view using the data object
         try {
-            cityName.setText(city.getString("name"));
+            String cityNameValue = city.getString("name") + "";
+            GradientDrawable gradientDrawable = (GradientDrawable) firstChar.getBackground().mutate();
+            gradientDrawable.setColor(getRandomColor());
+            firstChar.setText(cityNameValue.charAt(0) + "");
+            cityName.setText(cityNameValue);
             cityConfirmed.setText(city.getJSONObject("detail").getString("confirmed"));
         } catch (JSONException e) {
             System.out.println(city);
@@ -67,5 +80,10 @@ public class CityAdapter<J> extends ArrayAdapter {
         }
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public int getRandomColor() {
+        Random rnd = new Random();
+        return Color.argb(256 / 2, rnd.nextInt(256) /2, rnd.nextInt(256)/2, rnd.nextInt(256)/2);
     }
 }

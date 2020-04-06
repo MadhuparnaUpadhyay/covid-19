@@ -1,21 +1,45 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListPreference
-        app:defaultValue="30 Minutes"
-        app:entries="@array/alarm_entries"
-        app:entryValues="@array/alarm_values"
-        app:key="alarm"
-        app:title="@string/alarm_title"
-        app:useSimpleSummaryProvider="true"
-        />
+    <!--    <ListPreference-->
+    <!--        app:defaultValue="30 Minutes"-->
+    <!--        app:entries="@array/alarm_entries"-->
+    <!--        app:entryValues="@array/alarm_values"-->
+    <!--        app:key="alarm"-->
+    <!--        app:title="@string/alarm_title"-->
+    <!--        app:useSimpleSummaryProvider="true"-->
+    <!--        />-->
 
-    <ListPreference
-        app:defaultValue="30 Minutes"
-        app:entries="@array/alert_entries"
-        app:entryValues="@array/alert_values"
-        app:key="alert"
-        app:title="@string/alert_title"
-        app:useSimpleSummaryProvider="true" />
+    <!--    <ListPreference-->
+    <!--        app:defaultValue="30 Minutes"-->
+    <!--        app:entries="@array/alert_entries"-->
+    <!--        app:entryValues="@array/alert_values"-->
+    <!--        app:key="alert"-->
+    <!--        app:title="@string/alert_title"-->
+    <!--        app:useSimpleSummaryProvider="true" />-->
+
+    <Preference
+        android:summary="@string/summary_fb"
+        android:title="@string/title_fb">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="@string/url_fb" />
+    </Preference>
+
+    <Preference
+        android:summary="@string/summary_insta"
+        android:title="@string/title_insta">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="@string/url_insta" />
+    </Preference>
+
+    <Preference
+        android:summary="@string/summary_yt"
+        android:title="@string/title_yt">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:data="@string/url_yt" />
+    </Preference>
 
 </PreferenceScreen>

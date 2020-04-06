@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.covid_19"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -68,6 +68,8 @@ dependencies {
     // this line must be included to integrate with Firebase
 //    //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-messaging:20.1.5'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
+    implementation 'info.androidhive:fontawesome:0.0.5'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -44,6 +45,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     private SharedPreferences sharedPref;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private TabLayout tabLayout;
+    private TextView textView;
     private static final String[] tabArray = {"Statistics", "Video"};//Tab title array
     private static final Integer[] tabIcons = {R.drawable.ic_insert_chart_black_24dp, R.drawable.ic_video_library_black_24dp};//Tab icons array
 
@@ -60,6 +62,9 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        textView = toolbar.findViewById(R.id.toolbar_title);
+        textView.setText("Statistics");
 //        getSupportActionBar().setTitle("sfbsfhj");
 //
 //        sharedPref = this.getSharedPreferences(
@@ -200,6 +205,9 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.settings) {
             intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
+        } else if (id == R.id.aboutus) {
+            intent = new Intent(this, AboutusActivity.class);
+            startActivity(intent);
         }
 //        fragmentTransaction.addToBackStack(null);
 //        fragmentTransaction.commit();
@@ -275,11 +283,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public void onPageSelected(int position) {
 //        menu.getItem(0).setTitle(tabsTitles[position]);
         if (position == 0) {
-            CovidDataFragment.newInstance(position);
-            getSupportActionBar().setTitle("Statistics");
+            new CovidDataFragment();
+            textView.setText("Statistics");
         } else {
             VideoFragment.newInstance(position);
-            getSupportActionBar().setTitle("Video");
+            textView.setText("Video");
         }
     }
 
@@ -293,11 +301,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         final Integer position = tab.getPosition();
         mViewPager.setCurrentItem(position);
         if (position == 0) {
-            CovidDataFragment.newInstance(position);
-            getSupportActionBar().setTitle("Statistics");
+            new CovidDataFragment();
+            textView.setText("Statistics");
         } else {
             VideoFragment.newInstance(position);
-            getSupportActionBar().setTitle("Video");
+            textView.setText("Video");
         }
     }
 

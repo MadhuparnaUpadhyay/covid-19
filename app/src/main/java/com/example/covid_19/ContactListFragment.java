@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.covid_19.Common.ServerCallback;
+import com.example.covid_19.Common.ServerCallbackArray;
 import com.example.covid_19.Common.VollyServerCall;
 
 import org.json.JSONArray;
@@ -67,18 +67,12 @@ public class ContactListFragment extends Fragment {
         if (view instanceof RecyclerView) {
             final RecyclerView recyclerView = (RecyclerView) view;
             VollyServerCall controller = new VollyServerCall();
-            final String MAIN_URL = "https://script.google.com/macros/s/AKfycbxOLElujQcy1-ZUer1KgEvK16gkTLUqYftApjNCM_IRTL3HSuDk/exec?id=13xSu6SRnOhMyGBiJGw6fncacXIf7X6gelC-L-7I76oA&sheet=country emergencies";
-            controller.JsonObjectRequest(getContext(), MAIN_URL, new ServerCallback() {
+            final String MAIN_URL = "http://combatemic.live/api/v1/covid/emergency";
+            controller.JsonArrayRequest(getContext(), MAIN_URL, new ServerCallbackArray() {
                         @Override
-                        public void onSuccess(JSONObject response) {
+                        public void onSuccess(JSONArray response) {
                             // do stuff here
-                            try {
-                                JSONArray userArray = response.getJSONArray("country emergencies");
-                                recyclerView.setAdapter(new ContactListRecyclerViewAdapter(userArray, mListener));
-                            } catch (JSONException e) {
-                                System.out.println(e);
-                                e.printStackTrace();
-                            }
+                            recyclerView.setAdapter(new ContactListRecyclerViewAdapter(response, mListener));
                         }
                     }
             );

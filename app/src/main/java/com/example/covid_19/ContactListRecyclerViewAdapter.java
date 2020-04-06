@@ -41,10 +41,11 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
         try {
             JSONObject jsonObject = mValues.getJSONObject(position);
 //            holder.mItem = jsonObject.getString("Company");
-            holder.mIdView.setText(jsonObject.getString("Country"));
-            holder.mContentView.setText(jsonObject.getString("Ambulance"));
-            holder.mIdView1.setText(jsonObject.getString("Fire"));
-            holder.mContentView1.setText(jsonObject.getString("Police"));
+            holder.state.setText(jsonObject.getString("name"));
+//            holder.helpLine.setText(jsonObject.getString("phone"));
+//            holder.mIdView1.setText(jsonObject.getString("Fire"));
+//            holder.mContentView1.setText(jsonObject.getString("Police"));
+            holder.helpLine.setText(jsonObject.getString("phone"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -55,7 +56,7 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mContentView1);
+                    mListener.onListFragmentInteraction(holder.state);
                 }
             }
         });
@@ -68,21 +69,21 @@ public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<Contact
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView, mIdView1;
-        public final TextView mContentView, mContentView1;
+        public final TextView state, ambulance, fire, police, helpLine;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.state);
-            mContentView = (TextView) view.findViewById(R.id.ambulance);
-            mIdView1 = (TextView) view.findViewById(R.id.fire);
-            mContentView1 = (TextView) view.findViewById(R.id.police);
+            state = (TextView) view.findViewById(R.id.state);
+            ambulance = (TextView) view.findViewById(R.id.ambulance);
+            fire = (TextView) view.findViewById(R.id.fire);
+            police = (TextView) view.findViewById(R.id.police);
+            helpLine = (TextView) view.findViewById(R.id.help_line);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + state.getText() + "'";
         }
     }
 }
