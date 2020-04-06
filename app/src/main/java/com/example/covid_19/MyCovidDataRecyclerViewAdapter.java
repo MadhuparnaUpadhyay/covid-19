@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.covid_19.CovidDataFragment.OnListFragmentInteractionListener;
 
@@ -78,12 +79,12 @@ public class MyCovidDataRecyclerViewAdapter extends RecyclerView.Adapter<MyCovid
     }
 
     public String dateTime(String dateString) {
-        DateFormat sdf = new SimpleDateFormat("dd/mm/yyyy HH:mm:ss");
+        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = null;
         try {
             date = sdf.parse(dateString);
             String newDate = "Updated on: " + new SimpleDateFormat("dd MMM").format(date);
-            String time = "Time: " + new SimpleDateFormat("hh:ss a").format(date);
+            String time = "Time: " + new SimpleDateFormat("hh:mm a").format(date);
 //            String[] dateStr = date.split(" ");
 //            String[] timeStr = dateStr[1].split(":");
 //            String newDate = "Updated on: " + dateStr[0] + " Time: " + timeStr[0] + ":" + timeStr[1];

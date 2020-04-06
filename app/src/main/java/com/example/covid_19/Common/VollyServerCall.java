@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -36,12 +37,12 @@ public class VollyServerCall {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
+//                        pDialog.hide();
                         try {
                             callback.onSuccess(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        pDialog.hide();
                     }
                 }, new Response.ErrorListener() {
 
@@ -54,6 +55,13 @@ public class VollyServerCall {
             }
         });
         mRequestQueue.add(jsonObjReq);
+        mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JSONObject>() {
+            @Override
+            public void onRequestFinished(Request<JSONObject> request) {
+                if (pDialog != null && pDialog.isShowing())
+                    pDialog.dismiss();
+            }
+        });
     }
 
     public void JsonArrayRequest(final Context myContext, final String MAIN_URL, final ServerCallbackArray callback) {
@@ -74,7 +82,7 @@ public class VollyServerCall {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        pDialog.hide();
+//                        pDialog.hide();
                     }
                 }, new Response.ErrorListener() {
 
@@ -87,6 +95,13 @@ public class VollyServerCall {
             }
         });
         mRequestQueue.add(jsonArrReq);
+        mRequestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<JSONArray>() {
+            @Override
+            public void onRequestFinished(Request<JSONArray> request) {
+                if (pDialog != null && pDialog.isShowing())
+                    pDialog.dismiss();
+            }
+        });
     }
 
 

@@ -1,5 +1,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:isScrollContainer="false"
+    android:keepScreenOn="false"
+    android:measureWithLargestChild="false"
+    app:iconSpaceReserved="false"
+    app:isPreferenceVisible="false">
 
     <!--    <ListPreference-->
     <!--        app:defaultValue="30 Minutes"-->
@@ -20,7 +25,10 @@
 
     <Preference
         android:summary="@string/summary_fb"
-        android:title="@string/title_fb">
+        android:title="@string/title_fb"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="@string/url_fb" />
@@ -28,7 +36,10 @@
 
     <Preference
         android:summary="@string/summary_insta"
-        android:title="@string/title_insta">
+        android:title="@string/title_insta"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="@string/url_insta" />
@@ -36,10 +47,35 @@
 
     <Preference
         android:summary="@string/summary_yt"
-        android:title="@string/title_yt">
+        android:title="@string/title_yt"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
         <intent
             android:action="android.intent.action.VIEW"
             android:data="@string/url_yt" />
+    </Preference>
+
+    <Preference
+        android:key="terms"
+        android:title="@string/title_terms"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.example.covid_19.TermsScrollingActivity"
+            android:targetPackage="com.example.covid_19" />
+    </Preference>
+
+    <Preference
+        android:key="policy"
+        android:title="@string/title_policy"
+        app:allowDividerAbove="true"
+        app:allowDividerBelow="true"
+        app:iconSpaceReserved="false">
+        <intent
+            android:targetClass="com.example.covid_19.PrivacyScrollingActivity"
+            android:targetPackage="com.example.covid_19" />
     </Preference>
 
 </PreferenceScreen>

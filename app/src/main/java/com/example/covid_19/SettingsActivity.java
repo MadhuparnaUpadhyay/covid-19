@@ -79,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
         private static final String TAG = "SettingsFragment";
 
         private Preference thePreference;
@@ -145,5 +145,16 @@ public class SettingsActivity extends AppCompatActivity {
             listPreference.setOnPreferenceChangeListener((Preference.OnPreferenceChangeListener) listPreference);
         }
 
+        @Override
+        public boolean onPreferenceClick(Preference preference) {
+            String key = preference.getKey();
+            if (key.equals("terms")) {
+                // do your work
+                Intent intent = new Intent(getActivity(), AboutusActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            return false;
+        }
     }
 }

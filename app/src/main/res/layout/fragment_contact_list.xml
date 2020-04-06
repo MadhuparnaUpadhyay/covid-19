@@ -76,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="101"
+                android:autoLink = "phone"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@android:color/black" />
         </LinearLayout>
@@ -102,6 +103,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:text="100"
+                android:autoLink = "phone"
+                android:drawableRight="@drawable/ic_call_black_24dp"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@android:color/black" />
         </LinearLayout>
@@ -127,6 +130,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
+                android:autoLink="phone"
+                android:textColorLink="@color/colorAccent"
                 android:text=""
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@android:color/black" />

@@ -45,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
 //To do//
-                            Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
 // Get the Instance ID token//
                         String token = task.getResult().getToken();
                         @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String msg = getString(R.string.fcm_token, token);
-                        Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
                         Log.d(TAG, msg);
 
                     }

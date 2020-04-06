@@ -26,7 +26,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage message) {
         super.onMessageReceived(message);
-        sendNotification(getApplicationContext());
+//        sendNotification(getApplicationContext());
 //        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
 //                .setContentTitle(message.getNotification().getTitle())
 //                .setContentText(message.getNotification().getBody())

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutusActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".PrivacyScrollingActivity"
+    tools:showIn="@layout/activity_privacy_scrolling">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/gabriela"
-        android:text="Adventure Time is an American fantasy animated television series created by Pendleton Ward for Cartoon Network. The series follows the adventures of a boy named Finn, voiced by Jeremy Shada (pictured), and his best friend Jake, a dog who can change shape and size at will, voiced by John DiMaggio. In the post-apocalyptic Land of Ooo, they interact with Princess Bubblegum (Hynden Walch), the Ice King (Tom Kenny), Marceline (Olivia Olson), and others. The series is based on a 2007 short for Nicktoons and Frederator Studios' Random! Cartoons. Premiering April 5, 2010, and ending September 3, 2018, each 11-minute episode took roughly 8–9 months to complete using hand-drawn animation. Adventure Time was a ratings success for Cartoon Network with up to three million viewers. "
-        android:textSize="40dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_margin"
+        android:lineSpacingExtra="5dp"
+        android:text="@string/aboutus_text" />
 
-    </TextView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
