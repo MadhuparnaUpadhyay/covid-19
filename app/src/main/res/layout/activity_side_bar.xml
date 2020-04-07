@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:text="v0.9 beta" />
+                android:text="v0.9.1 beta" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
 

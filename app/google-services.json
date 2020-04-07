@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "215530283159",
-    "firebase_url": "https://covid-58bbf.firebaseio.com",
-    "project_id": "covid-58bbf",
-    "storage_bucket": "covid-58bbf.appspot.com"
+    "project_number": "253045056533",
+    "firebase_url": "https://combatemic-1ded3.firebaseio.com",
+    "project_id": "combatemic-1ded3",
+    "storage_bucket": "combatemic-1ded3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:215530283159:android:3766ef0d16b580120649d2",
+        "mobilesdk_app_id": "1:253045056533:android:4da81500e9da66f70fda1c",
         "android_client_info": {
           "package_name": "live.combatemic.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "215530283159-5bhrqab18l8i3eepcldchuo109bmaph0.apps.googleusercontent.com",
+          "client_id": "253045056533-p5193ur7n7uhesarqkgp983qmcjdcjv5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCpsEFRSXbATUF5psUvl8sbFsaTw9ScFXw"
+          "current_key": "AIzaSyDUkm_hML3Bz9gP4m2tzTNT3RkmnhdlZMY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "215530283159-5bhrqab18l8i3eepcldchuo109bmaph0.apps.googleusercontent.com",
+              "client_id": "253045056533-p5193ur7n7uhesarqkgp983qmcjdcjv5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
