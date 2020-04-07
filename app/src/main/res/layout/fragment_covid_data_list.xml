@@ -12,11 +12,13 @@
         android:id="@+id/card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         card_view:cardCornerRadius="3dp"
         card_view:cardElevation="1dp"
         card_view:cardMaxElevation="10dp">
 
         <LinearLayout
+            android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -25,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:textColor="#000"
                 android:text="Last updated Location" />
 
             <TextView
