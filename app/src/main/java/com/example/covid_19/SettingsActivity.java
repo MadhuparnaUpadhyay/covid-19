@@ -184,14 +184,14 @@ public class SettingsActivity extends AppCompatActivity {
             } else {
                 if (on) {
                     assert state != null;
-                    FirebaseMessaging.getInstance().subscribeToTopic(state);
+                    FirebaseMessaging.getInstance().subscribeToTopic(state.replaceAll("\\s","_"));
                     assert country != null;
-                    FirebaseMessaging.getInstance().subscribeToTopic(country);
+                    FirebaseMessaging.getInstance().subscribeToTopic(country.replaceAll("\\s","_"));
                 } else {
                     assert state != null;
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(state);
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(state.replaceAll("\\s","_"));
                     assert country != null;
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(country);
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(country.replaceAll("\\s","_"));
                 }
                 SharedPreferences.Editor myEdit = sharedPref.edit();
                 myEdit.putBoolean("subscribe", on);

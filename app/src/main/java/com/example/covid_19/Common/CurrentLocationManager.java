@@ -126,13 +126,15 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
                     new Geocoder(this.mContext).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             if (!geocodeMatches.isEmpty()) {
                 Address address = geocodeMatches.get(0);
+                String state = address.getAdminArea() + "";
+                String country = address.getCountryCode() + "";
                 myEdit.putString("address", address.getAddressLine(0) + "");
                 myEdit.putString("address1", address.getAddressLine(1) + "");
-                myEdit.putString("state", address.getAdminArea() + "");
+                myEdit.putString("state", state);
                 myEdit.putString("zipcode", address.getPostalCode() + "");
-                myEdit.putString("country", address.getCountryName() + "");
-                FirebaseMessaging.getInstance().subscribeToTopic(address.getAdminArea() + "");
-                FirebaseMessaging.getInstance().subscribeToTopic(address.getCountryName() + "");
+                myEdit.putString("country", country);
+                FirebaseMessaging.getInstance().subscribeToTopic(state.replaceAll("\\s","_"));
+                FirebaseMessaging.getInstance().subscribeToTopic(country.replaceAll("\\s","_"));
                 myEdit.putBoolean("subscribe", true);
             }
         } catch (IOException e) {

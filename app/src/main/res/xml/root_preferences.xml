@@ -97,7 +97,7 @@
     </PreferenceCategory>
 
     <Preference
-        android:summary="v0.9 beta"
+        android:summary="v0.9.1 beta"
         android:title="@string/app_version"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>
