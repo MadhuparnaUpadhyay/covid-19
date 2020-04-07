@@ -23,59 +23,74 @@
     <!--        app:title="@string/alert_title"-->
     <!--        app:useSimpleSummaryProvider="true" />-->
 
-    <Preference
-        android:summary="@string/summary_fb"
-        android:title="@string/title_fb"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="@string/url_fb" />
-    </Preference>
+    <SwitchPreference
+        android:checked="true"
+        android:key="switch"
+        android:summary="@string/summary_notification"
+        android:theme="@style/SCBSwitch"
+        android:title="@string/title_notification"
+        app:iconSpaceReserved="false" />
+
+    <PreferenceCategory
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false"
+        app:layout="@layout/preference_text"
+        app:title="Connect with us">
+        <Preference
+            android:summary="@string/summary_fb"
+            android:title="@string/title_fb"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_fb" />
+        </Preference>
+
+        <Preference
+            android:summary="@string/summary_insta"
+            android:title="@string/title_insta"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_insta" />
+        </Preference>
+
+        <Preference
+            android:summary="@string/summary_yt"
+            android:title="@string/title_yt"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="@string/url_yt" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:allowDividerAbove="false"
+        app:allowDividerBelow="false"
+        app:layout="@layout/preference_text"
+        app:title="Information">
+        <Preference
+            android:key="terms"
+            android:title="@string/title_terms"
+            app:iconSpaceReserved="false">
+            <intent
+                android:targetClass="com.example.covid_19.TermsScrollingActivity"
+                android:targetPackage="com.example.covid_19" />
+        </Preference>
+
+        <Preference
+            android:key="policy"
+            android:title="@string/title_policy"
+            app:iconSpaceReserved="false">
+            <intent
+                android:targetClass="com.example.covid_19.PrivacyScrollingActivity"
+                android:targetPackage="com.example.covid_19" />
+        </Preference>
+    </PreferenceCategory>
 
     <Preference
-        android:summary="@string/summary_insta"
-        android:title="@string/title_insta"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="@string/url_insta" />
-    </Preference>
-
-    <Preference
-        android:summary="@string/summary_yt"
-        android:title="@string/title_yt"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="@string/url_yt" />
-    </Preference>
-
-    <Preference
-        android:key="terms"
-        android:title="@string/title_terms"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false">
-        <intent
-            android:targetClass="com.example.covid_19.TermsScrollingActivity"
-            android:targetPackage="com.example.covid_19" />
-    </Preference>
-
-    <Preference
-        android:key="policy"
-        android:title="@string/title_policy"
-        app:allowDividerAbove="true"
-        app:allowDividerBelow="true"
-        app:iconSpaceReserved="false">
-        <intent
-            android:targetClass="com.example.covid_19.PrivacyScrollingActivity"
-            android:targetPackage="com.example.covid_19" />
-    </Preference>
-
+        android:summary="Version 0.1"
+        android:title="@string/app_version"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

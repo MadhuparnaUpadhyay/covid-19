@@ -52,73 +52,78 @@
     <string name="title_activity_you_tube">YouTubeActivity</string>
     <string name="summary_fb">Join us on Facebook and stay up to date with everything</string>
     <string name="title_fb">Facebook</string>
+    <string name="title_notification">Control Combatemic Notifications</string>
+    <string name="summary_notification">Enable or Disable notifications</string>
     <string name="url_fb">https://www.facebook.com/combatemic</string>
-    <string name="summary_insta">Instagram</string>
+    <string name="summary_insta">Join us on Instagram and stay up to date with everything</string>
     <string name="title_insta">Instagram</string>
-    <string name="url_insta"></string>
-    <string name="summary_yt">Youtube</string>
-    <string name="title_yt">Youtube</string>
+    <string name="url_insta">https://www.instagram.com/combatemic?r=nametag</string>
+    <string name="summary_yt">Join us on YouTube and stay up to date with everything</string>
+    <string name="title_yt">YouTube</string>
     <string name="title_policy">Privacy Policy</string>
+    <string name="app_version">App Version</string>
     <string name="title_terms">Terms &amp; Conditions</string>
     <string name="url_yt">https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw</string>
+    <string name="video_desc">Worried about the pandemic Coronavirus? \🙄
+\n\n
+Watch the video to know about preventive measures, symptoms and how you can stay safe. Let us know if we could answer some of your questions and comment if you want to know more.
+Don\'t forget to share with your friends and family for keeping them aware.</string>
     <string name="title_activity_privacy_scrolling">PrivacyScrollingActivity</string>
     <string name="aboutus_text">
         COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
-
+\n\n
 The contribution is from “US” To HUMANITY.
-
+\n\n
 Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
-
+\n\n
 The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share this APP for the benefit of society.
-
+\n\n
 We would also like to thank Team "BTN-HashBUGS (By Nimisha Goyal)" for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.
 
 
     </string>
     <string name="terms_text">
         Terms &amp; Conditions (T&amp;C)
-
+\n\n
 This document is an electronic record in terms of Information Technology Act, 2000 and rules made thereunder and as the same may be amended from time to time. Being a system generated electronic record, it does not require any physical or digital signature.
-
+\n\n
 Greetings from Combatemic(hereinafter referred to as the “App”). The App is owned by Combatemic Team., incorporated in India by a group of 8 developers(hereinafter referred to as “We” or “Our” or “Us” or “Company”).
-
+\n\n
 By accessing Our App from any computer, computer device, mobile, smartphone or any electronic device, You (hereinafter referred to as “You” or “Your”) expressly agree to be bound by these App related Terms and Conditions (hereinafter referred to as the “App Terms and Conditions”).
-
+\n\n
 If You use the App, You are required to first carefully read as well as fully understand these App Terms and Conditions which are applicable when You view/access/use (hereinafter collectively, referred to as “use” or “using”) the App. Please also carefully read and fully understand Our Privacy Policy available at [●] (hereinafter referred to as the “Privacy Policy”), which is incorporated in these App Terms and Conditions by reference.
-
+\n\n
 If, for any reason, You do not agree to these App Terms and Conditions, Privacy Policy and/or other App guidelines and policies (guidelines and policies hereinafter collectively referred to as “Other Policies”) as communicated to You when You use the App or do not wish to be bound by them, please do not use the App in any way whatsoever. By using the App, You have indicated to Us that You have read, acknowledged and understood as well as fully agreed, to be bound by these App Terms and Conditions, Privacy Policy and all Other Policies, irrespective whether You register with or use the App or create an account with Us or not.
+\n\n\n
 
-
-ABOUT THE APP[a]
+ABOUT THE APP[a]\n
 The App is proprietary to Us and constitutes Our intellectual property. Any intellectual property relating to any products and/or services offered on or through the App may be proprietary to Us or Our partners and shall constitute Ours or Our partners’ intellectual property as the case may be.
-The App has a tracking system whereby it keeps a track of users’ location and based on current device location. The data reflected from on the app regarding the number of disease patients is fetched from government updates or third-part integrations.
-
+\nThe App has a tracking system whereby it keeps a track of users’ location and based on current device location. The data reflected from on the app regarding the number of disease patients is fetched from government updates or third-party integrations.
+\n
 If there are any specific or additional terms and conditions attached to any such offered products and/or services, then the same will also be applicable and shall form an integral part of these App Terms and Conditions.
 The App is provided currently free of cost and is solely to help individuals stay safe.
+\n\n\n
 
-
-
-ACCEPTANCE OF TERMS, ETC.
+ACCEPTANCE OF TERMS, ETC.\n
 These App Terms and Conditions is in the form of an electronic and legally binding contract that establishes the terms and conditions You have accepted before using the App or any part thereof. These include Our Privacy Policy and Other Policies as mentioned in these App Terms and Conditions as well as other specific policies and terms and conditions disclosed to You, in case You avail any subscription or any additional features, products or services We offer on or through the App, whether free or otherwise, including but not limited to terms governing features, billing, free trials, promotions and discounts. By using the App, You hereby unconditionally consent and accept to these App Terms and Conditions, Privacy Policy and Other Policies. To withdraw such consent, You must immediately cease using the App and terminate Your account with Us. You are requested to keep a physical copy of these App Terms and Conditions and all other referred policies herein for Your records.
 You consent to have these App Terms and Conditions and all notices provided to You in electronic form.
-Every time You use the App, You confirm Your agreement with these App Terms and Conditions, Privacy Policy and Other Policies.
-ELIGIBILITY.
+Every time You use the App, You confirm Your agreement with these App Terms and Conditions, Privacy Policy and Other Policies.\n
+ELIGIBILITY.\n
 The minimum age to use the App is 18 (eighteen) years. By using the App and in order to be competent to contract under applicable law, You represent and warrant that You are at least 18 (eighteen) years of age or not a minor in any other jurisdiction from where You access Our App.
 By using the App, You hereby represent and warrant to Us that You have all right, authority and capacity to enter into these App Terms and Conditions and to abide by all of the terms and conditions thereof.
-
-PROPRIETARY RIGHTS.
+\n\n
+PROPRIETARY RIGHTS.\n
 You confirm and agree that We or Our partners are the owner of the proprietary information made available to You through the App and hereby retain all proprietary and intellectual property rights in the same, including but not limited to all confidential information.
 You undertake not to post, copy, modify, transmit, disclose, show in public, create any derivative works from, distribute, make commercial use of, or reproduce in any way, and whether partly or fully, any (i) confidential or proprietary information, or (ii) copyrighted or copyrightable material, trademarks, service marks or other proprietary information accessible via the App; whether belonging to Us or not without first obtaining Our prior written consent.
 Other App users may upload/publish/post any copyrighted information, which may have copyright protection or not or which may be
 identified as copyright. You undertake not to copy, modify, publish, transmit, distribute, perform, display, commercially use/exploit, sell
-
-[b] or use such information in any way and for any purpose whatsoever.
+\n\n
+[b]\n\n or use such information in any way and for any purpose whatsoever.
 
 By posting information or content to any profile pages or public area of the App, or making it accessible to Us by linking Your account to any social network accounts (e.g. via Facebook, Twitter, Instagram etc.), You grant Us unconditionally and in perpetuity, and represent and warrant that You have the right to grant to Us, an irrevocable, perpetual, non-exclusive, fully-paid/royalty-free, worldwide license to use, reproduce, publicly perform, publicly display and distribute such information and content, and to prepare derivative works of, or incorporate into other works, such information and content, and to grant and authorize sub-licenses of the foregoing anywhere in the world. From time to time, We may modify, add or vary existing features or programs of the App or create, add, test or implement new features or programs on the App in which You may voluntarily choose to participate or may be a part of a test group with special access, in accordance with the additional terms and conditions of such features or programs. By participating in such features or programs, You grant Us an unconditional and perpetual right and consent to the terms and conditions (if any) of such features or programs which will be in addition to these App Terms and Conditions.
-
-send any unsolicited email or any other communication in any way whatsoever not expressly permitted under these App
+        \n\n\n
 Terms and Conditions;
-
+\n\n
 undertake any unauthorized framing of or linking to the App or “frame” or “mirror” any part of the App, without Our prior written authorization;
 interfere with, obstruct, destroy or disrupt the App or the servers or networks connected to the App, whether partly or fully and whether permanently or temporarily;
 email or otherwise transmit any content or material that contains software viruses, malware, spyware or any other computer code, files or programs designed to interrupt, destroy, disrupt or limit the functionality of the App or of any computer software or hardware or telecommunications equipment connected with the App;
@@ -127,59 +132,59 @@ use meta tags, code, programs or other devices, tools or technology containing a
 directly or indirectly modify, adapt, sublicense, translate, sell, reverse engineer, decipher, decompile or otherwise disassemble any portion of the App; or
 post, use, transmit or distribute, directly or indirectly, in any manner or media any content (whether textual, graphical, images, audio, video, audio-video or any combination thereof) or information obtained from the App other than solely in connection with Your use of the App in accordance with these App Terms and Conditions.
 
-
+\n\n\n
 
 We may occasionally update these App Terms and Conditions. When We post any changes, We will revise the "last updated" date. We recommend that You check Our App from time to time to keep Yourself updated of any changes in this App Terms and Conditions or any of Our Policies.
-
-MODIFICATIONS TO THE APP.
+\n\n
+MODIFICATIONS TO THE APP.\n
 We reserve the right at any time to modify or discontinue, temporarily or permanently, the App (or any part thereof) with or without notice. You agree that We shall not be liable to You or to any third party for any modification, suspension or discontinuance of the App. Any access or usage by You of the App shall imply that You have accepted any new or modified terms and conditions. Please re-visit these App Terms and Conditions from time to time to stay abreast of any changes that We may introduce.
-
-CAUTION
+\n\n
+CAUTION\n
 Opinions, advice, statements, offers, or other information or content made available through the App, but not directly by Us, are those of their respective authors, and should not necessarily be relied upon. Such authors are solely responsible for such Content. We do not (i) guarantee the accuracy, completeness or usefulness of any information provided on the App, or (ii) adopt, endorse or accept responsibility for the accuracy or reliability of any opinion, advice, or statement made by any party other than Us.
 From time to time, We may offer new features or tools which Our App users may experiment or experience. Such features or tools are offered solely for experimental purposes and without any warranty of any kind, and may be modified or discontinued at Our sole discretion.
-
-GRIEVANCE OFFICER.
+\n\n
+GRIEVANCE OFFICER.\n
 In accordance with Information Technology Act, 2000 and rules made there under, the name and contact details of the Grievance Officer
 
 are provided below:
-
+\n
 Email: combatemic@gmail.com
 CONTACT US.
 Please contact Us by email on combatemic@gmail.com for any questions or comments regarding these App Terms and Conditions.
-
+\n\n
 Last Updated on: April 5th, 2020.
 
 
     </string>
     <string name="title_activity_terms_scrolling">TermsScrollingActivity</string>
     <string name="privacy_text">
-Privacy Policy
+Privacy Policy\n\n\n
 This document is an electronic record in terms of Information Technology Act, 2000 and rules made thereunder and as the same may be amended from time to time. Being a system generated electronic record, it does not require any physical or digital signature.
-
+\n\n
 
 Greetings from Combatemic(hereinafter referred to as the “App”). The App is owned by Combatemic Team., incorporated in India by a group of 8 developers(hereinafter referred to as “We” or “Our” or “Us” or “Company”).
-
+\n\n
 
 We respect the privacy of our App users (“You” or “Your”) and the confidentiality of the information provided by You and have developed this Privacy Policy to demonstrate Our commitment to protecting the same. This Privacy Policy describes the type of information We collect, purpose, usage, storage and handling of such information, and disclosure thereof. We encourage You to read this Privacy Policy carefully when (i) using Our App from any computer, computer device, mobile, smartphone or any electronic device, or (ii) availing any products or services offered on or through the App. By using Our App, You are accepting the practices described in this Privacy Policy.
-
+\n\n
 
 WHAT INFORMATION DO WE COLLECT?
-
+\n\n
 When You use the App, We collect Your location. Your personal information helps Us to collect information that can directly identify You such as Your address and information. By using the App, You are authorizing Us to collect, parse, store, process, disclose, disseminate and retain such information as envisaged herein. Unless specified otherwise in this Privacy Policy, Your personal information shall not be made public or made available to other users without Your explicit permission.
-
+\n\n
 You will also be asked to allow Us to collect Your location and movement (step count) information from the device when You use the App. In addition, We may collect and store any personal information You provide while using Our App or in some other manner. You may also provide Us photos, personal description, and information about Your gender and preferences. In case any chat facility is provided through the App and if You chat with other App users, You provide Us the content of Your chats, and If You contact Us for customer service or other inquiry, You provide Us with the content of that communication.
-
+\n\n
 We neither knowingly collect any information nor promote Our App to any minor under the age of 18 (eighteen) years. If You are less than 18 (eighteen) years old or a minor in any other jurisdiction from where You access Our App, We request that You do not submit information to Us. If We become aware that a minor has registered with Us and provided Us with personal information, We may take steps to terminate such person’s registration and delete their account with Us.
-
+\n\n
 We use various tools and technologies, including cookies, to collect Your personal information and non-personal information from the device from which You access the App and learn about Your activities taking place under Your account when You use Our App. Such non-personal information could include Your IP address, device ID and type, Your browser type and language, operating system used by Your device, access times, Your device geographic location and the referring website address. We may use web beacons and other similar technologies to track Your use of Our App and to deliver or communicate with cookies.
-
+\n\n
 Advertising networks service providers, web traffic analysis service providers, Our business partners and vendors and other third parties may also use cookies, which is beyond Our control. These would most likely be analytical/performance cookies or targeting cookies. Blocking such cookies is possible by activating the appropriate settings on Your device browser. However this may affect the functionality of the App.
 
-
+\n\n\n
 HOW WE USE THE INFORMATION WE COLLECT?
-
+\n\n
 We may use information that We collect from You to:
-
+\n\n
 deliver and improve Our App and share live updates and preventive disease measures;
 providing access to offers and facilitating transactions for availing Ours and third party’s goods and services through the App;
 perform research and analysis about Your use of, or interest in, Our or third party’s products, services, or content or such products, services, or content as may be available on or through the App;
@@ -189,42 +194,42 @@ enforce or exercise any rights in our App Terms and Conditions;
 perform functions or services as otherwise described to You at the time of collection; and
 resolve disputes, diagnose errors, troubleshoot problems, detect and protect Us against any activity not expressly authorized under the App Terms &amp; Conditions as available at the link [●].
 
-
+\n\n\n
 
 HOW CAN YOU ACCESS OR CONTROL YOUR INFORMATION?
-
+\n\n
 If You have an App account with Us, You can review and update Your personal information by opening and editing Your profile details. In addition, We give You the control to opt out of having Your personal information shared, via the App settings. If You logout of Your App account or uninstall the App, We may retain certain information associated with Your account for analytical purposes and recordkeeping purposes or as required by law, as well as to prevent fraud, enforce our App Terms and Conditions, take actions We deem necessary to protect the integrity of Our App or other App users, or take other actions otherwise permitted by law. In addition, if certain information has already been provided to third parties as described in this Privacy Policy, retention of that information will be subject to those third parties\' policies.
-
+\n\n
 You can choose not to provide Us with certain information; however this may result in You being unable to use certain features of Our App. Our App may also deliver notifications to Your email or mobile device. You can avoid or disable these notifications by deleting the App or by making changed in the App settings.
-
+\n\n
 You are solely liable and responsible for any information You provide and/or share using the App.
 
-
+\n\n\n
 HOW DO WE PROTECT YOUR PERSONAL INFORMATION?
-
+\n\n
 We adopt reasonable security practices and procedures to help safeguard Your personal information under Our control from unauthorized access. However, You acknowledge that no Internet transmission or system or server can be 100% secure. Therefore, although We take all reasonable steps to secure Your personal information, We do not promise or guarantee the same, and You should not expect that Your personal information, or other communications while using the App will always remain secure and safeguarded by Us. You should always exercise caution while providing, sharing or disclosing Your personal information using the App.
-
+\n\n\n
 
 
 CHILDREN\'S PRIVACY.
-
+\n\n
 Although Our App is a general audience App, We try Our best to restrict the use of Our App to individuals aged 18 (eighteen) years and above. We do not knowingly collect, maintain or use personal information from children under the age of 18 (eighteen) years.
 
-
+\n\n\n
 CHANGES TO THIS PRIVACY POLICY.
-
+\n\n
 We may occasionally update this Privacy Policy. When We post changes to this Privacy Policy, We will revise the "last updated" date. We recommend that You check Our App from time to time to keep Yourself updated of any changes in this Privacy Policy or any of Our other App related terms and policies.
 
-
-GRIEVANCE OFFICER.
+\n\n\n
+GRIEVANCE OFFICER.\n
 In accordance with Information Technology Act, 2000 and rules made there under, the name and contact details of the Grievance Officer
 
 are provided below:
-
+\n\n
 Email: combatemic@gmail.com
 CONTACT US.
 Please contact Us by email on combatemic@gmail.com for any questions or comments regarding these App Terms and Conditions.
-
+\n\n
 Last Updated on: April 5th, 2020.
 
     </string>

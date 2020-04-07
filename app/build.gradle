@@ -70,6 +70,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.1.5'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
     implementation 'info.androidhive:fontawesome:0.0.5'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+//    implementation 'com.google.api-client:google-api-client:1.30.9'
+//    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.23.0'
+//    implementation 'com.google.apis:google-api-services-youtube:v3-rev20200109-1.30.8'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }
 

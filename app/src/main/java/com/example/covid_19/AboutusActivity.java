@@ -34,7 +34,7 @@ public class AboutusActivity extends AppCompatActivity {
 
             ImageView imageView = (ImageView) view.findViewById(R.id.back_button);
             TextView textView = view.findViewById(R.id.toolbar_title);
-            textView.setText("Aboutus");
+            textView.setText("About Us");
 
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override

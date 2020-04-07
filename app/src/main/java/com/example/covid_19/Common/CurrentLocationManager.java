@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.IOException;
 import java.util.List;
@@ -130,6 +131,9 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
                 myEdit.putString("state", address.getAdminArea() + "");
                 myEdit.putString("zipcode", address.getPostalCode() + "");
                 myEdit.putString("country", address.getCountryName() + "");
+                FirebaseMessaging.getInstance().subscribeToTopic(address.getAdminArea() + "");
+                FirebaseMessaging.getInstance().subscribeToTopic(address.getCountryName() + "");
+                myEdit.putBoolean("subscribe", true);
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
@@ -140,7 +144,7 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
         // Once the changes have been made,
         // we need to commit to apply those changes made,
         // otherwise, it will throw an error
-        myEdit.commit();
+        myEdit.apply();
         this.isconnected = true;
         onLocationUpdateListener.onLocationChange(location);
     }

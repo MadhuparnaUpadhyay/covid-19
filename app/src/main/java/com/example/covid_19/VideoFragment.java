@@ -1,45 +1,51 @@
 package com.example.covid_19;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covid_19.Common.ServerCallback;
 import com.example.covid_19.Common.VollyServerCall;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-import java.util.Objects;
+import java.io.IOException;
+import java.net.URL;
 
 
 /**
@@ -47,7 +53,7 @@ import java.util.Objects;
  * Use the {@link VideoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VideoFragment extends Fragment {
+public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializedListener, View.OnClickListener {
     //implements YouTubePlayer.OnInitializedListener
     private static final int RECOVERY_REQUEST = 1;
     private YouTubePlayerView youTubeView;
@@ -55,6 +61,11 @@ public class VideoFragment extends Fragment {
     private YouTubePlayerSupportFragment youTubePlayerFragment;
     private WebView webview;
     private ListView listViewVideo;
+    private TextView shareTextView, likeTextView, dislikeTextView;
+    private String videoId = "ghqF4CCrt2k";
+    private String mainUrl = "https://www.youtube.com/watch?v=";
+    private SharedPreferences sharedPref;
+    private ImageView imageViewThumbnail;
 
     public VideoFragment() {
         // Required empty public constructor
@@ -87,7 +98,31 @@ public class VideoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_video_list, container, false);
 
-        listViewVideo = view.findViewById(R.id.list_view_video);
+        sharedPref = getActivity().getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+//        listViewVideo = view.findViewById(R.id.list_view_video);
+        shareTextView = view.findViewById(R.id.share_video);
+        likeTextView = view.findViewById(R.id.like);
+        dislikeTextView = view.findViewById(R.id.dislike);
+        imageViewThumbnail = view.findViewById(R.id.thumbnail);
+        shareTextView.setOnClickListener(this);
+        likeTextView.setOnClickListener(this);
+        dislikeTextView.setOnClickListener(this);
+
+//        Bitmap bmThumbnail;
+        String imageUrl = "http://img.youtube.com/vi/VUHPBHcstak/maxresdefault.jpg";
+//        MICRO_KIND, size: 96 x 96 thumbnail
+//        bmThumbnail = ThumbnailUtils.createVideoThumbnail(url, MediaStore.Images.Thumbnails.MICRO_KIND);
+//        imageViewThumbnail.setImageBitmap(bmThumbnail);
+        Picasso.get().load(imageUrl).into(imageViewThumbnail);
+//        Bitmap bmp = null;
+//        try {
+//            URL url = new URL("http://img.youtube.com/vi/VUHPBHcstak/default.jpg");
+//            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        imageViewThumbnail.setImageBitmap(bmp);
 //        webview = new WebView(getContext());
 //
 //        final WebSettings settings = webview.getSettings();
@@ -116,13 +151,13 @@ public class VideoFragment extends Fragment {
 //        webview.loadData('<iframe width="560" height="315" src="https://www.youtube.com/embed/hBlO1i_WTiY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', "text/html", "utf-8");
 //        webview.setWebChromeClient(new WebChromeClient());
 
-        getVideo();
-//        youTubePlayerFragment = new YouTubePlayerSupportFragment();
-//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
-//        fragmentTransaction.commit();
+//        getVideo();
+        youTubePlayerFragment = new YouTubePlayerSupportFragment();
+        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
+        fragmentTransaction.commit();
 
 //        youTubeView = (YouTubePlayerFragment) view.findViewById(R.id.youtubesupportfragment);
 //        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -165,7 +200,7 @@ public class VideoFragment extends Fragment {
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String state = sharedPref.getString("state", "");
         String city = sharedPref.getString("city", "");
-        String pincode = sharedPref.getString("pincode", "");
+        String pincode = sharedPref.getString("zipcode", "");
         VollyServerCall controller = new VollyServerCall();
         final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/videos?location=" + state + "&state=" + state + "&city=" + city + "&pincode=" + pincode;
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
@@ -217,35 +252,87 @@ public class VideoFragment extends Fragment {
 //        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
-//    @Override
-//    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-//        if (!wasRestored) {
-//            youTubePlayer.cueVideo("voBuLsstp2s"); // Plays https://www.youtube.com/watch?v=-epZ12OclMg
-////            youTubePlayer.loadVideo("voBuLsstp2s");
-//
-////            youTubePlayer.play();
-//        }
-//    }
-//
-//    @Override
-//    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-//        if (youTubeInitializationResult.isUserRecoverableError()) {
-//            youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
-//        } else {
-//            String error = String.format("R.string.menu_gallery", youTubeInitializationResult.toString());
-//            Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
-//        }
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode == RECOVERY_REQUEST) {
-//            // Retry initialization if user performed a recovery action
-//            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
-//        }
-//    }
-//
-//    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
-//        return youTubeView;
-//    }
+    @Override
+    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
+        if (!wasRestored) {
+            youTubePlayer.cueVideo(videoId); // Plays https://www.youtube.com/watch?v=-epZ12OclMg
+//            youTubePlayer.loadVideo("voBuLsstp2s");
+
+//            youTubePlayer.play();
+        }
+    }
+
+    @Override
+    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+        if (youTubeInitializationResult.isUserRecoverableError()) {
+            youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
+        } else {
+            String error = String.format("R.string.menu_gallery", youTubeInitializationResult.toString());
+            Toast.makeText(getContext(), error, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == RECOVERY_REQUEST) {
+            // Retry initialization if user performed a recovery action
+            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
+        }
+    }
+
+    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+        return youTubeView;
+    }
+
+    @SuppressLint("ResourceType")
+    @Override
+    public void onClick(View v) {
+        if (v == shareTextView) {
+            Intent share = new Intent(android.content.Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            // Add data to the intent, the receiving app will decide
+            // what to do with it.
+            share.putExtra(Intent.EXTRA_SUBJECT, "Corona Virus");
+            share.putExtra(Intent.EXTRA_TEXT, mainUrl + videoId);
+
+            startActivity(Intent.createChooser(share, "Share link!"));
+
+        } else if (v == likeTextView) {
+            Bundle arguments = getArguments();
+            SharedPreferences.Editor myEdit = sharedPref.edit();
+            myEdit.putInt("like", 1);
+            myEdit.apply();
+
+            for (Drawable drawable : likeTextView.getCompoundDrawables()) {
+                if (drawable != null) {
+                    drawable.setColorFilter(new PorterDuffColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN));
+                }
+            }
+            for (Drawable drawable : dislikeTextView.getCompoundDrawables()) {
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+//                    drawable.setColorFilter(new PorterDuffColorFilter(Color.MAGENTA, PorterDuff.Mode.SRC_IN));
+                }
+            }
+
+        } else if (v == dislikeTextView) {
+            Bundle arguments = getArguments();
+            SharedPreferences.Editor myEdit = sharedPref.edit();
+            myEdit.putInt("dislike", 0);
+            myEdit.apply();
+            for (Drawable drawable : dislikeTextView.getCompoundDrawables()) {
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+                    drawable.setColorFilter(new PorterDuffColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN));
+                }
+            }
+            for (Drawable drawable : likeTextView.getCompoundDrawables()) {
+                if (drawable != null) {
+                    drawable.clearColorFilter();
+//                    drawable.setColorFilter(new PorterDuffColorFilter(R.color.colorAccent, PorterDuff.Mode.SRC_IN));
+                }
+            }
+        }
+    }
 }

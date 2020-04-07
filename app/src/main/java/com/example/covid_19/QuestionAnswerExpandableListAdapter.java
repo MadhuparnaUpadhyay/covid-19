@@ -91,7 +91,7 @@ public class QuestionAnswerExpandableListAdapter extends BaseExpandableListAdapt
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.question_header);
         lblListHeader.setTypeface(null, Typeface.BOLD);
-        lblListHeader.setText(headerTitle);
+        lblListHeader.setText(groupPosition + 1 + ". " + headerTitle);
 
         return convertView;
     }

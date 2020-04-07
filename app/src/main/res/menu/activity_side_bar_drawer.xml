@@ -19,10 +19,7 @@
             android:icon="@drawable/ic_question_answer_black_24dp"
             android:title="@string/menu_faq" />
 
-        <!--    <group-->
-        <!--        android:id="@+id/group_secondary"-->
-        <!--        android:checkableBehavior="single"-->
-        <!--        android:menuCategory="secondary">-->
+
         <!--        <item-->
         <!--            android:id="@+id/privacy"-->
         <!--            android:icon="@drawable/ic_verified_user_black_24dp"-->
@@ -31,11 +28,16 @@
             android:id="@+id/aboutus"
             android:icon="@drawable/ic_help_black_24dp"
             android:title="About us" />
+    </group>
+    <group
+        android:id="@+id/group_secondary"
+        android:checkableBehavior="single"
+        android:menuCategory="secondary">
 
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Settings" />
-        <!--    </group>-->
+
     </group>
 </menu>
