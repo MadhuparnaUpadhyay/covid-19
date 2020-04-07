@@ -1,122 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".TermsScrollingActivity">
 
-    <!--    <ListView-->
-    <!--        android:id="@+id/list_view_video"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        />-->
-    <FrameLayout
-        android:id="@+id/youtubesupportfragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:background="#000" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/white"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="5dp"
-        card_view:cardMaxElevation="10dp">
-
-        <LinearLayout
+        <!--    <ListView-->
+        <!--        android:id="@+id/list_view_video"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        />-->
+        <FrameLayout
+            android:id="@+id/youtubesupportfragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginBottom="0dp"
+            android:background="#000" />
 
-            <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/video_desc" />
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/line" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/video_desc" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="100">
+
+                    <TextView
+                        android:id="@+id/like"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="33"
+                        android:drawableTop="@drawable/ic_thumb_up_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="Like" />
+
+                    <TextView
+                        android:id="@+id/dislike"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="33"
+                        android:drawableTop="@drawable/ic_thumb_down_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="Dislike" />
+
+                    <TextView
+                        android:id="@+id/share_video"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="33"
+                        android:drawableTop="@drawable/ic_share_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:gravity="center"
+                        android:text="Share" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="20dp"
-                android:weightSum="100">
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/thumbnail"
+                    android:layout_width="0dp"
+                    android:adjustViewBounds="true"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight="0.5" />
 
                 <TextView
-                    android:id="@+id/like"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="33"
-                    android:drawableTop="@drawable/ic_thumb_up_black_24dp"
-                    android:drawablePadding="5dp"
+                    android:layout_weight="0.5"
                     android:gravity="center"
-                    android:text="Like" />
-
-                <TextView
-                    android:id="@+id/dislike"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="33"
-                    android:drawableTop="@drawable/ic_thumb_down_black_24dp"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:text="Dislike" />
-
-                <TextView
-                    android:id="@+id/share_video"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="33"
-                    android:drawableTop="@drawable/ic_share_black_24dp"
-                    android:drawablePadding="5dp"
-                    android:gravity="center"
-                    android:text="Share" />
+                    android:text="Stay tuned for more updates..." />
             </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/white"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="5dp"
-        card_view:cardMaxElevation="10dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <ImageView
-                android:id="@+id/thumbnail"
-                android:layout_width="0dp"
-                android:layout_gravity="left"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="Stay tuned for more updates..." />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

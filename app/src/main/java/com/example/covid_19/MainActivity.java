@@ -26,7 +26,7 @@ import com.google.firebase.iid.InstanceIdResult;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "hdbfjhd";
+    private static final String TAG = "MainActivity";
     int PERMISSION_ID = 44;
     private CurrentLocationManager currentLocationManager;
 
@@ -44,17 +44,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-//To do//
-//                            Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
-// Get the Instance ID token//
+                        // Get the Instance ID token//
                         String token = task.getResult().getToken();
-                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String msg = getString(R.string.fcm_token, token);
-//                        Toast.makeText(MainActivity.this, "" + "f", Toast.LENGTH_SHORT).show();
+                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+                        String msg = getString(R.string.fcm_token, token);
                         Log.d(TAG, msg);
-
+                        Log.d(TAG, token);
                     }
                 });
 

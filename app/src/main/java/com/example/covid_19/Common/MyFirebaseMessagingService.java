@@ -26,7 +26,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage message) {
         super.onMessageReceived(message);
-        sendNotification(getApplicationContext());
+        sendNotification(getApplicationContext(), message);
 //        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channel_id")
 //                .setContentTitle(message.getNotification().getTitle())
 //                .setContentText(message.getNotification().getBody())
@@ -43,10 +43,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //        notificationManager.notify(0, notificationBuilder.build());
     }
 
-    private void sendNotification(Context context) {
+    private void sendNotification(Context context, RemoteMessage message) {
 
 
-        NotificationCompat.BigPictureStyle style = new NotificationCompat.BigPictureStyle();
+        NotificationCompat.BigTextStyle style = new NotificationCompat.BigTextStyle();
 //        style.bigPicture(bitmap);
 
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -62,7 +62,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             @SuppressLint("WrongConstant") NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "Notification", NotificationManager.IMPORTANCE_MAX);
 
             //Configure Notification Channel
-            notificationChannel.setDescription("Game Notifications");
+            notificationChannel.setDescription(message.getMessageType());
             notificationChannel.enableLights(true);
             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
             notificationChannel.enableVibration(true);
@@ -71,17 +71,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.mipmap.ic_launcher_round)
-                .setContentTitle("Config.title")
+                .setContentTitle(message.getNotification().getTitle())
                 .setAutoCancel(true)
                 .setSound(defaultSound)
-                .setContentText("Config.content")
+                .setContentText(message.getNotification().getBody())
                 .setContentIntent(pendingIntent)
                 .setStyle(style)
-                .setSmallIcon(R.drawable.ic_help_black_24dp)
                 .setWhen(System.currentTimeMillis())
                 .setPriority(Notification.PRIORITY_MAX);
 
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            notificationBuilder.setSmallIcon(R.drawable.ic_stat_name);
+            notificationBuilder.setColor(getResources().getColor(R.color.colorBackground));
+        } else {
+            notificationBuilder.setSmallIcon(R.drawable.ic_stat_name);
+        }
 
         notificationManager.notify(1, notificationBuilder.build());
 

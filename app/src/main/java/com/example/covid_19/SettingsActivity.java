@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Spannable;
@@ -28,6 +29,11 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
+import androidx.preference.SwitchPreference;
+
+import com.example.covid_19.Common.CurrentLocationManager;
+import com.example.covid_19.Common.OnLocationUpdateListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -83,13 +89,20 @@ public class SettingsActivity extends AppCompatActivity {
         private static final String TAG = "SettingsFragment";
 
         private Preference thePreference;
+        SharedPreferences sharedPref;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-            thePreference = findPreference("alarm");
+            thePreference = findPreference("switch");
+
+            sharedPref = getActivity().getSharedPreferences(
+                    getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+            Boolean value = sharedPref.getBoolean("subscribe", false);
 
             if (thePreference != null) {
+                thePreference.setDefaultValue(value);
                 thePreference.setOnPreferenceChangeListener(this);
             } else {
                 Log.d(TAG, "Preference is empty");
@@ -99,14 +112,15 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-            if (preference instanceof ListPreference) {
+            if (preference instanceof SwitchPreference) {
+                subUnsubNot(preference.getKey(), value);
+            } else if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
                 Toast.makeText(getActivity(), "" + listPreference.getEntries()[index], Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPref = getActivity().getSharedPreferences(
-                        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
                 SharedPreferences.Editor myEdit = sharedPref.edit();
                 myEdit.putString("alarmTime", (String) listPreference.getEntries()[index]);
                 myEdit.commit();
@@ -141,20 +155,48 @@ public class SettingsActivity extends AppCompatActivity {
 
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            Preference listPreference = getPreferenceScreen().findPreference(key);
-            listPreference.setOnPreferenceChangeListener((Preference.OnPreferenceChangeListener) listPreference);
+//            Preference listPreference = getPreferenceScreen().findPreference(key);
+//            listPreference.setOnPreferenceChangeListener((Preference.OnPreferenceChangeListener) listPreference);
         }
 
         @Override
         public boolean onPreferenceClick(Preference preference) {
             String key = preference.getKey();
-            if (key.equals("terms")) {
-                // do your work
-                Intent intent = new Intent(getActivity(), AboutusActivity.class);
-                startActivity(intent);
-                return true;
-            }
             return false;
+        }
+
+        void subUnsubNot(String key, Object value) {
+            // do your work
+            Boolean on = (Boolean) value;
+            String state = sharedPref.getString("state", null);
+            String country = sharedPref.getString("country", null);
+            if (state == null) {
+                CurrentLocationManager currentLocationManager = new CurrentLocationManager(getActivity());
+                currentLocationManager.getCurrentLocation(new OnLocationUpdateListener() {
+                    @Override
+                    public void onLocationChange(Location location) {
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                    }
+                });
+            } else {
+                if (on) {
+                    assert state != null;
+                    FirebaseMessaging.getInstance().subscribeToTopic(state);
+                    assert country != null;
+                    FirebaseMessaging.getInstance().subscribeToTopic(country);
+                } else {
+                    assert state != null;
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(state);
+                    assert country != null;
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(country);
+                }
+                SharedPreferences.Editor myEdit = sharedPref.edit();
+                myEdit.putBoolean("subscribe", on);
+                myEdit.apply();
+            }
         }
     }
 }

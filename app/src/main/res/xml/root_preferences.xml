@@ -23,13 +23,20 @@
     <!--        app:title="@string/alert_title"-->
     <!--        app:useSimpleSummaryProvider="true" />-->
 
+    <!--    <com.example.covid_19.CustomSwitchPreference-->
+    <!--        android:key="switch"-->
+    <!--        android:summary="@string/summary_notification"-->
+    <!--        android:title="@string/title_notification"-->
+    <!--        app:iconSpaceReserved="false"-->
+    <!--        app:theme="@style/SCBSwitch" />-->
+
+
     <SwitchPreference
-        android:checked="true"
         android:key="switch"
         android:summary="@string/summary_notification"
-        android:theme="@style/SCBSwitch"
         android:title="@string/title_notification"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:theme="@style/SCBSwitch" />
 
     <PreferenceCategory
         app:allowDividerAbove="false"
@@ -90,7 +97,7 @@
     </PreferenceCategory>
 
     <Preference
-        android:summary="Version 0.1"
+        android:summary="v0.9 beta"
         android:title="@string/app_version"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>

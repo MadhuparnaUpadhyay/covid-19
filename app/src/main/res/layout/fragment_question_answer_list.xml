@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:groupIndicator="@drawable/expandable"
         android:layoutDirection="rtl"
+        android:background="@android:color/white"
         android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="0.5dp"/>
