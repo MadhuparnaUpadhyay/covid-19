@@ -1,4 +1,4 @@
-package live.covid_19.model;
+package live.combatemic.model;
 
 import java.util.ArrayList;
 import java.util.List;

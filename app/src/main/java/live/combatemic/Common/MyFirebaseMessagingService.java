@@ -1,4 +1,4 @@
-package live.covid_19.Common;
+package live.combatemic.Common;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -13,8 +13,8 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import live.covid_19.MainActivity;
-import com.example.covid_19.R;
+import live.combatemic.MainActivity;
+import live.combatemic.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

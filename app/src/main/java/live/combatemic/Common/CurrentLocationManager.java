@@ -1,4 +1,4 @@
-package live.covid_19.Common;
+package live.combatemic.Common;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -18,7 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;

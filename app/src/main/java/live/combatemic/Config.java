@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 public final class Config {
 

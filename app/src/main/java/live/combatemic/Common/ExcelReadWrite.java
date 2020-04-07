@@ -1,4 +1,4 @@
-package live.covid_19.Common;
+package live.combatemic.Common;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,9 +12,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import live.covid_19.ContactListFragment;
-import live.covid_19.ContactListRecyclerViewAdapter;
-import com.example.covid_19.R;
+import live.combatemic.ContactListFragment;
+import live.combatemic.ContactListRecyclerViewAdapter;
+import live.combatemic.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

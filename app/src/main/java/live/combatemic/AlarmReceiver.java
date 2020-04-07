@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -17,7 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 
 public class AlarmReceiver extends BroadcastReceiver {

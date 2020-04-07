@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.os.Bundle;
 import android.util.Patterns;
@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 
 public class RegistrationFragment extends Fragment implements View.OnClickListener {

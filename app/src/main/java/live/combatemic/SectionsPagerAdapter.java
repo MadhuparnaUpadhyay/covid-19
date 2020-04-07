@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

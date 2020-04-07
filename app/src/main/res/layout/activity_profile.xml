@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context="live.combatemic.ProfileActivity">
 
     <fragment
         android:id="@+id/fragment_profile"
-        android:name="com.example.covid_19.ProfileFragment"
+        android:name="live.combatemic.ProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

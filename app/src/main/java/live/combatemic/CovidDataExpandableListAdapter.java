@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -9,7 +9,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.google.common.collect.Iterators;
 
 import org.json.JSONArray;

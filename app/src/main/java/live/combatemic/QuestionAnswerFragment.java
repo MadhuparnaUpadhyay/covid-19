@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.widget.ExpandableListView.OnGroupExpandListener;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
-import live.covid_19.model.QuestionAnswer;
+import live.combatemic.model.QuestionAnswer;
 
 
 /**

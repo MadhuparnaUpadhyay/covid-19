@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,10 +16,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import live.covid_19.Common.CurrentLocationManager;
-import live.covid_19.Common.OnLocationUpdateListener;
+import live.combatemic.Common.CurrentLocationManager;
+import live.combatemic.Common.OnLocationUpdateListener;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;

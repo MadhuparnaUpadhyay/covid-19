@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import org.junit.Test;
 

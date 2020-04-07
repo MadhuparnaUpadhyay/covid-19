@@ -1,4 +1,4 @@
-package live.covid_19.Common;
+package live.combatemic.Common;
 
 import org.json.JSONException;
 import org.json.JSONObject;

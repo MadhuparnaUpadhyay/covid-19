@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 ////import com.google.android.youtube.player.YouTubePlayerView;
 //import com.google.android.youtube.player.YouTubeThumbnailLoader;
 //import com.google.android.youtube.player.YouTubeThumbnailView;
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;

@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.os.Bundle;
 
@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 
 /**

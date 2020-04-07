@@ -1,8 +1,8 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.os.Bundle;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

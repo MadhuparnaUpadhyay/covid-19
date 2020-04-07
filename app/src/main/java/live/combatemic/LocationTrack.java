@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 
 import android.Manifest;
@@ -26,7 +26,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 public class LocationTrack extends Service {
 

@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 public class SecondFragment extends Fragment {
 

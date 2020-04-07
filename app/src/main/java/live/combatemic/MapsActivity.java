@@ -1,10 +1,10 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

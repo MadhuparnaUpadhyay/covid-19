@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -24,10 +24,10 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
-import live.covid_19.Common.CurrentLocationManager;
-import live.covid_19.Common.OnLocationUpdateListener;
+import live.combatemic.Common.CurrentLocationManager;
+import live.combatemic.Common.OnLocationUpdateListener;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SettingsActivity extends AppCompatActivity {

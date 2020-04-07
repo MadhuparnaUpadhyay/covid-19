@@ -1,11 +1,11 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.os.Bundle;
 
-import live.covid_19.Common.ServerCallback;
-import live.covid_19.Common.VollyServerCall;
+import live.combatemic.Common.ServerCallback;
+import live.combatemic.Common.VollyServerCall;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

@@ -1,4 +1,4 @@
-package live.covid_19.Common;
+package live.combatemic.Common;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -13,7 +13,7 @@ import android.widget.Switch;
 
 import androidx.annotation.ColorInt;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 
 public class CustomSwitchPreference extends SwitchPreference {

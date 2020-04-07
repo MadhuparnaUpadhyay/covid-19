@@ -105,7 +105,6 @@
                 android:layout_weight="0.5"
                 android:text="100"
                 android:autoLink = "phone"
-                android:drawableRight="@drawable/ic_call_black_24dp"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:textColor="@android:color/black" />
         </LinearLayout>

@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 public class QuestionAnswerActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.covid_19", appContext.getPackageName());
+        assertEquals("live.combatemic", appContext.getPackageName());
     }
 }

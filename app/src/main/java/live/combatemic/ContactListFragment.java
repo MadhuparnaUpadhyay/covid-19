@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import live.covid_19.Common.ServerCallbackArray;
-import live.covid_19.Common.VollyServerCall;
+import live.combatemic.Common.ServerCallbackArray;
+import live.combatemic.Common.VollyServerCall;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import org.json.JSONArray;
 

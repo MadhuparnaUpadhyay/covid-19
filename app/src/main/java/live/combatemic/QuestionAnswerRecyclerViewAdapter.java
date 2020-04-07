@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import java.util.List;
 
-import live.covid_19.model.QuestionAnswer;
+import live.combatemic.model.QuestionAnswer;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the

@@ -4,12 +4,12 @@
 
     To get one, follow this link, follow the directions and press "Create" at the end:
 
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=33:83:54:B3:3A:4C:D5:DA:60:F0:DC:0E:32:56:E9:FA:04:BA:28:C5%3Bcom.example.covid_19
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=33:83:54:B3:3A:4C:D5:DA:60:F0:DC:0E:32:56:E9:FA:04:BA:28:C5%3Blive.combatemic
 
     You can also add your credentials to an existing key, using these values:
 
     Package name:
-    com.example.covid_19
+    live.combatemic
 
     SHA-1 certificate fingerprint:
     33:83:54:B3:3A:4C:D5:DA:60:F0:DC:0E:32:56:E9:FA:04:BA:28:C5

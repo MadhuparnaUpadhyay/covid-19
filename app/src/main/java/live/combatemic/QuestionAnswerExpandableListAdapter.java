@@ -1,13 +1,13 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
-import live.covid_19.model.QuestionAnswer;
+import live.combatemic.model.QuestionAnswer;
 
 import java.util.List;
 

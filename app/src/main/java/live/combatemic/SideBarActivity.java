@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 

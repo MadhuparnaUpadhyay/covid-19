@@ -1,9 +1,9 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;

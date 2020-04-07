@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

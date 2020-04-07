@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

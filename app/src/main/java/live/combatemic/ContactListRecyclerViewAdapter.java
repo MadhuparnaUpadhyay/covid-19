@@ -1,4 +1,4 @@
-package live.covid_19;
+package live.combatemic;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -7,15 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import live.covid_19.ContactListFragment.OnListFragmentInteractionListener;
+import live.combatemic.ContactListFragment.OnListFragmentInteractionListener;
 
-import com.example.covid_19.R;
+import live.combatemic.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import live.covid_19.model.Contact;
+import live.combatemic.model.Contact;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Contact.DummyItem} and makes a call to the
