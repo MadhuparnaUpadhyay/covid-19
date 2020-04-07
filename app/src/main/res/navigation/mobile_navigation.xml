@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/video"
-        android:name="com.example.covid_19.CovidDataFragment"
+        android:name="live.combatemic.app.CovidDataFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_covid_data_list">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/emergency"
-        android:name="com.example.covid_19.ContactListFragment"
+        android:name="live.combatemic.app.ContactListFragment"
         android:label="@string/menu_imp_contact"
         tools:layout="@layout/fragment_contact_list_list">
         <action
@@ -31,14 +31,14 @@
 
     <fragment
         android:id="@+id/qa"
-        android:name="com.example.covid_19.QuestionAnswerFragment"
+        android:name="live.combatemic.app.QuestionAnswerFragment"
         android:label="@string/menu_faq"
         tools:layout="@layout/fragment_question_answer_list">
     </fragment>
 
     <fragment
         android:id="@+id/maps"
-        android:name="com.example.covid_19.RegistrationFragment"
+        android:name="live.combatemic.app.RegistrationFragment"
         android:label="@string/menu_faq"
         tools:layout="@layout/fragment_registration">
     </fragment>

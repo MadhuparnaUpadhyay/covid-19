@@ -1,0 +1,90 @@
+package live.combatemic.app;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import live.combatemic.app.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import live.combatemic.app.model.Contact;
+
+/**
+ * {@link RecyclerView.Adapter} that can display a {@link Contact.DummyItem} and makes a call to the
+ * specified {@link ContactListFragment.OnListFragmentInteractionListener}.
+ * TODO: Replace the implementation with code for your data type.
+ */
+public class ContactListRecyclerViewAdapter extends RecyclerView.Adapter<ContactListRecyclerViewAdapter.ViewHolder> {
+
+    private final JSONArray mValues;
+    private final ContactListFragment.OnListFragmentInteractionListener mListener;
+
+    public ContactListRecyclerViewAdapter(JSONArray items, ContactListFragment.OnListFragmentInteractionListener listener) {
+        mValues = (JSONArray) items;
+        mListener = listener;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.fragment_contact_list, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final ViewHolder holder, int position) {
+        try {
+            JSONObject jsonObject = mValues.getJSONObject(position);
+//            holder.mItem = jsonObject.getString("Company");
+            holder.state.setText(jsonObject.getString("name"));
+//            holder.helpLine.setText(jsonObject.getString("phone"));
+//            holder.mIdView1.setText(jsonObject.getString("Fire"));
+//            holder.mContentView1.setText(jsonObject.getString("Police"));
+            holder.helpLine.setText(jsonObject.getString("phone"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        holder.mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mListener) {
+                    // Notify the active callbacks interface (the activity, if the
+                    // fragment is attached to one) that an item has been selected.
+                    mListener.onListFragmentInteraction(holder.state);
+                }
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return mValues.length();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public final View mView;
+        public final TextView state, ambulance, fire, police, helpLine;
+
+        public ViewHolder(View view) {
+            super(view);
+            mView = view;
+            state = (TextView) view.findViewById(R.id.state);
+            ambulance = (TextView) view.findViewById(R.id.ambulance);
+            fire = (TextView) view.findViewById(R.id.fire);
+            police = (TextView) view.findViewById(R.id.police);
+            helpLine = (TextView) view.findViewById(R.id.help_line);
+        }
+
+        @Override
+        public String toString() {
+            return super.toString() + " '" + state.getText() + "'";
+        }
+    }
+}

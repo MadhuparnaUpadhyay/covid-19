@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".CityScrollingActivity">
+    tools:context="live.combatemic.app.CityScrollingActivity">
 
     <!--    <fragment-->
     <!--        android:id="@+id/city_fragment"-->
     <!--        android:layout_width="match_parent"-->
     <!--        android:layout_height="match_parent"-->
-    <!--        android:name="com.example.covid_19.CityFragment"-->
+    <!--        android:name="live.combatemic.app.CityFragment"-->
     <!--        />-->
     <!--    <TextView-->
     <!--        android:layout_width="match_parent"-->

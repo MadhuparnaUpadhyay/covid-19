@@ -23,7 +23,7 @@
     <!--        app:title="@string/alert_title"-->
     <!--        app:useSimpleSummaryProvider="true" />-->
 
-    <!--    <com.example.covid_19.CustomSwitchPreference-->
+    <!--    <live.combatemic.app.CustomSwitchPreference-->
     <!--        android:key="switch"-->
     <!--        android:summary="@string/summary_notification"-->
     <!--        android:title="@string/title_notification"-->
@@ -82,8 +82,8 @@
             android:title="@string/title_terms"
             app:iconSpaceReserved="false">
             <intent
-                android:targetClass="com.example.covid_19.TermsScrollingActivity"
-                android:targetPackage="com.example.covid_19" />
+                android:targetClass="live.combatemic.app.TermsScrollingActivity"
+                android:targetPackage="live.combatemic.app" />
         </Preference>
 
         <Preference
@@ -91,8 +91,8 @@
             android:title="@string/title_policy"
             app:iconSpaceReserved="false">
             <intent
-                android:targetClass="com.example.covid_19.PrivacyScrollingActivity"
-                android:targetPackage="com.example.covid_19" />
+                android:targetClass="live.combatemic.app.PrivacyScrollingActivity"
+                android:targetPackage="live.combatemic.app" />
         </Preference>
     </PreferenceCategory>
 

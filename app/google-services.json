@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:215530283159:android:3766ef0d16b580120649d2",
         "android_client_info": {
-          "package_name": "com.example.covid_19"
+          "package_name": "live.combatemic.app"
         }
       },
       "oauth_client": [

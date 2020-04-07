@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuestionAnswerActivity">
+    tools:context="live.combatemic.app.QuestionAnswerActivity">
 
     <fragment
         android:id="@+id/contact"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.covid_19.QuestionAnswerFragment"/>
+        android:name="live.combatemic.app.QuestionAnswerFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@
         app:navGraph="@navigation/mobile_navigation" />
     <!--    <FrameLayout-->
     <!--        android:id="@+id/SecondFragment"-->
-    <!--        android:name="com.example.covid_19.SecondFragment"-->
+    <!--        android:name="live.combatemic.app.SecondFragment"-->
     <!--        android:layout_width="0dp"-->
     <!--        android:layout_height="0dp"-->
     <!--        app:layout_constraintBottom_toBottomOf="parent"-->

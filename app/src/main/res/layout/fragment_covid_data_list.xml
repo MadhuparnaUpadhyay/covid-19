@@ -56,11 +56,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list"
-            android:name="com.example.covid_19.CovidDataFragment"
+            android:name="live.combatemic.app.CovidDataFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="LinearLayoutManager"
-            tools:context=".CovidDataFragment"
+            tools:context="live.combatemic.app.CovidDataFragment"
             tools:listitem="@layout/fragment_covid_data_group" />
 
         <!--    <ExpandableListView-->
