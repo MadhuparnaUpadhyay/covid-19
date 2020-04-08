@@ -23,7 +23,7 @@
 
     <application
         android:allowBackup="true"
-        android:debuggable="true"
+        android:debuggable="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher_foreground_final"
         android:label="@string/app_name"
@@ -32,11 +32,12 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="HardcodedDebugMode">
+        tools:ignore="HardcodedDebugMode"
+        tools:targetApi="m">
         <activity
             android:name=".TermsScrollingActivity"
             android:label="@string/title_activity_terms_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PrivacyScrollingActivity"
             android:label="@string/title_activity_privacy_scrolling"
@@ -53,6 +54,13 @@
             android:name=".Common.MyFirebaseMessagingService"
             android:enabled="true"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -92,7 +100,8 @@
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:targetApi="n">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -109,9 +118,25 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReceiver" />
+        <receiver android:name=".AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
 
-        <service android:name=".LocationTrack" />
+        <service android:name=".LocationTrack">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
