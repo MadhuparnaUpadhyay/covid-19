@@ -23,7 +23,7 @@
 
     <application
         android:allowBackup="true"
-        android:debuggable="true"
+        android:debuggable="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/ic_launcher_foreground_final"
         android:label="@string/app_name"
@@ -32,11 +32,12 @@
         android:testOnly="false"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="HardcodedDebugMode">
+        tools:ignore="HardcodedDebugMode"
+        tools:targetApi="m">
         <activity
             android:name="live.combatemic.app.TermsScrollingActivity"
             android:label="@string/title_activity_terms_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="live.combatemic.app.PrivacyScrollingActivity"
             android:label="@string/title_activity_privacy_scrolling"
