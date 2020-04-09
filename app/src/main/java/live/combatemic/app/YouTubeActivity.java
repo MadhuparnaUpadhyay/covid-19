@@ -33,7 +33,7 @@ public class YouTubeActivity extends AppCompatActivity {
 
     private void getVideo() {
         VollyServerCall controller = new VollyServerCall();
-        final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/videos?location=KR";
+        final String MAIN_URL_STATE = "videos?location=KR";
         controller.JsonObjectRequest(this, MAIN_URL_STATE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {

@@ -196,7 +196,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
         String city = sharedPref.getString("city", "");
         String pincode = sharedPref.getString("zipcode", "");
         VollyServerCall controller = new VollyServerCall();
-        final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/videos?location=" + state + "&state=" + state + "&city=" + city + "&pincode=" + pincode;
+        final String MAIN_URL_STATE = "videos?location=" + state + "&state=" + state + "&city=" + city + "&pincode=" + pincode;
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
@@ -287,7 +287,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
             share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
             // Add data to the intent, the receiving app will decide
             // what to do with it.
-            share.putExtra(Intent.EXTRA_SUBJECT, "Corona Virus");
+            share.putExtra(Intent.EXTRA_SUBJECT, "DIS19");
             share.putExtra(Intent.EXTRA_TEXT, mainUrl + videoId);
 
             startActivity(Intent.createChooser(share, "Share link!"));

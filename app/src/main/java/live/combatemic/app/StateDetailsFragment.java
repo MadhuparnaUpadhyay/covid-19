@@ -136,8 +136,8 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
 
     private void getData() {
         VollyServerCall controller = new VollyServerCall();
-        final String MAIN_URL_STATE = "http://combatemic.live/api/v1/covid/data";
-        final String MAIN_URL_CITY = "http://combatemic.live/api/v1/covid/detail-data";
+        final String MAIN_URL_STATE = "data";
+        final String MAIN_URL_CITY = "detail-data";
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {

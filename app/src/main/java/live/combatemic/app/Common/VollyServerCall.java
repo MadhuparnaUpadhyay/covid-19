@@ -21,6 +21,7 @@ import org.json.JSONObject;
 
 public class VollyServerCall {
 
+    private String BASE_URL = "http://combatemic.live/api/v1/covid/";
     private static final String TAG = "VollyServerCall";
     private RequestQueue mRequestQueue;
 
@@ -31,7 +32,7 @@ public class VollyServerCall {
         pDialog.show();
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(com.android.volley.Request.Method.GET,
-                MAIN_URL, null,
+                BASE_URL + MAIN_URL, null,
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -71,7 +72,7 @@ public class VollyServerCall {
         pDialog.show();
 
         JsonArrayRequest jsonArrReq = new JsonArrayRequest(com.android.volley.Request.Method.GET,
-                MAIN_URL, null,
+                BASE_URL + MAIN_URL, null,
                 new Response.Listener<JSONArray>() {
 
                     @Override
