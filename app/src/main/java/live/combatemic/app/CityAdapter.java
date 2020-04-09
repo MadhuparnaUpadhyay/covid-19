@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import live.combatemic.app.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,15 +49,15 @@ public class CityAdapter<J> extends ArrayAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
 //        if (position == 0)
-//            return LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item, null);
+//            return LayoutInflater.from(getContext()).inflate(R.layout.fragment_state_details_item, null);
 //        else {
-//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item_list, parent, false);
+//            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_state_item_list, parent, false);
 //        }
 
         JSONObject city = (JSONObject) getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_covid_data_item_list, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_state_item_list, parent, false);
         }
         // Lookup view for data population
         TextView firstChar = convertView.findViewById(R.id.first_char);

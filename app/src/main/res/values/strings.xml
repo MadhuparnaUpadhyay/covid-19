@@ -11,7 +11,7 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="nameerror">Enter Valid Name</string>
     <string name="emailerror">Enter Valid Email</string>
-    <string name="preference_file_key">covid 19</string>
+    <string name="preference_file_key">combatemic</string>
     <string name="mobileerror">Enter Valid Mobile Number</string>
     <string name="title_activity_side_bar">SideBar</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -64,7 +64,7 @@
     <string name="app_version">App Version</string>
     <string name="title_terms">Terms &amp; Conditions</string>
     <string name="url_yt">https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw</string>
-    <string name="video_desc">Worried about the pandemic Coronavirus? \🙄
+    <string name="video_desc">Worried about the situations? \🙄
 \n\n
 Watch the video to know about preventive measures, symptoms and how you can stay safe. Let us know if we could answer some of your questions and comment if you want to know more.
 Don\'t forget to share with your friends and family for keeping them aware.</string>
@@ -219,6 +219,15 @@ Although Our App is a general audience App, We try Our best to restrict the use 
 CHANGES TO THIS PRIVACY POLICY.
 \n\n
 We may occasionally update this Privacy Policy. When We post changes to this Privacy Policy, We will revise the "last updated" date. We recommend that You check Our App from time to time to keep Yourself updated of any changes in this Privacy Policy or any of Our other App related terms and policies.
+
+        \n\n\n
+        FROM WHERE TO COLLECT THE DATA?
+        \n\n\n
+The App uses FAQ from the source of World Health Organisation(WHO) and per their guidelines.\n
+The count is captured from the Government Authorized site of INDIA for The data is validated by a group of volunteers and published into a Google sheet and an API by api.covi19india.org.\n
+We are not government officials and only intend to display the correct and validated sources based on government guidelines and have no violations for any rule.\n
+        \n\n\n
+
 
 \n\n\n
 GRIEVANCE OFFICER.\n

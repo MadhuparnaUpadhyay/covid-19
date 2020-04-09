@@ -10,7 +10,6 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
-import live.combatemic.app.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -283,7 +282,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public void onPageSelected(int position) {
 //        menu.getItem(0).setTitle(tabsTitles[position]);
         if (position == 0) {
-            new CovidDataFragment();
+            new StateDetailsFragment();
             textView.setText("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -301,7 +300,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         final Integer position = tab.getPosition();
         mViewPager.setCurrentItem(position);
         if (position == 0) {
-            new CovidDataFragment();
+            new StateDetailsFragment();
             textView.setText("Statistics");
         } else {
             VideoFragment.newInstance(position);

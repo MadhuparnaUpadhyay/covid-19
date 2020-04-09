@@ -42,13 +42,17 @@
 
     <style name="SCBSwitch" parent="AppTheme">
         <!-- active thumb & track color (30% transparency) -->
-        <item name="trackTint">#063435</item>
+        <item name="android:colorControlActivated">#063435</item>
 
         <!-- inactive thumb color -->
         <item name="colorSwitchThumbNormal">#D50C0C</item>
 
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42ED0808</item>
+    </style>
+
+    <style name="SwitchTheme" parent="Theme.AppCompat.Light">
+        <item name="colorControlActivated">@android:color/darker_gray</item>
     </style>
 
     <style name="PreferencesTheme">

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/video"
-        android:name="live.combatemic.app.CovidDataFragment"
+        android:name="live.combatemic.app.StateDetailsFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_covid_data_list">
+        tools:layout="@layout/fragment_state_details_list">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
