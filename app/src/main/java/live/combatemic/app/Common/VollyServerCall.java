@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class VollyServerCall {
 
-    private String BASE_URL = "http://combatemic.live/api/v1/covid/";
+    private String BASE_URL = "http://combatemic.live/api/v1/";
     private static final String TAG = "VollyServerCall";
     private RequestQueue mRequestQueue;
 
