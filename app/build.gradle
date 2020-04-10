@@ -10,8 +10,8 @@ android {
         applicationId "live.combatemic.app"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 1
-        versionName "0.9.1"
+        versionCode 3
+        versionName "0.9.4"
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
