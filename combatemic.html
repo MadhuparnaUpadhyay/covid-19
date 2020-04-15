@@ -14,11 +14,16 @@
             box-sizing: border-box;
         }
         
-        body {
+        body,
+        html {
             font-family: Arial, Helvetica, sans-serif;
             padding: 0px;
             margin: 0px;
             font-family: 'Gabriela';
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
         }
         /* Style the header */
         
@@ -30,6 +35,7 @@
             position: fixed;
             top: 0;
             width: 100%;
+            flex: 0.1;
         }
         
         footer {
@@ -39,25 +45,20 @@
             bottom: 0;
             background-color: #101947;
             padding: 20px;
+            flex: 0.1;
         }
         
         .company-name {
             margin: 0px;
             font-size: 35px;
-            /* margin-right: 5rem; */
             padding: 10px;
-        }
-        
-        .desc {
-            padding: 10px;
-            margin-top: 10px;
         }
         
         .app-link {
             background-color: #E8E8E9;
             border-radius: 5px;
             padding: 15px;
-            top: 120%;
+            top: 95%;
             left: 50%;
             transform: translate(-50%, -50%);
             position: absolute;
@@ -65,39 +66,31 @@
             align-items: center;
         }
         
-        .list-link {
-            margin: 0px;
-            color: white;
-        }
-        
-        .nav-tabs {
-            border-bottom: none;
-        }
-        
         a {
             color: #03DAC5;
         }
         
-        .nav-tabs>li.active>a,
-        .nav-tabs>li.active>a:focus,
-        .nav-tabs>li.active>a:hover,
-        .nav-tabs>li>a:hover,
+        .download-icon {
+            border-bottom: 1px solid #03DAC5;
+        }
+        
         a:hover {
-            color: white;
+            color: #101947;
             cursor: pointer;
             background-color: transparent;
             border: none;
-            border-bottom: 1px solid white;
         }
         
         .header-section {
             display: flex;
             align-items: center;
             justify-content: center;
+            position: sticky;
+            z-index: 1000;
         }
         
         .content {
-            margin-top: 80px;
+            flex: 0.6;
         }
         
         .logo {
@@ -106,13 +99,39 @@
             border-radius: 50%;
         }
         
+        .image {
+            /* height: 60vh; */
+        }
+        
+        .app-images {
+            display: none;
+        }
+        
         @media only screen and (max-width: 600px) {
             .header-section {
                 flex-direction: column;
                 align-items: baseline;
             }
             .content {
-                margin-top: 120px;
+                /* margin-top: 110px; */
+            }
+            .app-link {
+                /* top: 120%; */
+                position: relative;
+                width: 172px;
+                margin: auto;
+                top: 0%;
+                left: 0%;
+                transform: translate(0%, 0%);
+            }
+            .app-images {
+                display: flex;
+            }
+            .desc {
+                display: flex;
+            }
+            footer {
+                position: sticky;
             }
         }
     </style>
@@ -149,92 +168,49 @@
             <img class="logo" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92696969_110191427313009_6447200074022780928_o.png?_nc_cat=100&_nc_sid=85a577&_nc_ohc=0pAazQFzbUYAX8iUvq1&_nc_ht=scontent.fblr8-1.fna&oh=27f44c1f6e1b9bd87100923058be9d3d&oe=5EBCD1A3"
                 alt="image" /> Combatemic
         </h2>
-        <!-- <ul class="nav nav-tabs list-link">
-            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-            <li><a data-toggle="tab" href="#download">Download</a></li>
-            <li><a data-toggle="tab" href="#aboutus">About Us</a></li>
-        </ul> -->
     </header>
 
-    <section class="content">
-        <!-- <div class="tab-content"> -->
-        <!-- <div id="home" class="tab-pane fade in active"> -->
-        <div style="position: relative;">
-            <img style="max-height: 90vh;" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92489668_110188357313316_7344957043293290496_o.png?_nc_cat=106&_nc_sid=dd9801&_nc_ohc=K0zFbOmV4HAAX-DwwO-&_nc_ht=scontent.fblr8-1.fna&oh=ffcfe772361c9d02231600e32e9cac2e&oe=5EBCE97C"
-                width="100%" height="100%" alt="image" />
+    <div class="content">
+        <div>
+            <div style="position: relative;">
+                <img class="image" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92489668_110188357313316_7344957043293290496_o.png?_nc_cat=106&_nc_sid=dd9801&_nc_ohc=K0zFbOmV4HAAX-DwwO-&_nc_ht=scontent.fblr8-1.fna&oh=ffcfe772361c9d02231600e32e9cac2e&oe=5EBCE97C"
+                    width="100%" height="auto" alt="image" />
 
-            <div class="app-link">
-                <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
-                <div style="display: flex;flex-direction:column;">
-                    <span style="font-size: 1rem;">Free Download</span>
-                    <a style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a>
+                <div class="app-link">
+                    <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
+                    <div style="display: flex;flex-direction:column;">
+                        <span style="font-size: 1rem;">Free Download</span>
+                        <a class="download-icon" style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a>
+                    </div>
                 </div>
             </div>
+            <!-- <div class="app-images"> -->
+            <img class="app-images" style="width:100%;" src="/Users/sangeetkumar/Downloads/app-release/phone3.jpg" />
+            <!-- <div style="padding: 20px 10px;" class="desc">
+                COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
+                <br/><br/> The contribution is from “US” To HUMANITY.
+                <br/><br/> Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
+                <br/><br/> The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want
+                to share this APP for the benefit of society.
+            </div> -->
+            <!--  <img style="height: 600px" src="/Users/sangeetkumar/Downloads/app-release/phone3.jpg" />
+            </div> -->
         </div>
-        </div>
-        <!-- <div id="download" class="tab-pane fade">
-                <div style="display: flex;flex-direction:column;">
-                    <div style="text-align: center;font-size: 2.5rem;margin-top: 1rem;">
-                        Download the latest verison of <br/>Combatemic for Android
-                    </div>
-                    <div style="margin-top: 10px;display: flex;justify-content: center;">
-                        <a style="background-color: #101947; padding: 1rem; border-radius: 5px;" onclick="downloadApk()">Combatemic App</a>
-                    </div> -->
-        <!-- <div style="font-size: 2rem;text-align:center;margin-bottom: 1rem; margin-top: 3rem;">
-                        Clarification Message to Latest Google Notification
-                    </div>
-                    <div style="padding: 10px;">
-                        We have been informed that some of our Android users are receiving Google Play Store notifications not to install Combatemic. We encourage you to ignore the Google Play Store message and continue to install and enjoy Combatemic. Our app is secure and
-                        used safely by millions of people around the world.
-                    </div>
-                    <div>
-                        <h4 style="padding-left: 10px;">Here are some important facts about Combatemic:</h4>
-                        <ul style="margin-bottom: 10px;padding-right: 10px;">
-                            <li>
-                                Combatemic has NO access to user SMS messages, meaning Combatemic does NOT read or track user messages
-                            </li>
-                            <li>
-                                Combatemic does NOT view or upload any user photos
-                            </li>
-                            <li>
-                                Combatemic has NO access to user call history, meaning Combatemic does not read or track user call history
-                            </li>
-                            <li>
-                                Combatemic does NOT listen to or upload any user audio recordings
-                            </li>
-                            <li>
-                                Combatemic has access to user location.
-                            </li>
-                        </ul>
-                    </div>
-                    <div id="aboutus" class="tab-pane fade"> -->
-        <!-- <div class="desc">
-                        COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
-                        <br/><br/> The contribution is from “US” To HUMANITY.
-                        <br/><br/> Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
-                        <br/><br/> The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips.
-                        We want to share this APP for the benefit of society.
-                        <br/><br/> We would also like to thank Team "BTN-HashBUGS (By Nimisha Goyal)" for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.
-                    </div> -->
-        <!-- </div> -->
-        <!-- </div> -->
-        </div>
-        </div>
-    </section>
+    </div>
 
     <footer>
         <div style="display: flex;justify-content: center;align-items: center;">
-            <a target="_blank" href="combatemic@gmail.com" style="margin-right: 1rem;">
-                <i class="fa fa-envelope fa-3x" aria-hidden="true"></i>
+            <a target="_blank" href="combatemic@gmail.com" style="margin-right: 2rem;">
+                <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
             </a>
-            <a target="_blank" href="https://www.facebook.com/combatemic" style="margin-right: 1rem;">
-                <i class="fa fa-facebook fa-3x" style="color:blue"></i>
+            <a target="_blank" href="https://www.facebook.com/combatemic" style="margin-right: 2rem;">
+                <i class="fa fa-facebook fa-2x" style="color:blue"></i>
             </a>
-            <a target="_blank" href="https://www.instagram.com/combatemic?r=nametag" style="margin-right: 1rem;">
-                <i class="fa fa-instagram fa-3x" style="color:red"></i>
+            <a target="_blank" href="https://www.instagram.com/combatemic?r=nametag" style="margin-right: 2rem;">
+                <i class="fa fa-instagram fa-2x" style="color:red"></i>
             </a>
-            <a target="_blank" href="https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw" style="margin-right: 1rem;">
-                <i class="fa fa-youtube-play fa-3x" style="color:red"></i>
+            <a target="_blank" href="https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw" style="margin-right: 2rem;">
+                <i class="fa fa-youtube-play fa-2x" style="color:red"></i>
             </a>
         </div>
     </footer>
