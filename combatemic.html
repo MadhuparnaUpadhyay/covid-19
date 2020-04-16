@@ -3,6 +3,13 @@
 
 <head>
     <title>Combatemic</title>
+    <meta name="keywords" content="coronavirus, covid 19, combatemic, pandemic, epidemic, diseases">
+    <meta name="author" content="Combatemic">
+    <meta name="description" content="COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
+    The contribution is from “US” To HUMANITY.
+    Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
+    The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share this APP for the benefit of society.
+    We would also like to thank Team  BTN-HashBUGS (By Nimisha Goyal)  for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -39,13 +46,15 @@
         }
         
         footer {
-            position: absolute;
+            position: sticky;
             left: 0;
             right: 0;
             bottom: 0;
             background-color: #101947;
             padding: 20px;
             flex: 0.1;
+            display: flex;
+            justify-content: center;
         }
         
         .company-name {
@@ -66,19 +75,22 @@
             align-items: center;
         }
         
-        a {
+        .download-icon {
+            border-bottom: 1px solid #03DAC5;
+            background: no-repeat;
+            padding: 0px;
             color: #03DAC5;
         }
         
-        .download-icon {
-            border-bottom: 1px solid #03DAC5;
-        }
-        
-        a:hover {
+        .btn:hover,
+        .btn:focus,
+        .btn:active {
             color: #101947;
             cursor: pointer;
             background-color: transparent;
             border: none;
+            outline: 0;
+            border-style: none;
         }
         
         .header-section {
@@ -90,17 +102,13 @@
         }
         
         .content {
-            flex: 0.6;
+            flex: 0.8;
         }
         
         .logo {
             height: 50px;
             width: 50px;
             border-radius: 50%;
-        }
-        
-        .image {
-            /* height: 60vh; */
         }
         
         .app-images {
@@ -112,13 +120,9 @@
                 flex-direction: column;
                 align-items: baseline;
             }
-            .content {
-                /* margin-top: 110px; */
-            }
             .app-link {
-                /* top: 120%; */
                 position: relative;
-                width: 172px;
+                max-width: 220px;
                 margin: auto;
                 top: 0%;
                 left: 0%;
@@ -129,9 +133,6 @@
             }
             .desc {
                 display: flex;
-            }
-            footer {
-                position: sticky;
             }
         }
     </style>
@@ -180,28 +181,26 @@
                     <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
                     <div style="display: flex;flex-direction:column;">
                         <span style="font-size: 1rem;">Free Download</span>
-                        <a class="download-icon" style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a>
+                        <!-- <a class="download-icon" style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a> -->
+                        <button type="button" onclick="downloadApk()" class="btn btn-light download-icon">Combatemic App</button>
                     </div>
                 </div>
             </div>
-            <!-- <div class="app-images"> -->
             <img class="app-images" style="width:100%;" src="/Users/sangeetkumar/Downloads/app-release/phone3.jpg" />
-            <!-- <div style="padding: 20px 10px;" class="desc">
+            <div style="padding: 20px 10px;" class="desc">
                 COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
                 <br/><br/> The contribution is from “US” To HUMANITY.
                 <br/><br/> Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
                 <br/><br/> The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want
                 to share this APP for the benefit of society.
-            </div> -->
-            <!--  <img style="height: 600px" src="/Users/sangeetkumar/Downloads/app-release/phone3.jpg" />
-            </div> -->
+            </div>
         </div>
     </div>
 
     <footer>
         <div style="display: flex;justify-content: center;align-items: center;">
-            <a target="_blank" href="combatemic@gmail.com" style="margin-right: 2rem;">
-                <i class="fa fa-envelope fa-2x" aria-hidden="true"></i>
+            <a href="mailto: combatemic@gmail.com" style="margin-right: 2rem;">
+                <i class="fa fa-envelope fa-2x" style="color: #03DAC5;"></i>
             </a>
             <a target="_blank" href="https://www.facebook.com/combatemic" style="margin-right: 2rem;">
                 <i class="fa fa-facebook fa-2x" style="color:blue"></i>
