@@ -12,6 +12,7 @@
     We would also like to thank Team  BTN-HashBUGS (By Nimisha Goyal)  for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -64,8 +65,9 @@
         }
         
         .app-link {
-            background-color: #E8E8E9;
-            border-radius: 5px;
+            background-color: #03DAC5;
+            border-color: #03DAC5;
+            border-radius: 10px;
             padding: 15px;
             top: 95%;
             left: 50%;
@@ -73,6 +75,7 @@
             position: absolute;
             display: flex;
             align-items: center;
+            font-size: 18px;
         }
         
         .download-icon {
@@ -85,9 +88,9 @@
         .btn:hover,
         .btn:focus,
         .btn:active {
-            color: #101947;
+            /* color: #101947; */
             cursor: pointer;
-            background-color: transparent;
+            background-color: #03DAC5;
             border: none;
             outline: 0;
             border-style: none;
@@ -126,7 +129,7 @@
             }
             .app-link {
                 position: relative;
-                max-width: 220px;
+                /* max-width: 220px; */
                 margin: auto;
                 top: 0%;
                 left: 0%;
@@ -181,14 +184,18 @@
                 <img class="image" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92489668_110188357313316_7344957043293290496_o.png?_nc_cat=106&_nc_sid=dd9801&_nc_ohc=K0zFbOmV4HAAX-DwwO-&_nc_ht=scontent.fblr8-1.fna&oh=ffcfe772361c9d02231600e32e9cac2e&oe=5EBCE97C"
                     width="100%" height="auto" alt="image" />
 
-                <div class="app-link">
+                <button type="button" onclick="downloadApk()" class="btn btn-primary app-link">
+                            <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
+                            Download Combatemic App</button>
+
+                <!-- <div class="app-link">
                     <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
                     <div style="display: flex;flex-direction:column;">
                         <span style="font-size: 1rem;">Free Download</span>
-                        <!-- <a class="download-icon" style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a> -->
+                        <a class="download-icon" style="font-size: 1.5rem;" onclick="downloadApk()">Combatemic App</a>
                         <button type="button" onclick="downloadApk()" class="btn btn-light download-icon">Combatemic App</button>
                     </div>
-                </div>
+                </div> -->
             </div>
             <img class="app-images" style="width:100%;" src="http://combatemic.live/assets/screen1.jpg" />
             <div class="desc">
