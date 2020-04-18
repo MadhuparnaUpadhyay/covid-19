@@ -3,15 +3,15 @@
 
 <head>
     <title>Combatemic</title>
-    <meta name="keywords" content="coronavirus, covid 19, combatemic, pandemic, epidemic, diseases, coronavirus india, coronavirus india status, coronavirus india statics">
+    <meta name="keywords" content="coronavirus, covid 19, combatemic, pandemic, epidemic, diseases, coronavirus india, coronavirus india status, coronavirus india statics, combatemic.live, covid status india, coronavirus india statistics">
     <meta name="author" content="Combatemic">
     <meta name="description" content="COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
     The contribution is from “US” To HUMANITY.
     Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
-    The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share this APP for the benefit of society.
-    We would also like to thank Team  BTN-HashBUGS (By Nimisha Goyal)  for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.">
+    The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share this APP for the benefit of society.">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://combatemic.live/assets/favicon" type="image/ico" sizes="16x16">
     <link href='https://fonts.googleapis.com/css?family=Gabriela' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -24,71 +24,59 @@
         
         body,
         html {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Gabriela';
             padding: 0px;
             margin: 0px;
-            font-family: 'Gabriela';
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            width: 100vw;
+            background-color: #f9f5f5;
         }
-        /* Style the header */
         
-        header {
+        .header-section {
             background-color: #101947;
-            padding: 10px;
-            text-align: center;
             color: white;
+            text-align: left;
             position: fixed;
             top: 0;
             width: 100%;
             flex: 0.1;
-        }
-        
-        footer {
-            position: sticky;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #101947;
-            padding: 20px;
-            flex: 0.1;
             display: flex;
-            justify-content: center;
+            position: sticky;
+            z-index: 1000;
         }
         
         .company-name {
             margin: 0px;
-            font-size: 35px;
+            font-size: 30px;
             padding: 10px;
+            display: flex;
+            align-items: center;
         }
         
-        .app-link {
+        .logo {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+        }
+        
+        .content {
+            padding: 0 50px;
+        }
+        
+        .download-button {
             background-color: #03DAC5;
             border-color: #03DAC5;
             border-radius: 10px;
-            padding: 15px;
-            top: 95%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            position: absolute;
+            padding: 10px;
             display: flex;
             align-items: center;
             font-size: 18px;
-        }
-        
-        .download-icon {
-            border-bottom: 1px solid #03DAC5;
-            background: no-repeat;
-            padding: 0px;
-            color: #03DAC5;
+            align-self: center;
         }
         
         .btn:hover,
         .btn:focus,
         .btn:active {
-            /* color: #101947; */
             cursor: pointer;
             background-color: #03DAC5;
             border: none;
@@ -96,138 +84,247 @@
             border-style: none;
         }
         
-        .header-section {
+        .footer-section {
+            position: sticky;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 15px;
+            flex: 0.1;
+            display: flex;
+            justify-content: center;
+            background-color: white;
+        }
+        
+        .stay {
+            font-weight: 600;
+            font-size: 30px;
+            align-self: center;
+        }
+        
+        .flex-col {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .data-heading {
+            font-size: 13px;
+            opacity: 0.8;
+        }
+        
+        .fs-20 {
+            font-size: 20px;
+        }
+        
+        .flex-5 {
+            flex: 0.5;
+        }
+        
+        .upper-part {
+            margin-top: 40px;
+            border-radius: 20px;
+            display: flex;
+            height: 40rem;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        .upper-left-part {
+            flex: 0.4;
             display: flex;
             align-items: center;
-            justify-content: center;
-            position: sticky;
-            z-index: 1000;
+            height: 100%;
         }
         
-        .content {
-            flex: 0.8;
+        .left-part-details {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: baseline;
         }
         
-        .logo {
-            height: 50px;
-            width: 50px;
-            border-radius: 50%;
+        .data-middle-part {
+            margin: 6rem 0px;
+            display: flex;
+            justify-content: space-around;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        
+        .lower-part {
+            display: flex;
+        }
+        
+        .image {
+            border-radius: 0 20px 20px 0;
         }
         
         .app-images {
-            display: none;
+            width: 90%;
+            height: 90%;
+            border-radius: 20px;
         }
         
-        .desc {
-            padding: 20px 10px;
+        .lower-part-header {
+            font-weight: 600;
+            font-size: 30px;
+            margin-bottom: 10px;
+            margin-top: 47px;
+            text-align: center;
         }
         
         @media only screen and (max-width: 600px) {
-            .header-section {
+            .content {
+                padding: 0 20px;
+            }
+            .stay {
+                align-self: center;
+            }
+            .download-button {
+                align-self: center;
+                margin-bottom: 2rem;
+            }
+            .upper-part {
                 flex-direction: column;
-                align-items: baseline;
+                height: auto;
             }
-            .app-link {
-                position: relative;
-                /* max-width: 220px; */
-                margin: auto;
-                top: 0%;
-                left: 0%;
-                transform: translate(0%, 0%);
+            .lower-part {
+                flex-direction: column;
+                margin-bottom: 1rem;
             }
-            .app-images {
+            .upper-left-part {
                 display: flex;
             }
-            .desc {
-                display: none;
+            .left-part-details {
+                width: auto;
+                margin-top: 1rem;
+            }
+            .app-images {
+                width: 100%;
+                height: 100%;
+            }
+            .lower-part-header {
+                margin-top: 0px;
+            }
+            .image {
+                border-radius: 0 0px 20px 20px;
             }
         }
     </style>
-    <script>
-        function downloadApk() {
-            $.ajax({
-                url: 'http://combatemic.live/combatemic_v0.9.5.apk',
-                crossDomain: true,
-                headers: {
-                    'Access-Control-Allow-Origin': '*'
-                },
-                method: 'GET',
-                xhrFields: {
-                    responseType: 'blob'
-                },
-                success: function(data) {
-                    var a = document.createElement('a');
-                    var url = window.URL.createObjectURL(data);
-                    a.href = url;
-                    a.download = 'combatemic.apk';
-                    document.body.append(a);
-                    a.click();
-                    a.remove();
-                    window.URL.revokeObjectURL(url);
-                }
-            })
-        }
-    </script>
 </head>
 
 <body>
     <header class="header-section">
-        <h2 class="company-name">
+        <h3 class="company-name">
             <img class="logo" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92696969_110191427313009_6447200074022780928_o.png?_nc_cat=100&_nc_sid=85a577&_nc_ohc=0pAazQFzbUYAX8iUvq1&_nc_ht=scontent.fblr8-1.fna&oh=27f44c1f6e1b9bd87100923058be9d3d&oe=5EBCD1A3"
-                alt="image" /> Combatemic
-        </h2>
+                alt="image" />
+            <span style="margin-left: 1rem;">Combatemic</span>
+        </h3>
     </header>
-
     <div class="content">
-        <div>
-            <div style="position: relative;">
-                <img class="image" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92489668_110188357313316_7344957043293290496_o.png?_nc_cat=106&_nc_sid=dd9801&_nc_ohc=K0zFbOmV4HAAX-DwwO-&_nc_ht=scontent.fblr8-1.fna&oh=ffcfe772361c9d02231600e32e9cac2e&oe=5EBCE97C"
-                    width="100%" height="auto" alt="image" />
-
-                <!-- <button type="button" onclick="downloadApk()" class="btn btn-primary app-link">
-                            <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
-                            Download Combatemic App</button> -->
-
-                <a href="https://combatemic.live/combatemic_v0.9.5.apk" class="btn btn-info app-link" role="button">
-                    <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i> Download Combatemic App
-                </a>
-
-                <!-- <div class="app-link">
-                    <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i>
-                    <div style="display: flex;flex-direction:column;">
-                        <span style="font-size: 1rem;">Free Download</span> -->
-                <!-- <a class="download-icon" style="font-size: 1.5rem;" href="https://combatemic.live/combatemic_v0.9.5.apk">Combatemic App</a> -->
-                <!-- <button type="button" onclick="downloadApk()" class="btn btn-light download-icon">Combatemic App</button>
-                    </div>
-                </div> -->
+        <div class="upper-part">
+            <div class="upper-left-part">
+                <div class="left-part-details">
+                    <div class="stay">Stay Home
+                        <br/>Stay Safe</div>
+                    <div style="margin: 1rem;text-align: center;align-self: center;">To get latest updates of corona virus please download our app</div>
+                    <a href="https://combatemic.live/combatemic_v0.9.5.apk" class="btn btn-info download-button" role="button"> <i class="fa fa-android fa-2x" style="color: #101947;margin-right: 10px;" aria-hidden="true"></i> Download here</a>
+                </div>
             </div>
-            <img class="app-images" style="width:100%;" src="https://combatemic.live/assets/screen1.jpg" />
-            <div class="desc">
-                COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives as soon as possible.
-                <br/><br/> The contribution is from “US” To HUMANITY.
-                <br/><br/> Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
-                <br/><br/> The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want
-                to share this APP for the benefit of society.
+            <div style="flex: 0.6;">
+                <img class="image" src="https://scontent.fblr8-1.fna.fbcdn.net/v/t1.0-9/92489668_110188357313316_7344957043293290496_o.png?_nc_cat=106&_nc_sid=dd9801&_nc_ohc=K0zFbOmV4HAAX-DwwO-&_nc_ht=scontent.fblr8-1.fna&oh=ffcfe772361c9d02231600e32e9cac2e&oe=5EBCE97C"
+                    width="100%" height="100%" alt="image" />
             </div>
         </div>
+        <div class="data-middle-part">
+            <div class="flex-col"> <span class="fs-20" style="color: #ff073a;" id="confirmed">
+                14,348
+            </span>
+                <span class="data-heading">
+                    Confirmed
+                </span>
+            </div>
+            <div class="flex-col"> <span class="fs-20" style="color: #007bff;" id="active">
+                14,348
+            </span>
+                <span class="data-heading">
+                    Active
+                </span>
+            </div>
+            <div class="flex-col"> <span class="fs-20" style="color: #28a745;" id="recovered">
+                14,348
+            </span>
+                <span class="data-heading">
+                    Recovered
+                </span>
+            </div>
+            <div class="flex-col"> <span class="fs-20" style="color: #6c757d" id="death">
+                14,348
+            </span>
+                <span class="data-heading">
+                    Deceased
+                </span>
+            </div>
+        </div>
+        <div class="lower-part">
+            <div class="flex-5">
+                <img class="app-images" src="https://combatemic.live/assets/screen1.jpg" />
+            </div>
+            <div style="flex: 0.5;
+                /* justify-content: center; */
+                display: flex;
+                flex-direction: column;">
+                <div class="lower-part-header">About Us</div>COMBATEMIC is a team effort by a group of developers who swore to contribute for the sake of humanity and sustenance. Our mission is to fight back any life-threatening diseases and share knowledge of News and Preventives
+                as soon as possible.
+                <br/>
+                <br/>The contribution is from “US” To HUMANITY.
+                <br/>
+                <br/>Awareness plays a key role when medicines and treatment are not on around and we here at COMBATEMIC want to provide the best knowledge of what is happening around.
+                <br/>
+                <br/>The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share
+                this APP for the benefit of society.</div>
+        </div>
     </div>
-
-    <footer>
+    <footer class="footer-section">
         <div style="display: flex;justify-content: center;align-items: center;">
-            <a href="mailto: combatemic@gmail.com" style="margin-right: 2rem;">
-                <i class="fa fa-envelope fa-2x" style="color: #03DAC5;"></i>
+            <a href="mailto: combatemic@gmail.com" style="margin-right: 2rem;"> <i class="fa fa-envelope-square fa-2x" style="color: #dd4b39;"></i>
             </a>
-            <a target="_blank" href="https://www.facebook.com/combatemic" style="margin-right: 2rem;">
-                <i class="fa fa-facebook fa-2x" style="color:blue"></i>
+            <a target="_blank" href="https://www.facebook.com/combatemic" style="margin-right: 2rem;"> <i class="fa fa-facebook-square fa-2x" style="color:#3b5999"></i>
             </a>
-            <a target="_blank" href="https://www.instagram.com/combatemic?r=nametag" style="margin-right: 2rem;">
-                <i class="fa fa-instagram fa-2x" style="color:red"></i>
+            <a target="_blank" href="https://www.instagram.com/combatemic?r=nametag" style="margin-right: 2rem;"> <i class="fa fa-instagram fa-2x" style="color:#e4405f"></i>
             </a>
-            <a target="_blank" href="https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw" style="margin-right: 2rem;">
-                <i class="fa fa-youtube-play fa-2x" style="color:red"></i>
+            <a target="_blank" href="https://www.youtube.com/channel/UC3YZGYsDbnI03VUGhU45PFw" style="margin-right: 2rem;"> <i class="fa fa-youtube-play fa-2x" style="color: #cd201f"></i>
             </a>
         </div>
     </footer>
+
+    <script>
+        function getStateData() {
+            $.ajax({
+                url: 'https://combatemic.live/api/v1/data',
+                crossDomain: true,
+                headers: {
+                    "accept": "application/json",
+                    'Access-Control-Allow-Origin': '*'
+                },
+                method: 'GET',
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function(data) {
+                    if (data && data.statewise && data.statewise.length) {
+                        const total = data.statewise.filter(state => state.state === "Total")[0]
+                        $("#confirmed").text(total["confirmed"]);
+                        $("#active").text(total["active"]);
+                        $("#recovered").text(total["recovered"]);
+                        $("#death").text(total["deaths"]);
+                    }
+                }
+            })
+        }
+        getStateData();
+    </script>
 </body>
 
 </html>
