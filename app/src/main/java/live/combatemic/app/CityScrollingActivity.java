@@ -1,5 +1,6 @@
 package live.combatemic.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -7,6 +8,9 @@ import live.combatemic.app.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.inputmethod.InputMethodManager;
+import android.widget.SearchView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,10 +21,12 @@ import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-public class CityScrollingActivity extends AppCompatActivity {
+public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private JSONArray cities;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,10 @@ public class CityScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_city_scrolling);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
-        ListView listView = (ListView) findViewById(R.id.city_list);
+        listView = (ListView) findViewById(R.id.city_list);
+        SearchView searchview = (SearchView) findViewById(R.id.search_view);
+        searchview.setOnQueryTextListener(this);
+
         Intent intent = getIntent();
         String jsonArray = intent.getStringExtra("city");
         String stateName = intent.getStringExtra("state");
@@ -63,6 +72,38 @@ public class CityScrollingActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        JSONArray filterCity = filterCity(newText);
+        final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, filterCity);
+        listView.setAdapter(adapter);
+        return false;
+    }
+
+    private JSONArray filterCity(String text) {
+        JSONArray newJson = new JSONArray();
+        if (text == null) {
+            return cities;
+        }
+        try {
+            for (int i = 0; i < cities.length(); i++) {
+                JSONObject city = cities.getJSONObject(i);
+                if(city.getString("name").toLowerCase().startsWith(text.toLowerCase())){
+                    newJson.put(city);
+                }
+            }
+            return newJson;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cities;
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -74,5 +115,16 @@ public class CityScrollingActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        final InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            if (this.getCurrentFocus() != null) {
+                inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+            }
+        }
     }
 }

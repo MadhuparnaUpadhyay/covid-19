@@ -1,5 +1,6 @@
 package live.combatemic.app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,8 +14,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ExpandableListView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import live.combatemic.app.Common.ServerCallback;
 import live.combatemic.app.Common.VollyServerCall;
@@ -31,7 +35,7 @@ import java.util.Iterator;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, SearchView.OnQueryTextListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -45,6 +49,7 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
     private TextView lastLocation;
     private ExpandableListView expListView;
     private int lastExpandedPosition = -1;
+    private SearchView searchview;
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
@@ -77,6 +82,8 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         Context context = view.getContext();
         recyclerView = (RecyclerView) view.findViewById(R.id.list);
         swipeRefreshLayout.setOnRefreshListener(this);
+        searchview = (SearchView) view.findViewById(R.id.search_view);
+        searchview.setOnQueryTextListener(this);
 //        expListView = (ExpandableListView) view.findViewById(R.id.city_data_expan);
 
         SharedPreferences sharedPref = getActivity().getSharedPreferences(
@@ -92,7 +99,7 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
             @Override
             public void onListFragmentInteraction(int position, String finalStateName) {
                 if(!finalStateName.toLowerCase().equals("total")) {
-                    JSONArray cities = getCity(position);
+                    JSONArray cities = getCity(finalStateName);
                     Intent intent = new Intent(getContext(), CityScrollingActivity.class);
                     intent.putExtra("city", cities.toString());
                     intent.putExtra("state", finalStateName);
@@ -104,12 +111,12 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         return view;
     }
 
-    private JSONArray getCity(Integer position){
+    private JSONArray getCity(String finalStateName){
         JSONObject stateObj = new JSONObject();
         JSONArray cities = new JSONArray();
         try {
-            stateObj = statewise.getJSONObject(position);
-            final JSONObject city = citywise.getJSONObject(stateObj.getString("state")).getJSONObject("districtData");
+//            stateObj = statewise.getJSONObject(position);
+            final JSONObject city = citywise.getJSONObject(finalStateName).getJSONObject("districtData");
             Iterator<String> keys = city.keys();
             while (keys.hasNext()) {
                 String key = keys.next();
@@ -132,6 +139,37 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 //        expListView.setIndicatorBounds(expListView.getLeft()- 40, expListView.getWidth());
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        JSONArray filterState = filterState(newText);
+        recyclerView.setAdapter(new StateDetailsRecyclerViewAdapter(filterState, citywise, mListener));
+        return false;
+    }
+
+    private JSONArray filterState(String text) {
+        JSONArray newJson = new JSONArray();
+        if (text == null) {
+            return statewise;
+        }
+        try {
+            for (int i = 0; i < statewise.length(); i++) {
+                JSONObject state = statewise.getJSONObject(i);
+                if(state.getString("state").toLowerCase().startsWith(text.toLowerCase())){
+                    newJson.put(state);
+                }
+            }
+            return newJson;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return statewise;
     }
 
     private void getData() {
@@ -196,9 +234,27 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        final InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (inputMethodManager.isActive()) {
+            if (getActivity().getCurrentFocus() != null) {
+                inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+            }
+        }
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        getData();
+        if (searchview != null) {
+//            CharSequence text = searchview.getQuery();
+//            if(text.length() == 0){
+//                Toast.makeText(getContext(), ""+searchview.getQuery(), Toast.LENGTH_SHORT).show();
+//                getData();
+//            }
+            searchview.clearFocus();
+        }
     }
 
     @Override

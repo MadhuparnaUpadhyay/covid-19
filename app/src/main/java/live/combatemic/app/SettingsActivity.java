@@ -83,19 +83,21 @@ public class SettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
         private static final String TAG = "SettingsFragment";
 
-        private Preference thePreference;
+        private Preference thePreference, thePreferenceShare;
         SharedPreferences sharedPref;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             thePreference = findPreference("switch");
+            thePreferenceShare = findPreference("share");
 
             sharedPref = getActivity().getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE);
 
             Boolean value = sharedPref.getBoolean("subscribe", false);
 
+            thePreferenceShare.setOnPreferenceClickListener(this);
             if (thePreference != null) {
                 thePreference.setDefaultValue(value);
                 thePreference.setOnPreferenceChangeListener(this);
@@ -107,8 +109,9 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+            String key = preference.getKey();
             if (preference instanceof SwitchPreference) {
-                subUnsubNot(preference.getKey(), value);
+                subUnsubNot(key, value);
             } else if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
@@ -157,6 +160,10 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public boolean onPreferenceClick(Preference preference) {
             String key = preference.getKey();
+            Log.d("TAG", key);
+            if (key.equals("share")){
+                shareApp();
+            }
             return false;
         }
 
@@ -192,6 +199,18 @@ public class SettingsActivity extends AppCompatActivity {
                 myEdit.putBoolean("subscribe", on);
                 myEdit.apply();
             }
+        }
+
+        void shareApp() {
+            Intent share = new Intent(android.content.Intent.ACTION_SEND);
+            share.setType("text/plain");
+            share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+            // Add data to the intent, the receiving app will decide
+            // what to do with it.
+            share.putExtra(Intent.EXTRA_SUBJECT, "Join with us");
+            share.putExtra(Intent.EXTRA_TEXT, "https://combatemic.live/");
+
+            getContext().startActivity(Intent.createChooser(share, "Share link!"));
         }
     }
 }

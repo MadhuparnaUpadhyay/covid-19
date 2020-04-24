@@ -31,6 +31,8 @@
     <!--        android:src="@mipmap/ic_launcher_city_foreground"-->
     <!--        />-->
 
+    <include layout="@layout/search_bar"/>
+
     <ListView
         android:id="@+id/city_list"
         android:layout_width="match_parent"

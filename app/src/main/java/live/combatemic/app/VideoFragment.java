@@ -145,13 +145,13 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 //        webview.loadData('<iframe width="560" height="315" src="https://www.youtube.com/embed/hBlO1i_WTiY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', "text/html", "utf-8");
 //        webview.setWebChromeClient(new WebChromeClient());
 
-//        getVideo();
-        youTubePlayerFragment = new YouTubePlayerSupportFragment();
-        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
-        fragmentTransaction.commit();
+        getVideo();
+//        youTubePlayerFragment = new YouTubePlayerSupportFragment();
+//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
+//        fragmentTransaction.commit();
 
 //        youTubeView = (YouTubePlayerFragment) view.findViewById(R.id.youtubesupportfragment);
 //        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
@@ -204,17 +204,23 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
                         // do stuff here
                         JSONArray general = new JSONArray();
                         try {
-                            System.out.println(response);
-                            System.out.println(response.getJSONArray("general"));
+//                            System.out.println(response);
+//                            System.out.println(response.getJSONArray("general"));
                             general = response.getJSONArray("general");
                             JSONArray location = response.getJSONArray("location");
-//                            general.addAll(location);
-                            for (int i = 0; i < location.length(); i++) {
-                                String jsonObject = location.getString(i);
-                                general.put(jsonObject);
+                            if(location.length() > 0){
+                                videoId = location.getString(0);
+                            } else if (general.length() > 0) {
+                                videoId = general.getString(0);
                             }
-                            final VideoAdapter adapter = new VideoAdapter(getActivity(), 0, general);
-                            listViewVideo.setAdapter(adapter);
+//                            System.out.println(response.getJSONArray("location"));
+//                            general.addAll(location);
+//                            for (int i = 0; i < location.length(); i++) {
+//                                String jsonObject = location.getString(i);
+//                                general.put(jsonObject);
+//                            }
+//                            final VideoAdapter adapter = new VideoAdapter(getActivity(), 0, general);
+//                            listViewVideo.setAdapter(adapter);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -226,6 +232,12 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        youTubePlayerFragment = new YouTubePlayerSupportFragment();
+        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
+        fragmentTransaction.commit();
 
 //        youTubePlayerFragment = (YouTubePlayerSupportFragment) getActivity().getSupportFragmentManager()
 //                .findFragmentById(R.id.youtubesupportfragment);

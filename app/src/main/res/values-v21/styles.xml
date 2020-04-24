@@ -1,8 +1,19 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="SCBSwitch" parent="AppTheme">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="android:colorControlActivated">#063435</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#D50C0C</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42ED0808</item>
     </style>
 </resources>

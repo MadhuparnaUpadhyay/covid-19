@@ -1,4 +1,5 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.preference.PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:isScrollContainer="false"
     android:keepScreenOn="false"
@@ -31,12 +32,13 @@
     <!--        app:theme="@style/SCBSwitch" />-->
 
 
-    <SwitchPreference
+    <SwitchPreferenceCompat
         android:key="switch"
-        android:summary="@string/summary_notification"
+        android:summaryOff="@string/summary_notification"
+        android:summaryOn="@string/summary_notification"
         android:title="@string/title_notification"
         app:iconSpaceReserved="false"
-        app:theme="@style/SCBSwitch" />
+        android:theme="@style/SwitchTheme" />
 
     <PreferenceCategory
         app:allowDividerAbove="false"
@@ -70,6 +72,13 @@
                 android:data="@string/url_yt" />
         </Preference>
 
+        <Preference
+            android:key="share"
+            android:onClick="shareApp"
+            android:summary="Invite your friends to join"
+            android:title="Share Our App"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -100,4 +109,4 @@
         android:summary="v0.9.4 beta"
         android:title="@string/app_version"
         app:iconSpaceReserved="false" />
-</PreferenceScreen>
+</androidx.preference.PreferenceScreen>

@@ -68,7 +68,8 @@
         <activity android:name="live.combatemic.app.ProfileActivity" />
         <activity
             android:name="live.combatemic.app.SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:theme="@style/SwitchTheme"/>
         <activity android:name="live.combatemic.app.RegistrationActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
