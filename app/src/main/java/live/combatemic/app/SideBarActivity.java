@@ -45,6 +45,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private TabLayout tabLayout;
     private TextView textView;
+    private DrawerLayout drawer;
     private static final String[] tabArray = {"Statistics", "Video"};//Tab title array
     private static final Integer[] tabIcons = {R.drawable.ic_insert_chart_black_24dp, R.drawable.ic_video_library_black_24dp};//Tab icons array
 
@@ -64,6 +65,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         textView = toolbar.findViewById(R.id.toolbar_title);
         textView.setText("Statistics");
+
+        TextView textViewVersion = findViewById(R.id.version);
+        int versionCode = BuildConfig.VERSION_CODE;
+        String versionName = BuildConfig.VERSION_NAME;
+        textViewVersion.setText("v" + versionName + " beta");
 //        getSupportActionBar().setTitle("sfbsfhj");
 //
 //        sharedPref = this.getSharedPreferences(
@@ -91,7 +97,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         tabLayout.addOnTabSelectedListener(this);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -180,7 +186,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         FragmentManager fragmentManager = getSupportFragmentManager();//declaring Fragment Manager
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();// declaring Fragment Transaction
 
@@ -210,7 +215,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         }
 //        fragmentTransaction.addToBackStack(null);
 //        fragmentTransaction.commit();
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

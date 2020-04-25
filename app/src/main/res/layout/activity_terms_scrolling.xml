@@ -21,14 +21,16 @@
             app:layout_collapseMode="pin"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Toolbar Title"
-                android:textColor="@android:color/white"
-                android:textSize="20dp" />
+<!--            <TextView-->
+<!--                android:id="@+id/toolbar_title"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="Toolbar Title"-->
+<!--                android:textColor="@android:color/white"-->
+<!--                android:textSize="20dp" />-->
+
+            <include layout="@layout/custom_toolbar"/>
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>

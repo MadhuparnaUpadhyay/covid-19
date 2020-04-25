@@ -10,6 +10,8 @@ import androidx.core.view.MenuCompat;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class TermsScrollingActivity extends AppCompatActivity {
@@ -21,10 +23,18 @@ public class TermsScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
 //        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        TextView textView = toolbar.findViewById(R.id.toolbar_title);
+        TextView textView = findViewById(R.id.toolbar_title);
         textView.setText("Terms & Conditions");
+        ImageView imageView = (ImageView) findViewById(R.id.back_button);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 //        ActionBar actionBar = getSupportActionBar();
 //        if (actionBar != null) {
 ////            actionBar.setDisplayHomeAsUpEnabled(true);

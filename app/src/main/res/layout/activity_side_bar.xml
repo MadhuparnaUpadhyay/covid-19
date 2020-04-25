@@ -20,6 +20,7 @@
         android:layout_gravity="start"
         android:background="@android:color/white"
         android:fitsSystemWindows="true"
+        app:itemBackground="@android:color/white"
         app:headerLayout="@layout/nav_header_side_bar"
         app:itemIconTint="@color/colorBackground"
         app:itemTextColor="@android:color/black"
@@ -33,7 +34,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/logout"
+                android:id="@+id/version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"

@@ -244,6 +244,12 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         }
     }
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        getData();
+//    }
+
     @Override
     public void onResume() {
         super.onResume();

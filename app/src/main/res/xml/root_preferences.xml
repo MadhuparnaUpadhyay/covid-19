@@ -106,6 +106,7 @@
     </PreferenceCategory>
 
     <Preference
+        android:key="version"
         android:summary="v0.9.4 beta"
         android:title="@string/app_version"
         app:iconSpaceReserved="false" />

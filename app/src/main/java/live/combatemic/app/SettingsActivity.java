@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
         private static final String TAG = "SettingsFragment";
 
-        private Preference thePreference, thePreferenceShare;
+        private Preference thePreference, thePreferenceShare, thePreferenceVersion;
         SharedPreferences sharedPref;
 
         @Override
@@ -91,6 +91,7 @@ public class SettingsActivity extends AppCompatActivity {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
             thePreference = findPreference("switch");
             thePreferenceShare = findPreference("share");
+            thePreferenceVersion = findPreference("version");
 
             sharedPref = getActivity().getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -104,6 +105,10 @@ public class SettingsActivity extends AppCompatActivity {
             } else {
                 Log.d(TAG, "Preference is empty");
             }
+
+            int versionCode = BuildConfig.VERSION_CODE;
+            String versionName = BuildConfig.VERSION_NAME;
+            thePreferenceVersion.setSummary("v" + versionName + " beta");
         }
 
         @Override
