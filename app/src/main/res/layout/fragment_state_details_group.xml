@@ -33,7 +33,10 @@
                 android:background="@drawable/layerlistred"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:weightSum="1">
 
                 <TextView
@@ -47,7 +50,6 @@
                     android:id="@+id/confirmed"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="0.5"
                     android:text="3690"
                     android:textColor="@color/textColorStat"
@@ -64,7 +66,10 @@
                 android:background="@drawable/layerlistblue"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:weightSum="1">
 
                 <TextView
@@ -78,7 +83,6 @@
                     android:id="@+id/active"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="0.5"
                     android:text="3122"
                     android:textColor="#328CFF"
@@ -95,7 +99,10 @@
                 android:background="@drawable/layerlistgreen"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:weightSum="1">
 
                 <TextView
@@ -109,7 +116,6 @@
                     android:id="@+id/recovered"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="0.5"
                     android:text="304"
                     android:textColor="#2AA746"
@@ -125,7 +131,10 @@
                 android:background="@drawable/layerlistgrey"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:weightSum="1">
 
                 <TextView
@@ -139,7 +148,6 @@
                     android:id="@+id/decreased"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="0.5"
                     android:text="107"
                     android:textColor="#6D767D"
