@@ -7,10 +7,11 @@
     tools:context="live.combatemic.app.MainActivity"
     android:background="@color/colorBackground">
 
-    <ImageView
+    <live.combatemic.app.Common.SquareImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/text_margin"
-        app:srcCompat="@mipmap/ic_launcher_old_round" />
+        android:background="@mipmap/ic_launcher_old_round" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

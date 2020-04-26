@@ -1,6 +1,7 @@
 package live.combatemic.app;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
 
 import java.util.concurrent.TimeUnit;
+
+import live.combatemic.app.Common.Utils;
 
 public class SideBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener,
         ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
@@ -99,7 +102,20 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        {
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                // Do whatever you want here
+                StateDetailsFragment.newInstance(0).OnDrawerClose();
+            }
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                // Do whatever you want here
+//                StateDetailsFragment.newInstance(0).OnDrawerClose();
+                Utils.CloseKeyboard(getApplicationContext(), SideBarActivity.this);
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -286,7 +302,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public void onPageSelected(int position) {
 //        menu.getItem(0).setTitle(tabsTitles[position]);
         if (position == 0) {
-            new StateDetailsFragment();
+            StateDetailsFragment.newInstance(position);
             textView.setText("Statistics");
         } else {
             VideoFragment.newInstance(position);
@@ -310,6 +326,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             VideoFragment.newInstance(position);
             textView.setText("Video");
         }
+        Utils.CloseKeyboard(this, SideBarActivity.this);
     }
 
     @Override

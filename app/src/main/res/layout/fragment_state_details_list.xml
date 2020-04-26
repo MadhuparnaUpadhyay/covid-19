@@ -30,11 +30,18 @@
                 android:textColor="#000"
                 android:text="Last updated Location" />
 
-            <TextView
-                android:id="@+id/last_location"
+            <LinearLayout
+                android:id="@+id/location_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:padding="5dp"
+                android:weightSum="1">
+            <TextView
+                android:id="@+id/last_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.9"
                 android:scrollHorizontally="true"
                 android:ellipsize="end"
                 android:singleLine="true"
@@ -46,10 +53,23 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:text="Location" />
+
+                <ImageButton
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_search_black_24dp"/>
+            </LinearLayout>
+
+            <include
+                android:id="@+id/search_bar_layout"
+                layout="@layout/search_bar"
+                android:visibility="gone"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <include layout="@layout/search_bar"/>
+<!--    <include layout="@layout/search_bar"/>-->
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"

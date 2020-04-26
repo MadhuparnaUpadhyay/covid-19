@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import live.combatemic.app.Common.Utils;
 import live.combatemic.app.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.inputmethod.InputMethodManager;
+
+
 import android.widget.SearchView;
 
 import android.view.Menu;
@@ -120,11 +122,6 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        final InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        if (inputMethodManager.isActive()) {
-            if (this.getCurrentFocus() != null) {
-                inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
-            }
-        }
+        Utils.CloseKeyboard(this, CityScrollingActivity.this);
     }
 }
