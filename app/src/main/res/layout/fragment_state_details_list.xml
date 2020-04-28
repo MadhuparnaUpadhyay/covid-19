@@ -23,19 +23,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:textColor="#000"
-                android:text="Last updated Location" />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="5dp"-->
+<!--                android:textColor="#000"-->
+<!--                android:text="Last updated Location" />-->
 
             <LinearLayout
                 android:id="@+id/location_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:weightSum="1">
             <TextView
                 android:id="@+id/last_location"
@@ -49,7 +49,8 @@
                 android:textSize="15dp"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:drawableEnd="@drawable/ic_person_black_24dp"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_location_on_black_24dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:text="Location" />

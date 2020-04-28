@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
@@ -60,6 +61,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     private String mainUrl = "https://www.youtube.com/watch?v=";
     private SharedPreferences sharedPref;
     private ImageView imageViewThumbnail;
+    private static VideoFragment fragment;
 
     public VideoFragment() {
         // Required empty public constructor
@@ -75,9 +77,11 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
      */
     // TODO: Rename and change types and number of parameters
     public static VideoFragment newInstance(Integer columnCount) {
-        VideoFragment fragment = new VideoFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
+        if(fragment == null){
+            fragment = new VideoFragment();
+            Bundle args = new Bundle();
+            fragment.setArguments(args);
+        }
         return fragment;
     }
 
@@ -105,86 +109,8 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 
 //        Bitmap bmThumbnail;
         String imageUrl = "http://img.youtube.com/vi/VUHPBHcstak/maxresdefault.jpg";
-//        MICRO_KIND, size: 96 x 96 thumbnail
-//        bmThumbnail = ThumbnailUtils.createVideoThumbnail(url, MediaStore.Images.Thumbnails.MICRO_KIND);
-//        imageViewThumbnail.setImageBitmap(bmThumbnail);
+
         Picasso.get().load(imageUrl).into(imageViewThumbnail);
-//        Bitmap bmp = null;
-//        try {
-//            URL url = new URL("http://img.youtube.com/vi/VUHPBHcstak/default.jpg");
-//            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        imageViewThumbnail.setImageBitmap(bmp);
-//        webview = new WebView(getContext());
-//
-//        final WebSettings settings = webview.getSettings();
-//        settings.setJavaScriptEnabled(true);
-//
-//        String frameVideo = "<html><body>Youtube video .. <br> <iframe width=\"320\" height=\"315\" src=\"https://www.youtube.com/\" frameborder=\"0\" allowfullscreen></iframe></body></html>";
-//
-//        webview.loadData(frameVideo, "text/html", "utf-8");
-//
-//        webview.loadUrl("http://www.youtube.com/");
-//
-//
-//        webview.setWebViewClient(new WebViewClient());
-//        settings.setJavaScriptEnabled(true);
-//        settings.setJavaScriptCanOpenWindowsAutomatically(true);
-//        settings.setPluginState(WebSettings.PluginState.ON);
-//        settings.setLoadWithOverviewMode(true);
-//        settings.setUseWideViewPort(true);
-//
-////        webview.setWebChromeClient(new WebChromeClient());
-//        webview.setPadding(0, 0, 0, 0);
-//
-////        webview.loadUrl("file:///android_asset/youtube.html");
-//
-////        webview.loadUrl("http://www.youtube.com/embed/" + "voBuLsstp2s" + "?autoplay=1&vq=small");
-//        webview.loadData('<iframe width="560" height="315" src="https://www.youtube.com/embed/hBlO1i_WTiY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', "text/html", "utf-8");
-//        webview.setWebChromeClient(new WebChromeClient());
-
-        getVideo();
-//        youTubePlayerFragment = new YouTubePlayerSupportFragment();
-//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
-//        fragmentTransaction.commit();
-
-//        youTubeView = (YouTubePlayerFragment) view.findViewById(R.id.youtubesupportfragment);
-//        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
-
-//        mYoutubeVideoTitle = (TextView)fragmentYoutubeView.findViewById(R.id.fragment_youtube_title);
-//        mYoutubeVideoDescription = (TextView)fragmentYoutubeView.findViewById(R.id.fragment_youtube_description);
-//
-//        mYoutubeVideoTitle.setText(getArguments().getString(Resources.KEY_VIDEO_TITLE));
-//        mYoutubeVideoDescription.setText(getArguments().getString(Resources.KEY_VIDEO_DESC));
-//
-//        VideoFragment.setTextToShare(getArguments().getString(Resources.KEY_VIDEO_URL));
-//        youTubePlayerFragment = (YouTubePlayerFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.youtubesupportfragment);
-//        getChildFragmentManager().getFragment()
-//        youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
-////        val youTubePlayerFragment = supportFragmentManager.findFragmentById(R.id.youtube_fragment) as YouTubePlayerSupportFragment;
-//        FragmentTransaction transaction = (YouTubePlayerSupportFragment)  youTubePlayerFragment.findFragmentById(R.id.youtubesupportfragment);
-//        transaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment).commit();
-
-//        FragmentManager fm = getActivity().getSupportFragmentManager();/// getChildFragmentManager();
-//        supportMapFragment = (YouTubePlayerSupportFragment) fm.findFragmentById(R.id.youtubesupportfragment);
-//        if (supportMapFragment == null) {
-//            supportMapFragment = YouTubePlayerSupportFragment.newInstance();
-//            fm.beginTransaction().replace(R.id.youtubesupportfragment, supportMapFragment).commit();
-//        }
-////        supportMapFragment.getMapAsync(getActivity());
-//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-
-//        YouTubePlayerFragment youtubePlayerFragment = new YouTubePlayerFragment();
-//        youtubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
-////        FragmentManager fragmentManager = setTargetFragment(R.id.youtubesupportfragment);
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.youtubesupportfragment, youtubePlayerFragment);
-//        fragmentTransaction.commit();
 
         return view;
     }
@@ -230,32 +156,23 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getVideo();
+
+
         youTubePlayerFragment = new YouTubePlayerSupportFragment();
         youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment);
         fragmentTransaction.commit();
+    }
 
-//        youTubePlayerFragment = (YouTubePlayerSupportFragment) getActivity().getSupportFragmentManager()
-//                .findFragmentById(R.id.youtubesupportfragment);
-
-//        youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
-//        FragmentTransaction transaction =  getChildFragmentManager().beginTransaction();
-//        transaction.replace(R.id.youtubesupportfragment, youTubePlayerFragment).commit();
-//        if (youTubePlayerFragment == null)
-//            return;
-//
-////        FragmentManager fm = getActivity().getSupportFragmentManager();/// getChildFragmentManager();
-////        supportMapFragment = (YouTubePlayerSupportFragment) fm.findFragmentById(R.id.youtubesupportfragment);
-////        if (supportMapFragment == null) {
-////            supportMapFragment = YouTubePlayerSupportFragment.newInstance();
-////            fm.beginTransaction().replace(R.id.youtubesupportfragment, supportMapFragment).commit();
-////        }
-////        supportMapFragment.getMapAsync(getActivity());
-//        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
@@ -286,7 +203,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
         }
     }
 
-    protected YouTubePlayer.Provider getYouTubePlayerProvider() {
+    private YouTubePlayer.Provider getYouTubePlayerProvider() {
         return youTubeView;
     }
 

@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/video"
         android:name="live.combatemic.app.StateDetailsFragment"
-        android:label="@string/menu_home"
+        android:label="@string/statistics"
         tools:layout="@layout/fragment_state_details_list">
 
         <action

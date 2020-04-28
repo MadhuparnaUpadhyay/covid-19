@@ -20,7 +20,8 @@
     <string name="nav_header_subtitle">User Email</string>
     <string name="nav_header_desc">Navigation header</string>
 
-    <string name="menu_home">Statistics</string>
+    <string name="statistics">Statistics</string>
+    <string name="video">Video</string>
     <string name="menu_imp_contact">Important Contacts</string>
     <string name="menu_faq">FAQs</string>
 
@@ -78,7 +79,7 @@ Awareness plays a key role when medicines and treatment are not on around and we
 \n\n
 The APP aims to solve most of the problems that individuals are not used to doing and are prone to forget. We don’t believe in being scarred, we believe in the fightback. Make your life simpler and at your fingertips. We want to share this APP for the benefit of society.
 \n\n
-We would also like to thank Team "BTN-HashBUGS (By Nimisha Goyal)" for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.
+We would also like to thank Team "BTN-HashBUGS" for the Animation Videos. Heartfelt gratitude for all our users for your support and patience.
 
 
     </string>

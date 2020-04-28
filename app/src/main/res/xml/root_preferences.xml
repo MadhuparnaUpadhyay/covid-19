@@ -107,7 +107,7 @@
 
     <Preference
         android:key="version"
-        android:summary="v0.9.4 beta"
+        android:summary=""
         android:title="@string/app_version"
         app:iconSpaceReserved="false" />
 </androidx.preference.PreferenceScreen>

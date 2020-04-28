@@ -159,7 +159,7 @@ public class CityExpandableListAdapter extends BaseExpandableListAdapter {
         TextView recovered = (TextView) convertView
                 .findViewById(R.id.recovered);
         TextView decreased = (TextView) convertView
-                .findViewById(R.id.decreased);
+                .findViewById(R.id.death);
         TextView active = (TextView) convertView
                 .findViewById(R.id.active);
         TextView dateTime = (TextView) convertView

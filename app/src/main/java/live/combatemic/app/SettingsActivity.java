@@ -23,6 +23,7 @@ import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import live.combatemic.app.Common.CurrentLocationManager;
 import live.combatemic.app.Common.OnLocationUpdateListener;
@@ -83,15 +84,14 @@ public class SettingsActivity extends AppCompatActivity {
     public static class SettingsFragment extends PreferenceFragmentCompat implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener, SharedPreferences.OnSharedPreferenceChangeListener {
         private static final String TAG = "SettingsFragment";
 
-        private Preference thePreference, thePreferenceShare, thePreferenceVersion;
         SharedPreferences sharedPref;
 
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
-            thePreference = findPreference("switch");
-            thePreferenceShare = findPreference("share");
-            thePreferenceVersion = findPreference("version");
+            Preference thePreference = findPreference("switch");
+            Preference thePreferenceShare = findPreference("share");
+            Preference thePreferenceVersion = findPreference("version");
 
             sharedPref = getActivity().getSharedPreferences(
                     getString(R.string.preference_file_key), Context.MODE_PRIVATE);
@@ -99,8 +99,8 @@ public class SettingsActivity extends AppCompatActivity {
             Boolean value = sharedPref.getBoolean("subscribe", false);
 
             thePreferenceShare.setOnPreferenceClickListener(this);
-            if (thePreference != null) {
-                thePreference.setDefaultValue(value);
+            if (thePreference instanceof SwitchPreferenceCompat) {
+                ((SwitchPreferenceCompat) thePreference).setChecked(value);
                 thePreference.setOnPreferenceChangeListener(this);
             } else {
                 Log.d(TAG, "Preference is empty");
@@ -108,14 +108,14 @@ public class SettingsActivity extends AppCompatActivity {
 
             int versionCode = BuildConfig.VERSION_CODE;
             String versionName = BuildConfig.VERSION_NAME;
-            thePreferenceVersion.setSummary("v" + versionName + " beta");
+            thePreferenceVersion.setSummary("v" + versionName);
         }
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
             String key = preference.getKey();
-            if (preference instanceof SwitchPreference) {
+            if (preference instanceof SwitchPreferenceCompat) {
                 subUnsubNot(key, value);
             } else if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in

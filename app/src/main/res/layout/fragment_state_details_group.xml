@@ -42,15 +42,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="Confirmed"
+                    android:textColor="@color/textColorStat" />
+
+                <TextView
+                    android:id="@+id/today_confirmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:textSize="11dp"
+                    android:text=""
                     android:textColor="@color/textColorStat" />
 
                 <TextView
                     android:id="@+id/confirmed"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="3690"
                     android:textColor="@color/textColorStat"
                     android:textSize="20dp"
@@ -75,15 +84,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="Active"
+                    android:textColor="#328CFF" />
+
+                <TextView
+                    android:id="@+id/today_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:textSize="11dp"
+                    android:text=""
                     android:textColor="#328CFF" />
 
                 <TextView
                     android:id="@+id/active"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="3122"
                     android:textColor="#328CFF"
                     android:textSize="20dp"
@@ -108,15 +126,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="Recovered"
+                    android:textColor="#2AA746" />
+
+                <TextView
+                    android:id="@+id/today_recovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:textSize="11dp"
+                    android:text=""
                     android:textColor="#2AA746" />
 
                 <TextView
                     android:id="@+id/recovered"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="304"
                     android:textColor="#2AA746"
                     android:textSize="20dp"
@@ -140,15 +167,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:text="Deceased"
                     android:textColor="#6D767D" />
 
                 <TextView
-                    android:id="@+id/decreased"
+                    android:id="@+id/today_death"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.2"
+                    android:textSize="11dp"
+                    android:text=""
+                    android:textColor="#6D767D" />
+
+                <TextView
+                    android:id="@+id/death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
                     android:text="107"
                     android:textColor="#6D767D"
                     android:textSize="20dp"

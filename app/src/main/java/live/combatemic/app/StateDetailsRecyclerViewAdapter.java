@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link } and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
@@ -30,7 +30,7 @@ public class StateDetailsRecyclerViewAdapter extends RecyclerView.Adapter<StateD
     private final JSONObject citywise;
     private final OnListFragmentInteractionListener mListener;
 
-    public StateDetailsRecyclerViewAdapter(JSONArray statewise, JSONObject citywise, OnListFragmentInteractionListener mListener) {
+    StateDetailsRecyclerViewAdapter(JSONArray statewise, JSONObject citywise, OnListFragmentInteractionListener mListener) {
         this.statewise = statewise;
         this.citywise = citywise;
         this.mListener = mListener;
@@ -45,15 +45,30 @@ public class StateDetailsRecyclerViewAdapter extends RecyclerView.Adapter<StateD
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        JSONObject stateDetail = new JSONObject();
+        JSONObject stateDetail = null;
         String stateName = null;
         try {
             stateDetail = statewise.getJSONObject(position);
             stateName = stateDetail.getString("state");
             holder.state.setText(stateName);
             holder.confirmed.setText(stateDetail.getString("confirmed"));
+            if(!stateDetail.getString("deltaconfirmed").equals("0")) {
+                holder.todayConfirmed.setText("(+ " + stateDetail.getString("deltaconfirmed") + " )");
+            } else {
+                holder.todayConfirmed.setText("");
+            }
             holder.recovered.setText(stateDetail.getString("recovered"));
-            holder.decreased.setText(stateDetail.getString("deaths"));
+            if(!stateDetail.getString("deltarecovered").equals("0")) {
+                holder.todayRecovered.setText("(+ " + stateDetail.getString("deltarecovered") + " )");
+            } else {
+                holder.todayRecovered.setText("");
+            }
+            holder.death.setText(stateDetail.getString("deaths"));
+            if(!stateDetail.getString("deltadeaths").equals("0")) {
+                holder.todayDeath.setText("(+ " + stateDetail.getString("deltadeaths") + " )");
+            } else {
+                holder.todayDeath.setText("");
+            }
             holder.active.setText(stateDetail.getString("active"));
             holder.dateTime.setText(dateTime(stateDetail.getString("lastupdatedtime")));
             if(stateName.toLowerCase().equals("total")){
@@ -77,7 +92,7 @@ public class StateDetailsRecyclerViewAdapter extends RecyclerView.Adapter<StateD
         });
     }
 
-    public String dateTime(String dateString) {
+    private String dateTime(String dateString) {
         DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = null;
         try {
@@ -99,22 +114,28 @@ public class StateDetailsRecyclerViewAdapter extends RecyclerView.Adapter<StateD
         return statewise.length();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView state, confirmed, recovered, decreased, active, dateTime, lineText;
-        public LinearLayout linearLayout;
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        final View mView;
+        final TextView state, confirmed, recovered, death, active, dateTime, lineText, todayConfirmed, todayRecovered, todayDeath;
+        LinearLayout linearLayout;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             state = (TextView) view
                     .findViewById(R.id.state);
             confirmed = (TextView) view
                     .findViewById(R.id.confirmed);
+            todayConfirmed = (TextView) view
+                    .findViewById(R.id.today_confirmed);
             recovered = (TextView) view
                     .findViewById(R.id.recovered);
-            decreased = (TextView) view
-                    .findViewById(R.id.decreased);
+            todayRecovered = (TextView) view
+                    .findViewById(R.id.today_recovered);
+            death = (TextView) view
+                    .findViewById(R.id.death);
+            todayDeath = (TextView) view
+                    .findViewById(R.id.today_death);
             active = (TextView) view
                     .findViewById(R.id.active);
             dateTime = (TextView) view
