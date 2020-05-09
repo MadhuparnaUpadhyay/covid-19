@@ -73,7 +73,7 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
         }
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "ResourceType"})
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -92,7 +92,7 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-        tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), ContextCompat.getColor(getContext(), R.color.red_zone));
+        tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#F9617A"));
         // this is done "so that the tab position is kept in sync"
         // what it does is when you swipe the fragment in view pager, it updates the tabs
         mViewPager.addOnPageChangeListener(this);
@@ -183,21 +183,22 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         final int position = tab.getPosition();
         mViewPager.setCurrentItem(position);
         if (position == 0) {
 //            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.red_zone));
-            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), ContextCompat.getColor(getContext(), R.color.red_zone));
+            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#F9617A"));
             ZoneListFragment.newInstance(position, "Red");
         } else if (position == 1) {
 //            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_zone));
-            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), ContextCompat.getColor(getContext(), R.color.green_zone));
+            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#70BF82"));
             ZoneListFragment.newInstance(position, "Green");
         } else {
 //            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
-            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), ContextCompat.getColor(getContext(), R.color.orange_zone));
+            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#F8A867"));
             ZoneListFragment.newInstance(position, "Orange");
         }
     }

@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.1"
                 android:text="33"
+                android:layout_marginRight="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="20dp" />
 

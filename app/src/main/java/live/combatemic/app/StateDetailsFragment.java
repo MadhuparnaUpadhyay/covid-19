@@ -50,8 +50,8 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
-    private JSONArray statewise = null;
-    private JSONObject citywise = null;
+    private static JSONArray statewise = null;
+    private static JSONObject citywise = null;
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private TextView lastLocation;

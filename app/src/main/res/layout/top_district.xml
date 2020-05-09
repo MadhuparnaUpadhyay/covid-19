@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/creativity"
     android:layout_width="match_parent"
@@ -18,324 +18,376 @@
         android:orientation="vertical"
         android:padding="@dimen/text_margin">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Top districts"
-            android:textColor="@color/textColorStatConfirmed"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:baselineAligned="false"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="Top districts"
+                android:textColor="@color/textColorStatConfirmed"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-                <live.combatemic.app.Common.SquareLayoutHeight
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_border"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/state_confirmed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        tools:text="hbb"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                    <live.combatemic.app.Common.CustomTextView
-                        android:id="@+id/state_confirmed_today"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        app:drawableTint="@color/textColorStatConfirmed"
-                        android:gravity="center"
-                        tools:text="gvhg"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                </live.combatemic.app.Common.SquareLayoutHeight>
-
-                <TextView
-                    android:id="@+id/state_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    tools:text="hsbdj"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
-
-            </live.combatemic.app.Common.SquareLayout>
-
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="horizontal">
 
-                <live.combatemic.app.Common.SquareLayoutHeight
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_border"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                <ImageButton
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@drawable/ic_search_black_24dp" />
 
-                    <TextView
-                        android:id="@+id/state_confirmed1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="hbb"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+            </LinearLayout>
 
-                    <live.combatemic.app.Common.CustomTextView
-                        android:id="@+id/state_confirmed_today1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        app:drawableTint="@color/textColorStatConfirmed"
-                        android:gravity="center"
-                        android:text="gvhg"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                </live.combatemic.app.Common.SquareLayoutHeight>
-
-                <TextView
-                    android:id="@+id/state_name1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="hsbdj"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
-
-            </live.combatemic.app.Common.SquareLayout>
-
-
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <live.combatemic.app.Common.SquareLayoutHeight
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_border"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/state_confirmed2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="hbb"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                    <live.combatemic.app.Common.CustomTextView
-                        android:id="@+id/state_confirmed_today2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        app:drawableTint="@color/textColorStatConfirmed"
-                        android:gravity="center"
-                        android:text="gvhg"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
-
-                </live.combatemic.app.Common.SquareLayoutHeight>
-
-                <TextView
-                    android:id="@+id/state_name2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:text="hsbdj"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
-
-            </live.combatemic.app.Common.SquareLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_below="@+id/your_id"
+            android:scrollbars="none">
 
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1">
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
 
-                <live.combatemic.app.Common.SquareLayoutHeight
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
                     android:layout_gravity="center"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_border"
+                    android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-                    <TextView
-                        android:id="@+id/state_confirmed4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="hbb"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardMaxElevation="10dp">
 
-                    <live.combatemic.app.Common.CustomTextView
-                        android:id="@+id/state_confirmed_today4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        app:drawableTint="@color/textColorStatConfirmed"
-                        android:gravity="center"
-                        android:text="gvhg"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#FFDF00"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/text_margin">
 
-                </live.combatemic.app.Common.SquareLayoutHeight>
+                            <live.combatemic.app.Common.CustomTextView
+                                android:id="@+id/state_confirmed_today"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="20dp"
+                                app:drawableTint="@color/textColorStatConfirmed"
+                                tools:text="1000" />
 
-                <TextView
-                    android:id="@+id/state_name4"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                            <TextView
+                                android:id="@+id/state_confirmed"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                tools:text="31000" />
+
+                            <TextView
+                                android:id="@+id/state_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"
+                                tools:text="Karnataka" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
                     android:layout_gravity="center"
-                    android:layout_weight="0.2"
+                    android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="hsbdj"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-            </live.combatemic.app.Common.SquareLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardMaxElevation="10dp">
 
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="@color/colorAccent"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/text_margin">
 
-                <live.combatemic.app.Common.SquareLayoutHeight
-                    android:layout_width="81dp"
-                    android:layout_height="0dp"
+                            <live.combatemic.app.Common.CustomTextView
+                                android:id="@+id/state_confirmed_today1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="20dp"
+                                app:drawableTint="@color/textColorStatConfirmed"
+                                tools:text="1000" />
+
+                            <TextView
+                                android:id="@+id/state_confirmed1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                tools:text="31000" />
+
+                            <TextView
+                                android:id="@+id/state_name1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"
+                                tools:text="Karnataka" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
                     android:layout_gravity="center"
-                    android:layout_weight="0.8"
-                    android:background="@drawable/round_border"
+                    android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-                    <TextView
-                        android:id="@+id/state_confirmed5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="hbb"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardMaxElevation="10dp">
 
-                    <live.combatemic.app.Common.CustomTextView
-                        android:id="@+id/state_confirmed_today5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        app:drawableTint="@color/textColorStatConfirmed"
-                        android:gravity="center"
-                        android:text="gvhg"
-                        android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#FF69B4"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/text_margin">
 
-                </live.combatemic.app.Common.SquareLayoutHeight>
+                            <live.combatemic.app.Common.CustomTextView
+                                android:id="@+id/state_confirmed_today2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="20dp"
+                                app:drawableTint="@color/textColorStatConfirmed"
+                                tools:text="1000" />
 
-                <TextView
-                    android:id="@+id/state_name5"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                            <TextView
+                                android:id="@+id/state_confirmed2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                tools:text="31000" />
+
+                            <TextView
+                                android:id="@+id/state_name2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"
+                                tools:text="Karnataka" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
                     android:layout_gravity="center"
-                    android:layout_weight="0.2"
+                    android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="hsbdj"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
-            </live.combatemic.app.Common.SquareLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardMaxElevation="10dp">
 
-            <live.combatemic.app.Common.SquareLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="5dp"
-                android:layout_weight="0.33"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:weightSum="1" />
-        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="@color/colorBackground"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/text_margin">
+
+                            <live.combatemic.app.Common.CustomTextView
+                                android:id="@+id/state_confirmed_today4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="20dp"
+                                app:drawableTint="@color/textColorStatConfirmed"
+                                tools:text="1000" />
+
+                            <TextView
+                                android:id="@+id/state_confirmed4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                tools:text="31000" />
+
+                            <TextView
+                                android:id="@+id/state_name4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"
+                                tools:text="Karnataka" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        card_view:cardCornerRadius="3dp"
+                        card_view:cardElevation="5dp"
+                        card_view:cardMaxElevation="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="#FFA501"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="@dimen/text_margin">
+
+                            <live.combatemic.app.Common.CustomTextView
+                                android:id="@+id/state_confirmed_today5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="20dp"
+                                app:drawableTint="@color/textColorStatConfirmed"
+                                tools:text="1000" />
+
+                            <TextView
+                                android:id="@+id/state_confirmed5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                tools:text="31000" />
+
+                            <TextView
+                                android:id="@+id/state_name5"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@android:color/white"
+                                android:textSize="18dp"
+                                tools:text="Karnataka" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <include
+            android:id="@+id/search_bar_layout"
             layout="@layout/search_bar"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

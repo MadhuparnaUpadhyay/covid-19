@@ -7,8 +7,11 @@ import live.combatemic.app.Common.Utils;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import android.view.Menu;
@@ -27,13 +30,15 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener {
 
     private JSONArray cities;
     private ListView listView;
     private TextView textView1, textView2, textView3, textView4, textView5;
     private TextView textViewTo1, textViewTo2, textViewTo3, textViewTo4, textViewTo5;
     private TextView textViewSt1, textViewSt2, textViewSt3, textViewSt4, textViewSt5;
+    private ImageButton searchButton;
+    private ConstraintLayout constraintLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,10 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         textViewSt3 = findViewById(R.id.state_name2);
         textViewSt4 = findViewById(R.id.state_name4);
         textViewSt5 = findViewById(R.id.state_name5);
+
+        searchButton = findViewById(R.id.search_button);
+        searchButton.setOnClickListener(this);
+        constraintLayout = findViewById(R.id.search_bar_layout);
 
         Intent intent = getIntent();
         String jsonArray = intent.getStringExtra("city");
@@ -224,6 +233,13 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.search_button) {
+            constraintLayout.setVisibility(View.VISIBLE);
         }
     }
 }
