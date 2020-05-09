@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "live.combatemic.app"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 5
         versionName "1.0.0"
@@ -60,15 +60,19 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    implementation 'com.google.firebase:firebase-analytics:17.3.0'
-    implementation 'com.google.firebase:firebase-core:17.3.0'
+    implementation 'com.google.firebase:firebase-analytics:17.4.1'
+    implementation 'com.google.firebase:firebase-core:17.4.1'
     // this line must be included to integrate with Firebase
     //noinspection GradleCompatible
-    implementation 'com.google.firebase:firebase-messaging:20.1.5'
+    implementation 'com.google.firebase:firebase-messaging:20.1.7'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
     implementation 'info.androidhive:fontawesome:0.0.5'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'com.github.PhilJay:MPAndroidChart:v2.2.4'
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:percent:23.3.0'
 }
 
 allprojects {

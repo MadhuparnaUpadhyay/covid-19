@@ -22,7 +22,7 @@ public class CityAdapter<J> extends ArrayAdapter {
 
     private final JSONArray cities;
 
-    public CityAdapter(Context context, int i, JSONArray cities) {
+    CityAdapter(Context context, int i, JSONArray cities) {
         super(context, i, Collections.singletonList(cities));
         this.cities = cities;
     }
@@ -63,6 +63,9 @@ public class CityAdapter<J> extends ArrayAdapter {
         TextView firstChar = convertView.findViewById(R.id.first_char);
         TextView cityName = (TextView) convertView.findViewById(R.id.city_name);
         TextView cityConfirmed = (TextView) convertView.findViewById(R.id.city_confirmed);
+        TextView cityRecovered = (TextView) convertView.findViewById(R.id.city_recovered);
+        TextView cityActive = (TextView) convertView.findViewById(R.id.city_active);
+        TextView cityDeath = (TextView) convertView.findViewById(R.id.city_death);
         // Populate the data into the template view using the data object
         try {
             String cityNameValue = city.getString("name") + "";
@@ -71,6 +74,9 @@ public class CityAdapter<J> extends ArrayAdapter {
             firstChar.setText(cityNameValue.charAt(0) + "");
             cityName.setText(cityNameValue);
             cityConfirmed.setText(city.getJSONObject("detail").getString("confirmed"));
+            cityRecovered.setText(city.getJSONObject("detail").getString("recovered"));
+            cityActive.setText(city.getJSONObject("detail").getString("active"));
+            cityDeath.setText(city.getJSONObject("detail").getString("deceased"));
         } catch (JSONException e) {
             System.out.println(city);
             e.printStackTrace();

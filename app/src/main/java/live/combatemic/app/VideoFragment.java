@@ -1,6 +1,7 @@
 package live.combatemic.app;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,12 +9,14 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -27,10 +30,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import live.combatemic.app.Common.CircleTransform;
 import live.combatemic.app.Common.ServerCallback;
 import live.combatemic.app.Common.VollyServerCall;
 
 import live.combatemic.app.R;
+
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
@@ -60,7 +65,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     private String videoId = "ghqF4CCrt2k";
     private String mainUrl = "https://www.youtube.com/watch?v=";
     private SharedPreferences sharedPref;
-    private ImageView imageViewThumbnail;
+    private ImageView imageViewThumbnail, imageViewThumbnail1, imageViewThumbnail2;
     private static VideoFragment fragment;
 
     public VideoFragment() {
@@ -77,7 +82,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
      */
     // TODO: Rename and change types and number of parameters
     public static VideoFragment newInstance(Integer columnCount) {
-        if(fragment == null){
+        if (fragment == null) {
             fragment = new VideoFragment();
             Bundle args = new Bundle();
             fragment.setArguments(args);
@@ -103,14 +108,24 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
         likeTextView = view.findViewById(R.id.like);
         dislikeTextView = view.findViewById(R.id.dislike);
         imageViewThumbnail = view.findViewById(R.id.thumbnail);
+        imageViewThumbnail1 = view.findViewById(R.id.thumbnail1);
+        imageViewThumbnail2 = view.findViewById(R.id.thumbnail2);
         shareTextView.setOnClickListener(this);
         likeTextView.setOnClickListener(this);
         dislikeTextView.setOnClickListener(this);
+        imageViewThumbnail.setOnClickListener(this);
+        imageViewThumbnail1.setOnClickListener(this);
+        imageViewThumbnail2.setOnClickListener(this);
 
 //        Bitmap bmThumbnail;
-        String imageUrl = "http://img.youtube.com/vi/VUHPBHcstak/maxresdefault.jpg";
+        String imageUrl = "http://img.youtube.com/vi/gND4njQhrsA/maxresdefault.jpg";
+        String imageUrl1 = "http://img.youtube.com/vi/q_jUje5IS1M/maxresdefault.jpg";
+        String imageUrl2 = "http://img.youtube.com/vi/gv9DgP4Svuk/maxresdefault.jpg";
 
-        Picasso.get().load(imageUrl).into(imageViewThumbnail);
+//        Picasso.get().load(imageUrl).into(imageViewThumbnail);
+        Picasso.get().load(imageUrl).transform(new CircleTransform()).into(imageViewThumbnail);
+        Picasso.get().load(imageUrl1).transform(new CircleTransform()).into(imageViewThumbnail1);
+        Picasso.get().load(imageUrl2).transform(new CircleTransform()).into(imageViewThumbnail2);
 
         return view;
     }
@@ -134,7 +149,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 //                            System.out.println(response.getJSONArray("general"));
                             general = response.getJSONArray("general");
                             JSONArray location = response.getJSONArray("location");
-                            if(location.length() > 0){
+                            if (location.length() > 0) {
                                 videoId = location.getString(0);
                             } else if (general.length() > 0) {
                                 videoId = general.getString(0);
@@ -256,6 +271,28 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
 //                    drawable.setColorFilter(new PorterDuffColorFilter(R.color.colorAccent, PorterDuff.Mode.SRC_IN));
                 }
             }
+        } else if (v == imageViewThumbnail) {
+            openYoutube("gND4njQhrsA");
+        } else if (v == imageViewThumbnail1) {
+            openYoutube("q_jUje5IS1M");
+        } else if (v == imageViewThumbnail2) {
+            openYoutube("gv9DgP4Svuk");
+        }
+    }
+
+    private void openYoutube(String id) {
+        try {
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + id));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+        } catch (ActivityNotFoundException e) {
+
+            // youtube is not installed.Will be opened in other available apps
+
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtube.com/watch?v=" + id));
+            startActivity(i);
         }
     }
 }

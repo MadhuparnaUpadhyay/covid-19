@@ -37,6 +37,14 @@ public class VollyServerCall {
     private static final String TAG = "VollyServerCall";
     private RequestQueue mRequestQueue;
 
+    public  VollyServerCall() {
+
+    }
+
+    public  VollyServerCall(String BASE_URL) {
+        this.BASE_URL = BASE_URL;
+    }
+
     public void JsonObjectRequest(final Context myContext, final String MAIN_URL, final ServerCallback callback) {
         handleSSLHandshake();
         mRequestQueue = Volley.newRequestQueue(myContext);

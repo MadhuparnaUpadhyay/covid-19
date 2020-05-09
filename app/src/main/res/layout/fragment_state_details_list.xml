@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,91 +8,168 @@
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="1dp"
-        card_view:cardMaxElevation="10dp">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:background="@android:color/white"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-<!--            <TextView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:padding="5dp"-->
-<!--                android:textColor="#000"-->
-<!--                android:text="Last updated Location" />-->
+            android:background="@android:color/white"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="1dp"
+            card_view:cardMaxElevation="10dp">
 
             <LinearLayout
-                android:id="@+id/location_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:weightSum="1">
-            <TextView
-                android:id="@+id/last_location"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:scrollHorizontally="true"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:maxLines="1"
-                android:textSize="15dp"
-                android:layout_gravity="center"
-                android:gravity="center_vertical"
-                android:drawablePadding="5dp"
-                android:drawableStart="@drawable/ic_location_on_black_24dp"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:text="Location" />
+                android:background="@android:color/white"
+                android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/search_button"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/location_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/last_location"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0.9"
+                        android:drawableStart="@drawable/ic_location_on_black_24dp"
+                        android:drawablePadding="5dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Location"
+                        android:textColor="@color/colorBackground"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/search_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_search_black_24dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/search_bar_layout"
+                    layout="@layout/search_bar"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <fragment
+            android:id="@+id/current"
+            android:name="live.combatemic.app.StateDetailFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/creativity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:orientation="horizontal"
+                android:padding="@dimen/text_margin"
+                android:weightSum="1">
+
+                <live.combatemic.app.Common.SquareImageView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_search_black_24dp"/>
+                    android:layout_weight="0.2"
+                    android:background="@mipmap/ic_corona_virus"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="0.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="left"
+                        android:text="Coronavirus Symptoms"
+                        android:textColor="@android:color/white"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Basic protective measures against COVID-19, take care of your health and be aware of the symptoms for the welfare of yourself and your family."
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.05"
+                    android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+                    android:drawableTint="@color/colorBackground"
+                    android:gravity="center" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <include
-                android:id="@+id/search_bar_layout"
-                layout="@layout/search_bar"
-                android:visibility="gone"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-<!--    <include layout="@layout/search_bar"/>-->
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/pullToRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list"
-            android:name="live.combatemic.app.StateDetailsFragment"
+        <fragment
+            android:id="@+id/total"
+            android:name="live.combatemic.app.StateDetailFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager"
-            tools:context="live.combatemic.app.StateDetailsFragment"
-            tools:listitem="@layout/fragment_state_details_group" />
+            android:layout_height="wrap_content" />
 
-        <!--    <ExpandableListView-->
-        <!--        android:id="@+id/state_details_expan"-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="match_parent"-->
-        <!--        android:dividerHeight="0.5dp"-->
-        <!--        android:groupIndicator="@null"-->
-        <!--        android:background="@android:color/white"-->
-        <!--        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft" />-->
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/text_margin"
+                app:layoutManager="LinearLayoutManager"
+                tools:context="live.combatemic.app.StateDetailsFragment"
+                tools:listitem="@layout/fragment_state_details_group" />
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

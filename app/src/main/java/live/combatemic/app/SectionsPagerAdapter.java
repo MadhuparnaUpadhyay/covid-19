@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     SectionsPagerAdapter(FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @NonNull
@@ -17,14 +17,16 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         if (position == 0) {
             return StateDetailsFragment.newInstance(position);
-        } else {
+        } else if (position == 1) {
             return VideoFragment.newInstance(position);
+        } else {
+            return ZoneFragment.newInstance(position);
         }
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -34,6 +36,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return "Statistics";
             case 1:
                 return "Video";
+            case 2:
+                return "Zone";
         }
         return null;
     }

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/text_margin"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/layerlistred"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="5dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="Confirmed"
+                    android:textColor="@color/textColorStatConfirmed" />
+
+                <TextView
+                    android:id="@+id/today_confirmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:drawableTint="@color/textColorStatConfirmed"
+                    android:text=""
+                    android:textColor="@color/textColorStatConfirmed"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:id="@+id/confirmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="3690"
+                    android:textColor="@color/textColorStatConfirmed"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/layerlistblue"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="5dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="Active"
+                    android:textColor="@color/textColorStatActive" />
+
+                <TextView
+                    android:id="@+id/today_active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:drawableTint="@color/textColorStatActive"
+                    android:text=""
+                    android:textColor="@color/textColorStatActive"
+                    android:textSize="11dp"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/active"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="3122"
+                    android:textColor="@color/textColorStatActive"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="2dp"
+                android:layout_weight="0.25"
+                android:background="@drawable/layerlistgreen"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="5dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="Recovered"
+                    android:textColor="@color/textColorStatRecovered" />
+
+                <TextView
+                    android:id="@+id/today_recovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:drawableTint="@color/textColorStatRecovered"
+                    android:text=""
+                    android:textColor="@color/textColorStatRecovered"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:id="@+id/recovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="304"
+                    android:textColor="@color/textColorStatRecovered"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.25"
+                android:background="@drawable/layerlistgrey"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:paddingRight="2dp"
+                android:paddingBottom="5dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="Deceased"
+                    android:textColor="@color/textColorStatDeath" />
+
+                <TextView
+                    android:id="@+id/today_death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:drawableTint="@color/textColorStatDeath"
+                    android:text=""
+                    android:textColor="@color/textColorStatDeath"
+                    android:textSize="11dp" />
+
+                <TextView
+                    android:id="@+id/death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:text="107"
+                    android:textColor="@color/textColorStatDeath"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="state"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@color/colorBackground"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Last Updated at: "
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textColor="@android:color/black"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/line" />
+
+        <LinearLayout
+            android:id="@+id/details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.5"
+                android:gravity="left"
+                android:text="Complete State Details"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_arrow_forward_black_24dp"
+                android:gravity="center"
+                android:text="View all"
+                android:textColor="@color/colorAccent" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

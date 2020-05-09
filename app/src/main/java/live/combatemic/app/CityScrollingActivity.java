@@ -1,15 +1,12 @@
 package live.combatemic.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import live.combatemic.app.Common.Utils;
-import live.combatemic.app.R;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 
 import android.widget.SearchView;
@@ -25,24 +22,53 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private JSONArray cities;
     private ListView listView;
+    private TextView textView1, textView2, textView3, textView4, textView5;
+    private TextView textViewTo1, textViewTo2, textViewTo3, textViewTo4, textViewTo5;
+    private TextView textViewSt1, textViewSt2, textViewSt3, textViewSt4, textViewSt5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_scrolling);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-        listView = (ListView) findViewById(R.id.city_list);
-        SearchView searchview = (SearchView) findViewById(R.id.search_view);
-        searchview.setOnQueryTextListener(this);
+
+
+        textView1 = findViewById(R.id.state_confirmed);
+        textView2 = findViewById(R.id.state_confirmed1);
+        textView3 = findViewById(R.id.state_confirmed2);
+        textView4 = findViewById(R.id.state_confirmed4);
+        textView5 = findViewById(R.id.state_confirmed5);
+
+        textViewTo1 = findViewById(R.id.state_confirmed_today);
+        textViewTo2 = findViewById(R.id.state_confirmed_today1);
+        textViewTo3 = findViewById(R.id.state_confirmed_today2);
+        textViewTo4 = findViewById(R.id.state_confirmed_today4);
+        textViewTo5 = findViewById(R.id.state_confirmed_today5);
+
+        textViewSt1 = findViewById(R.id.state_name);
+        textViewSt2 = findViewById(R.id.state_name1);
+        textViewSt3 = findViewById(R.id.state_name2);
+        textViewSt4 = findViewById(R.id.state_name4);
+        textViewSt5 = findViewById(R.id.state_name5);
 
         Intent intent = getIntent();
         String jsonArray = intent.getStringExtra("city");
         String stateName = intent.getStringExtra("state");
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+        listView = (ListView) findViewById(R.id.city_list);
+        SearchView searchview = (SearchView) findViewById(R.id.search_view);
+        searchview.setQueryHint("Search district...");
+        searchview.setOnQueryTextListener(this);
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -67,11 +93,51 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 
         try {
             cities = new JSONArray(jsonArray);
-            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, cities);
+            JSONArray jsonArray1 = sortCities(cities);
+            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
             listView.setAdapter(adapter);
+            setTopDistrict(jsonArray1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    JSONArray sortCities(JSONArray jsonArray) {
+        JSONArray sortedJsonArray = new JSONArray();
+
+        List<JSONObject> jsonValues = new ArrayList<JSONObject>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            try {
+                jsonValues.add(jsonArray.getJSONObject(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        Collections.sort(jsonValues, new Comparator<JSONObject>() {
+            //You can change "Name" with "ID" if you want to sort by ID
+            private static final String KEY_NAME = "confirmed";
+
+            @Override
+            public int compare(JSONObject a, JSONObject b) {
+                int valA = -1;
+                int valB = -1;
+
+                try {
+                    valA = Integer.parseInt(a.getJSONObject("detail").getString(KEY_NAME));
+                    valB = Integer.parseInt(b.getJSONObject("detail").getString(KEY_NAME));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                System.out.println(valA + " , " + valB);
+                return valB - valA;
+            }
+        });
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            sortedJsonArray.put(jsonValues.get(i));
+        }
+        return sortedJsonArray;
     }
 
     @Override
@@ -82,7 +148,8 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     @Override
     public boolean onQueryTextChange(String newText) {
         JSONArray filterCity = filterCity(newText);
-        final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, filterCity);
+        JSONArray jsonArray1 = sortCities(filterCity);
+        final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
         listView.setAdapter(adapter);
         return false;
     }
@@ -95,7 +162,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         try {
             for (int i = 0; i < cities.length(); i++) {
                 JSONObject city = cities.getJSONObject(i);
-                if(city.getString("name").toLowerCase().startsWith(text.toLowerCase())){
+                if (city.getString("name").toLowerCase().startsWith(text.toLowerCase())) {
                     newJson.put(city);
                 }
             }
@@ -123,5 +190,40 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     public void onBackPressed() {
         super.onBackPressed();
         Utils.CloseKeyboard(this, CityScrollingActivity.this);
+    }
+
+    void setTopDistrict(JSONArray jsonArray) {
+        try {
+            for (int i = 0; i < 5; i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String state = jsonObject.getString("name");
+                JSONObject jsonObject1 = jsonObject.getJSONObject("detail");
+                String string = jsonObject1.getString("confirmed");
+                String string1 = jsonObject1.getJSONObject("delta").getString("confirmed");
+                if (i == 0) {
+                    textView1.setText(string);
+                    textViewTo1.setText(string1);
+                    textViewSt1.setText(state);
+                } else if (i == 1) {
+                    textView2.setText(string);
+                    textViewTo2.setText(string1);
+                    textViewSt2.setText(state);
+                } else if (i == 2) {
+                    textView3.setText(string);
+                    textViewTo3.setText(string1);
+                    textViewSt3.setText(state);
+                } else if (i == 3) {
+                    textView4.setText(string);
+                    textViewTo4.setText(string1);
+                    textViewSt4.setText(state);
+                } else if (i == 4) {
+                    textView5.setText(string);
+                    textViewTo5.setText(string1);
+                    textViewSt5.setText(state);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

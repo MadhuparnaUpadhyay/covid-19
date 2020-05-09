@@ -29,6 +29,7 @@ import live.combatemic.app.Common.CurrentLocationManager;
 import live.combatemic.app.Common.OnLocationUpdateListener;
 
 import live.combatemic.app.R;
+
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -166,7 +167,7 @@ public class SettingsActivity extends AppCompatActivity {
         public boolean onPreferenceClick(Preference preference) {
             String key = preference.getKey();
             Log.d("TAG", key);
-            if (key.equals("share")){
+            if (key.equals("share")) {
                 shareApp();
             }
             return false;
@@ -191,14 +192,14 @@ public class SettingsActivity extends AppCompatActivity {
             } else {
                 if (on) {
                     assert state != null;
-                    FirebaseMessaging.getInstance().subscribeToTopic(state.replaceAll("\\s","_"));
+                    FirebaseMessaging.getInstance().subscribeToTopic(state.replaceAll("\\s", "_"));
                     assert country != null;
-                    FirebaseMessaging.getInstance().subscribeToTopic(country.replaceAll("\\s","_"));
+                    FirebaseMessaging.getInstance().subscribeToTopic(country.replaceAll("\\s", "_"));
                 } else {
                     assert state != null;
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(state.replaceAll("\\s","_"));
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(state.replaceAll("\\s", "_"));
                     assert country != null;
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic(country.replaceAll("\\s","_"));
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic(country.replaceAll("\\s", "_"));
                 }
                 SharedPreferences.Editor myEdit = sharedPref.edit();
                 myEdit.putBoolean("subscribe", on);

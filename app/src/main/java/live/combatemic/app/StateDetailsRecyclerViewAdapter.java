@@ -47,46 +47,52 @@ public class StateDetailsRecyclerViewAdapter extends RecyclerView.Adapter<StateD
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         JSONObject stateDetail = null;
         String stateName = null;
+        String statecode = null;
         try {
             stateDetail = statewise.getJSONObject(position);
             stateName = stateDetail.getString("state");
+            statecode = stateDetail.getString("statecode");
             holder.state.setText(stateName);
             holder.confirmed.setText(stateDetail.getString("confirmed"));
             if(!stateDetail.getString("deltaconfirmed").equals("0")) {
-                holder.todayConfirmed.setText("(+ " + stateDetail.getString("deltaconfirmed") + " )");
+                holder.todayConfirmed.setText(stateDetail.getString("deltaconfirmed"));
             } else {
-                holder.todayConfirmed.setText("");
+                holder.todayConfirmed.setVisibility(View.INVISIBLE);
             }
             holder.recovered.setText(stateDetail.getString("recovered"));
             if(!stateDetail.getString("deltarecovered").equals("0")) {
-                holder.todayRecovered.setText("(+ " + stateDetail.getString("deltarecovered") + " )");
+                holder.todayRecovered.setText(stateDetail.getString("deltarecovered"));
             } else {
-                holder.todayRecovered.setText("");
+                holder.todayRecovered.setVisibility(View.INVISIBLE);
             }
             holder.death.setText(stateDetail.getString("deaths"));
             if(!stateDetail.getString("deltadeaths").equals("0")) {
-                holder.todayDeath.setText("(+ " + stateDetail.getString("deltadeaths") + " )");
+                holder.todayDeath.setText(stateDetail.getString("deltadeaths"));
             } else {
-                holder.todayDeath.setText("");
+                holder.todayDeath.setVisibility(View.INVISIBLE);
             }
             holder.active.setText(stateDetail.getString("active"));
             holder.dateTime.setText(dateTime(stateDetail.getString("lastupdatedtime")));
-            if(stateName.toLowerCase().equals("total")){
+            if (stateName.toLowerCase().equals("total")) {
                 holder.lineText.setVisibility(View.GONE);
                 holder.linearLayout.setVisibility(View.GONE);
+            } else {
+                holder.lineText.setVisibility(View.VISIBLE);
+                holder.linearLayout.setVisibility(View.VISIBLE);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         final String finalStateName = stateName;
+        final String finalStatecode = statecode;
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(position, finalStateName);
+//                    mListener.onListFragmentInteraction(position, finalStateName, finalStatecode);
                 }
             }
         });

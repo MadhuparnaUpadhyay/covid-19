@@ -19,7 +19,6 @@ import android.view.MenuItem;
 import live.combatemic.app.Common.CurrentLocationManager;
 import live.combatemic.app.Common.OnLocationUpdateListener;
 
-import live.combatemic.app.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -40,32 +39,22 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         String state = sharedPref.getString("state", null);
 
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            return;
-                        }
-
-                        // Get the Instance ID token//
-                        String token = task.getResult().getToken();
-                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
-                        String msg = getString(R.string.fcm_token, token);
-                        Log.d(TAG, msg);
-                        Log.d(TAG, token);
-                    }
-                });
-
-//        if (state != null) {
-//            Intent intent = new Intent(this, SideBarActivity.class);
-//            startActivity(intent);
-//            finish();
-//        } else {
-//            Intent intent = new Intent(this, RegistrationActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+//        FirebaseInstanceId.getInstance().getInstanceId()
+//                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+//                        if (!task.isSuccessful()) {
+//                            return;
+//                        }
+//
+//                        // Get the Instance ID token//
+//                        String token = task.getResult().getToken();
+//                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"})
+//                        String msg = getString(R.string.fcm_token, token);
+//                        Log.d(TAG, msg);
+//                        Log.d(TAG, token);
+//                    }
+//                });
 
         if (state == null) {
             currentLocationManager = new CurrentLocationManager(this);
@@ -94,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
 
-            }, 1 * 1000); // wait for 1 seconds
+            }, 1000); // wait for 1 seconds
 
         }
     }

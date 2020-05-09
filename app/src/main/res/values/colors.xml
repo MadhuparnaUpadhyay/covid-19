@@ -6,5 +6,12 @@
     <color name="colorBlack">#000000</color>
     <color name="colorBackground">#101947</color>
     <color name="colorBackgroundStat">#101947</color>
-    <color name="textColorStat">#FF0B3B</color>
+    <color name="textColorStatConfirmed">#FF0B3B</color>
+    <color name="textColorStatRecovered">#2AA746</color>
+    <color name="textColorStatActive">#328CFF</color>
+    <color name="textColorStatDeath">#6D767D</color>
+    <color name="red">#EE9197</color>
+    <color name="red_zone">#F0D5D8</color>
+    <color name="green_zone">#DDECE1</color>
+    <color name="orange_zone">#EFE8D8</color>
 </resources>
