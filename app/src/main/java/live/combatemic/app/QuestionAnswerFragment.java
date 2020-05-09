@@ -1,11 +1,13 @@
 package live.combatemic.app;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ExpandableListView.OnGroupCollapseListener;
@@ -95,6 +97,28 @@ public class QuestionAnswerFragment extends Fragment {
             @Override
             public void onGroupCollapse(int groupPosition) {
 
+            }
+        });
+
+        ViewTreeObserver vto = expListView.getViewTreeObserver();
+
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Drawable drawable_groupIndicator =
+                        getResources().getDrawable(R.drawable.expandable);
+                int drawable_width = drawable_groupIndicator.getMinimumWidth();
+
+                if (android.os.Build.VERSION.SDK_INT <
+                        android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    expListView.setIndicatorBounds(
+                            expListView.getWidth() - drawable_width,
+                            expListView.getWidth());
+                } else {
+                    expListView.setIndicatorBoundsRelative(
+                            expListView.getWidth() - drawable_width,
+                            expListView.getWidth());
+                }
             }
         });
 

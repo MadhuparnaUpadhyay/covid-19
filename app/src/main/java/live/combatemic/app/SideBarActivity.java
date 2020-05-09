@@ -36,10 +36,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 
+import live.combatemic.app.Common.ServerCallback;
 import live.combatemic.app.Common.Utils;
 import live.combatemic.app.Common.Version;
+import live.combatemic.app.Common.VollyServerCall;
 
 public class SideBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener,
         ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
@@ -131,18 +137,38 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
 
+        getData(versionName);
 
-        int compare = Version.compare(versionName, "1.0.0.0933");
-        if (compare == -1) {
-            openDownloadDialog();
-        }
+    }
 
+    private void getData(final String versionName) {
+        final String MAIN_URL = "https://combatemic.live";
+        final String MAIN_URL_ZONE = "/version";
+
+        VollyServerCall controller = new VollyServerCall(MAIN_URL);
+        controller.JsonObjectRequest(this, MAIN_URL_ZONE, new ServerCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // do stuff here
+                        try {
+                            String newVesion = response.getString("current");
+                            int compare = Version.compare(versionName, newVesion);
+                            if (compare == -1) {
+                                openDownloadDialog();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+        );
     }
 
     void openDownloadDialog() {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.download_dialog);
+        dialog.setCanceledOnTouchOutside(false);
 
         int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
 
