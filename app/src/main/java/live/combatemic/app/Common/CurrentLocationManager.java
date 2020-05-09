@@ -120,7 +120,7 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
             if (!geocodeMatches.isEmpty()) {
                 Address address = geocodeMatches.get(0);
                 String state = address.getAdminArea() + "";
-                String country = address.getCountryCode() + "";
+                String country = address.getCountryName() + "";
                 myEdit.putString("address", address.getAddressLine(0) + "");
                 myEdit.putString("address1", address.getAddressLine(1) + "");
                 myEdit.putString("state", state);

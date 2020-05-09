@@ -59,7 +59,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="hbb"
+                        tools:text="hbb"
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
@@ -71,7 +71,7 @@
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
                         app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
-                        android:text="gvhg"
+                        tools:text="gvhg"
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
@@ -84,7 +84,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="0.2"
                     android:gravity="center"
-                    android:text="hsbdj"
+                    tools:text="hsbdj"
                     android:textColor="@android:color/black"
                     android:textSize="20dp" />
 
