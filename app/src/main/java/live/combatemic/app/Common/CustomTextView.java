@@ -1,6 +1,5 @@
 package live.combatemic.app.Common;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
@@ -10,10 +9,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.widget.TextViewCompat;
 
 import live.combatemic.app.R;
 
-@SuppressLint("AppCompatCustomView")
 public class CustomTextView extends AppCompatTextView {
     public CustomTextView(Context context) {
         super(context);
@@ -31,7 +30,7 @@ public class CustomTextView extends AppCompatTextView {
         if (typedArray.hasValue(R.styleable.CustomTextView_drawableTint)) {
             int color = typedArray.getColor(R.styleable.CustomTextView_drawableTint, 0);
 
-            Drawable[] drawables = getCompoundDrawablesRelative();
+            Drawable[] drawables = TextViewCompat.getCompoundDrawablesRelative(this);
 
             for (Drawable drawable : drawables) {
                 if (drawable == null) continue;

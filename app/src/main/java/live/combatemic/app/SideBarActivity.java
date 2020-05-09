@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -140,6 +141,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
     void openDownloadDialog() {
         final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.download_dialog);
 
         int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);

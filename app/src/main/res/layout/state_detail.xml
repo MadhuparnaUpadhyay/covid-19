@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -40,13 +41,13 @@
                     android:text="Confirmed"
                     android:textColor="@color/textColorStatConfirmed" />
 
-                <TextView
+                <live.combatemic.app.Common.CustomTextView
                     android:id="@+id/today_confirmed"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                    android:drawableTint="@color/textColorStatConfirmed"
+                    app:drawableTint="@color/textColorStatConfirmed"
                     android:text=""
                     android:textColor="@color/textColorStatConfirmed"
                     android:textSize="11dp" />
@@ -84,13 +85,13 @@
                     android:text="Active"
                     android:textColor="@color/textColorStatActive" />
 
-                <TextView
+                <live.combatemic.app.Common.CustomTextView
                     android:id="@+id/today_active"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                    android:drawableTint="@color/textColorStatActive"
+                    app:drawableTint="@color/textColorStatActive"
                     android:text=""
                     android:textColor="@color/textColorStatActive"
                     android:textSize="11dp"
@@ -129,13 +130,13 @@
                     android:text="Recovered"
                     android:textColor="@color/textColorStatRecovered" />
 
-                <TextView
+                <live.combatemic.app.Common.CustomTextView
                     android:id="@+id/today_recovered"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                    android:drawableTint="@color/textColorStatRecovered"
+                    app:drawableTint="@color/textColorStatRecovered"
                     android:text=""
                     android:textColor="@color/textColorStatRecovered"
                     android:textSize="11dp" />
@@ -172,13 +173,13 @@
                     android:text="Deceased"
                     android:textColor="@color/textColorStatDeath" />
 
-                <TextView
+                <live.combatemic.app.Common.CustomTextView
                     android:id="@+id/today_death"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_weight="0.2"
                     android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                    android:drawableTint="@color/textColorStatDeath"
+                    app:drawableTint="@color/textColorStatDeath"
                     android:text=""
                     android:textColor="@color/textColorStatDeath"
                     android:textSize="11dp" />

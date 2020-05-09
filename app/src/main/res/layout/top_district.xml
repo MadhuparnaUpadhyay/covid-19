@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/creativity"
     android:layout_width="match_parent"
@@ -62,13 +63,13 @@
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
-                    <TextView
+                    <live.combatemic.app.Common.CustomTextView
                         android:id="@+id/state_confirmed_today"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        android:drawableTint="@color/textColorStatConfirmed"
+                        app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
                         android:text="gvhg"
                         android:textColor="@android:color/black"
@@ -118,13 +119,13 @@
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
-                    <TextView
+                    <live.combatemic.app.Common.CustomTextView
                         android:id="@+id/state_confirmed_today1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        android:drawableTint="@color/textColorStatConfirmed"
+                        app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
                         android:text="gvhg"
                         android:textColor="@android:color/black"
@@ -175,13 +176,13 @@
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
-                    <TextView
+                    <live.combatemic.app.Common.CustomTextView
                         android:id="@+id/state_confirmed_today2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        android:drawableTint="@color/textColorStatConfirmed"
+                        app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
                         android:text="gvhg"
                         android:textColor="@android:color/black"
@@ -238,13 +239,13 @@
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
-                    <TextView
+                    <live.combatemic.app.Common.CustomTextView
                         android:id="@+id/state_confirmed_today4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        android:drawableTint="@color/textColorStatConfirmed"
+                        app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
                         android:text="gvhg"
                         android:textColor="@android:color/black"
@@ -294,13 +295,13 @@
                         android:textColor="@android:color/black"
                         android:textSize="20dp" />
 
-                    <TextView
+                    <live.combatemic.app.Common.CustomTextView
                         android:id="@+id/state_confirmed_today5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-                        android:drawableTint="@color/textColorStatConfirmed"
+                        app:drawableTint="@color/textColorStatConfirmed"
                         android:gravity="center"
                         android:text="gvhg"
                         android:textColor="@android:color/black"

@@ -134,13 +134,13 @@
 
                 </LinearLayout>
 
-                <TextView
+                <live.combatemic.app.Common.CustomTextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="0.05"
                     android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-                    android:drawableTint="@color/colorBackground"
+                    app:drawableTint="@color/colorBackground"
                     android:gravity="center" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
