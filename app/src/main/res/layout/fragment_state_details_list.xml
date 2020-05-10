@@ -167,7 +167,7 @@
                 android:padding="@dimen/text_margin"
                 app:layoutManager="LinearLayoutManager"
                 tools:context="live.combatemic.app.StateDetailsFragment"
-                tools:listitem="@layout/fragment_state_details_group" />
+                tools:listitem="@layout/state_name_list_fragment" />
 
         </androidx.cardview.widget.CardView>
 

@@ -1,6 +1,7 @@
 package live.combatemic.app;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import live.combatemic.app.Common.Utils;
@@ -10,8 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
+import android.view.ViewTreeObserver;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import android.view.Menu;
@@ -30,7 +32,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener {
+public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener, ExpandableListView.OnGroupExpandListener {
 
     private JSONArray cities;
     private ListView listView;
@@ -39,6 +41,8 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     private TextView textViewSt1, textViewSt2, textViewSt3, textViewSt4, textViewSt5;
     private ImageButton searchButton;
     private ConstraintLayout constraintLayout;
+    private ExpandableListView expListView;
+    private int lastExpandedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +71,9 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(this);
         constraintLayout = findViewById(R.id.search_bar_layout);
+
+        expListView = (ExpandableListView) findViewById(R.id.city_data_expan);
+        expListView.setOnGroupExpandListener(this);
 
         Intent intent = getIntent();
         String jsonArray = intent.getStringExtra("city");
@@ -103,8 +110,33 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         try {
             cities = new JSONArray(jsonArray);
             JSONArray jsonArray1 = sortCities(cities);
-            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
-            listView.setAdapter(adapter);
+            CityExpandableListAdapter cityExpandableListAdapter = new CityExpandableListAdapter(this, cities);
+            expListView.setAdapter(cityExpandableListAdapter);
+//            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
+//            listView.setAdapter(adapter);
+
+            ViewTreeObserver vto = expListView.getViewTreeObserver();
+
+            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    Drawable drawable_groupIndicator =
+                            getResources().getDrawable(R.drawable.expandable);
+                    int drawable_width = drawable_groupIndicator.getMinimumWidth();
+
+                    if (android.os.Build.VERSION.SDK_INT <
+                            android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                        expListView.setIndicatorBounds(
+                                expListView.getWidth() - drawable_width,
+                                expListView.getWidth());
+                    } else {
+                        expListView.setIndicatorBoundsRelative(
+                                expListView.getWidth() - drawable_width,
+                                expListView.getWidth());
+                    }
+                }
+            });
+
             setTopDistrict(jsonArray1);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -158,8 +190,10 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     public boolean onQueryTextChange(String newText) {
         JSONArray filterCity = filterCity(newText);
         JSONArray jsonArray1 = sortCities(filterCity);
-        final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
-        listView.setAdapter(adapter);
+        CityExpandableListAdapter cityExpandableListAdapter = new CityExpandableListAdapter(this, jsonArray1);
+        expListView.setAdapter(cityExpandableListAdapter);
+//        final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
+//        listView.setAdapter(adapter);
         return false;
     }
 
@@ -241,5 +275,14 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         if (v.getId() == R.id.search_button) {
             constraintLayout.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onGroupExpand(int groupPosition) {
+        if (lastExpandedPosition != -1
+                && groupPosition != lastExpandedPosition) {
+            expListView.collapseGroup(lastExpandedPosition);
+        }
+        lastExpandedPosition = groupPosition;
     }
 }

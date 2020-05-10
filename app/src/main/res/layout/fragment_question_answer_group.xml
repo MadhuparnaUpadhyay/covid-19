@@ -3,20 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@android:color/white"
-    android:orientation="vertical"
-    android:theme="@style/AppTheme.NoActionBar">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/question_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:text="Question"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
         android:paddingLeft="10dp"
-        android:textColor="@android:color/black"
+        android:paddingTop="15dp"
         android:paddingRight="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textStyle="bold"/>
+        android:paddingBottom="15dp"
+        android:text="Question"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:theme="@style/AppTheme" />
 
 </LinearLayout>

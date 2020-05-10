@@ -17,16 +17,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
 import live.combatemic.app.Common.ServerCallback;
-import live.combatemic.app.Common.SetListViewHeightBasedOnChildren;
 import live.combatemic.app.Common.Utils;
 import live.combatemic.app.Common.VollyServerCall;
 
@@ -55,8 +52,6 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
     private SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
     private TextView lastLocation;
-    private ExpandableListView expListView;
-    private int lastExpandedPosition = -1;
     private SearchView searchview;
     private ImageButton searchButton;
     private LinearLayout linearLayout;
@@ -128,7 +123,6 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         searchButton.setOnClickListener(this);
         linearLayout = view.findViewById(R.id.location_search);
         constraintLayout = view.findViewById(R.id.search_bar_layout);
-//        expListView = (ExpandableListView) view.findViewById(R.id.city_data_expan);
 
         sharedPref = getActivity().getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE);
