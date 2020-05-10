@@ -3,6 +3,7 @@ package live.combatemic.app;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import live.combatemic.app.R;
@@ -91,8 +92,20 @@ public class QuestionAnswerExpandableListAdapter extends BaseExpandableListAdapt
 
         TextView lblListHeader = (TextView) convertView
                 .findViewById(R.id.question_header);
-        lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(groupPosition + 1 + ". " + headerTitle);
+
+        ImageView upImage = (ImageView) convertView
+                .findViewById(R.id.expandable_up);
+        ImageView downImage = (ImageView) convertView
+                .findViewById(R.id.expandable_down);
+
+        if (isExpanded) {
+            upImage.setVisibility(View.VISIBLE);
+            downImage.setVisibility(View.GONE);
+        } else {
+            upImage.setVisibility(View.GONE);
+            downImage.setVisibility(View.VISIBLE);
+        }
 
         return convertView;
     }

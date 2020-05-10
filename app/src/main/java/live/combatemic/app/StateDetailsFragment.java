@@ -240,6 +240,14 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         VollyServerCall controller = new VollyServerCall();
         final String MAIN_URL_STATE = "data";
         final String MAIN_URL_CITY = "detail-data";
+        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        // do stuff here
+                        citywise = response;
+                    }
+                }
+        );
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {
@@ -251,20 +259,13 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
                             fragmentDemos.setData(statewise.getJSONObject(0), citywise);
 
                             getSetCurrentState();
+
+                            recyclerView.setAdapter(new StateListAdapter(statewise, citywise, mListener));
+                            recyclerView.setNestedScrollingEnabled(false);
+                            recyclerView.setHasFixedSize(false);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    }
-                }
-        );
-        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
-                    @Override
-                    public void onSuccess(JSONObject response) {
-                        // do stuff here
-                        citywise = response;
-                        recyclerView.setAdapter(new StateListAdapter(statewise, citywise, mListener));
-                        recyclerView.setNestedScrollingEnabled(false);
-                        recyclerView.setHasFixedSize(false);
                     }
                 }
         );

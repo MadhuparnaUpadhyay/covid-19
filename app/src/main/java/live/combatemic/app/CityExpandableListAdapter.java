@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -50,15 +51,19 @@ public class CityExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.city_list_group_item, null);
         }
 
+        TextView confirmed = (TextView) convertView.findViewById(R.id.city_confirmed);
         TextView cityRecovered = (TextView) convertView.findViewById(R.id.city_recovered);
         TextView cityActive = (TextView) convertView.findViewById(R.id.city_active);
         TextView cityDeath = (TextView) convertView.findViewById(R.id.city_death);
         TextView cityToRecovered = (TextView) convertView.findViewById(R.id.today_recovered);
         TextView cityToDeath = (TextView) convertView.findViewById(R.id.today_death);
+        TextView cityToConfi = (TextView) convertView.findViewById(R.id.today_confirmed);
         try {
+            confirmed.setText(cityDetail.getString("confirmed"));
             cityRecovered.setText(cityDetail.getString("recovered"));
             cityActive.setText(cityDetail.getString("active"));
             cityDeath.setText(cityDetail.getString("deceased"));
+            cityToConfi.setText(cityDetail.getJSONObject("delta").getString("confirmed"));
             cityToRecovered.setText(cityDetail.getJSONObject("delta").getString("recovered"));
             cityToDeath.setText(cityDetail.getJSONObject("delta").getString("deceased"));
         } catch (JSONException e) {
@@ -105,12 +110,22 @@ public class CityExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView city = (TextView) convertView
                 .findViewById(R.id.city_name);
-        TextView confirmed = (TextView) convertView
-                .findViewById(R.id.city_confirmed);
+        ImageView upImage = (ImageView) convertView
+                .findViewById(R.id.expandable_up);
+        ImageView downImage = (ImageView) convertView
+                .findViewById(R.id.expandable_down);
+
+        if (isExpanded) {
+            upImage.setVisibility(View.VISIBLE);
+            downImage.setVisibility(View.GONE);
+        } else {
+            upImage.setVisibility(View.GONE);
+            downImage.setVisibility(View.VISIBLE);
+        }
+
         try {
             String cityNameValue = cityDetail.getString("name") + "";
             city.setText(cityNameValue);
-            confirmed.setText(cityDetail.getJSONObject("detail").getString("confirmed"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener, ExpandableListView.OnGroupExpandListener {
+public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener, ExpandableListView.OnGroupExpandListener, ExpandableListView.OnGroupClickListener {
 
     private JSONArray cities;
     private ListView listView;
@@ -73,6 +73,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         constraintLayout = findViewById(R.id.search_bar_layout);
 
         expListView = (ExpandableListView) findViewById(R.id.city_data_expan);
+        expListView.setGroupIndicator(null);
         expListView.setOnGroupExpandListener(this);
 
         Intent intent = getIntent();
@@ -115,27 +116,27 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 //            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
 //            listView.setAdapter(adapter);
 
-            ViewTreeObserver vto = expListView.getViewTreeObserver();
-
-            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    Drawable drawable_groupIndicator =
-                            getResources().getDrawable(R.drawable.expandable);
-                    int drawable_width = drawable_groupIndicator.getMinimumWidth();
-
-                    if (android.os.Build.VERSION.SDK_INT <
-                            android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                        expListView.setIndicatorBounds(
-                                expListView.getWidth() - drawable_width,
-                                expListView.getWidth());
-                    } else {
-                        expListView.setIndicatorBoundsRelative(
-                                expListView.getWidth() - drawable_width,
-                                expListView.getWidth());
-                    }
-                }
-            });
+//            ViewTreeObserver vto = expListView.getViewTreeObserver();
+//
+//            vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    Drawable drawable_groupIndicator =
+//                            getResources().getDrawable(R.drawable.expandable);
+//                    int drawable_width = drawable_groupIndicator.getMinimumWidth();
+//
+//                    if (android.os.Build.VERSION.SDK_INT <
+//                            android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+//                        expListView.setIndicatorBounds(
+//                                expListView.getWidth() - drawable_width - 20,
+//                                expListView.getWidth() - 20);
+//                    } else {
+//                        expListView.setIndicatorBoundsRelative(
+//                                expListView.getWidth() - drawable_width - 20,
+//                                expListView.getWidth() -  20);
+//                    }
+//                }
+//            });
 
             setTopDistrict(jsonArray1);
         } catch (JSONException e) {
@@ -284,5 +285,18 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
             expListView.collapseGroup(lastExpandedPosition);
         }
         lastExpandedPosition = groupPosition;
+    }
+
+    @Override
+    public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//        ImageView groupIndicator = (ImageView) v.findViewById(R.id.help_group_indicator);
+//        if (parent.isGroupExpanded(groupPosition)) {
+//            parent.collapseGroup(groupPosition);
+//            groupIndicator.setImageResource(R.drawable.down_icon);
+//        } else {
+//            parent.expandGroup(groupPosition);
+//            groupIndicator.setImageResource(R.drawable.up_icon);
+//        }
+        return true;
     }
 }

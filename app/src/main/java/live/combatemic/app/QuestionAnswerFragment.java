@@ -65,6 +65,7 @@ public class QuestionAnswerFragment extends Fragment {
 
         listAdapter = new QuestionAnswerExpandableListAdapter(getContext(), QuestionAnswer.ITEMS, mListener);
 
+        expListView.setGroupIndicator(null);
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
@@ -100,27 +101,27 @@ public class QuestionAnswerFragment extends Fragment {
             }
         });
 
-        ViewTreeObserver vto = expListView.getViewTreeObserver();
-
-        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                Drawable drawable_groupIndicator =
-                        getResources().getDrawable(R.drawable.expandable);
-                int drawable_width = drawable_groupIndicator.getMinimumWidth();
-
-                if (android.os.Build.VERSION.SDK_INT <
-                        android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                    expListView.setIndicatorBounds(
-                            expListView.getWidth() - drawable_width,
-                            expListView.getWidth());
-                } else {
-                    expListView.setIndicatorBoundsRelative(
-                            expListView.getWidth() - drawable_width,
-                            expListView.getWidth());
-                }
-            }
-        });
+//        ViewTreeObserver vto = expListView.getViewTreeObserver();
+//
+//        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                Drawable drawable_groupIndicator =
+//                        getResources().getDrawable(R.drawable.expandable);
+//                int drawable_width = drawable_groupIndicator.getMinimumWidth();
+//
+//                if (android.os.Build.VERSION.SDK_INT <
+//                        android.os.Build.VERSION_CODES.JELLY_BEAN_MR2) {
+//                    expListView.setIndicatorBounds(
+//                            expListView.getWidth() - drawable_width,
+//                            expListView.getWidth());
+//                } else {
+//                    expListView.setIndicatorBoundsRelative(
+//                            expListView.getWidth() - drawable_width,
+//                            expListView.getWidth());
+//                }
+//            }
+//        });
 
         return view;
     }

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:orientation="vertical"
-    android:padding="@dimen/text_margin">
+    android:padding="@dimen/text_margin"
+    android:theme="@style/AppTheme">
 
     <ImageView
         android:id="@+id/close_image"
@@ -46,9 +47,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/colorBackground"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/colorBackground"
         android:drawableLeft="@drawable/ic_arrow_downward_black_24dp"
         android:padding="10dp"
         android:text="Download"
         android:textColor="@android:color/white" />
+
 </LinearLayout>

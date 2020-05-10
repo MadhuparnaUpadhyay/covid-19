@@ -7,19 +7,96 @@
     android:background="@android:color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="10dp">
-
+    android:padding="@dimen/text_margin">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
+            android:text="Confirmed:"
+            android:textColor="@color/textColorStatConfirmed"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/city_confirmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="20"
+                android:textColor="@color/textColorStatConfirmed"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="("
+                    android:textColor="@color/textColorStatConfirmed" />
+
+                <live.combatemic.app.Common.CustomTextView
+                    android:id="@+id/today_confirmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:gravity="center_vertical"
+                    android:text="100"
+                    android:textColor="@color/textColorStatConfirmed"
+                    android:textSize="11dp"
+                    app:drawableTint="@color/textColorStatConfirmed" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=")"
+                    android:textColor="@color/textColorStatConfirmed" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
             android:text="Active:"
             android:textColor="@color/textColorStatActive"
             android:textSize="15dp"
@@ -27,9 +104,11 @@
 
         <TextView
             android:id="@+id/city_active"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
             android:text="20"
             android:textColor="@color/textColorStatActive"
             android:textSize="15dp"
@@ -37,81 +116,147 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_marginTop="@dimen/text_margin"
-        android:layout_marginBottom="@dimen/text_margin"
-        android:gravity="left"
-        android:orientation="horizontal">
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
             android:text="Recovered:"
             android:textColor="@color/textColorStatRecovered"
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/city_recovered"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginRight="@dimen/text_margin"
-            android:gravity="center"
-            android:text="20"
-            android:textColor="@color/textColorStatRecovered"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
 
-        <live.combatemic.app.Common.CustomTextView
-            android:id="@+id/today_recovered"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-            android:text=""
-            android:textColor="@color/textColorStatRecovered"
-            android:textSize="11dp"
-            app:drawableTint="@color/textColorStatRecovered" />
+            <TextView
+                android:id="@+id/city_recovered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="20"
+                android:textColor="@color/textColorStatDeath"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="("
+                    android:textColor="@color/textColorStatRecovered" />
+
+                <live.combatemic.app.Common.CustomTextView
+                    android:id="@+id/today_recovered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:gravity="center_vertical"
+                    android:text="100"
+                    android:textColor="@color/textColorStatRecovered"
+                    android:textSize="11dp"
+                    app:drawableTint="@color/textColorStatRecovered" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=")"
+                    android:textColor="@color/textColorStatRecovered" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:gravity="left"
-        android:orientation="horizontal">
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.5"
+            android:gravity="center_vertical"
             android:text="Death:"
             android:textColor="@color/textColorStatDeath"
             android:textSize="15dp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/city_death"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginRight="@dimen/text_margin"
-            android:gravity="center"
-            android:text="20"
-            android:textColor="@color/textColorStatDeath"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:layout_weight="0.5"
+            android:orientation="horizontal">
 
-        <live.combatemic.app.Common.CustomTextView
-            android:id="@+id/today_death"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
-            android:text=""
-            android:textColor="@color/textColorStatDeath"
-            android:textSize="11dp"
-            app:drawableTint="@color/textColorStatDeath" />
+            <TextView
+                android:id="@+id/city_death"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="20"
+                android:textColor="@color/textColorStatDeath"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(" />
+
+                <live.combatemic.app.Common.CustomTextView
+                    android:id="@+id/today_death"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:drawableLeft="@drawable/ic_arrow_upward_black_24dp"
+                    android:gravity="center_vertical"
+                    android:text="100"
+                    android:textColor="@color/textColorStatDeath"
+                    android:textSize="11dp"
+                    app:drawableTint="@color/textColorStatDeath" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=")" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

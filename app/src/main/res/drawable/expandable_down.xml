@@ -1,0 +1,13 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+
+            <solid android:color="@color/colorAccent" />
+            <size
+                android:width="30dp"
+                android:height="30dp" />
+
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_keyboard_arrow_down_black_24dp" />
+</layer-list>
