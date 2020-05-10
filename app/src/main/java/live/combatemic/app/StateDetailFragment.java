@@ -137,6 +137,7 @@ public class StateDetailFragment extends Fragment implements View.OnClickListene
             active.setText(stateDetail.getString("active"));
             dateTime.setText(dateTime(stateDetail.getString("lastupdatedtime")));
             if (stateName.toLowerCase().equals("total")) {
+                state.setText(stateName + " : India cases");
                 fragmentDemo.getView().setVisibility(View.GONE);
                 lineText.setVisibility(View.GONE);
                 linearLayout.setVisibility(View.GONE);

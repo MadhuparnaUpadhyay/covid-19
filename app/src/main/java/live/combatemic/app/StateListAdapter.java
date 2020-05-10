@@ -60,7 +60,6 @@ public class StateListAdapter extends RecyclerView.Adapter<StateListAdapter.View
             holder.state.setText(stateName);
             holder.confirmed.setText(stateDetail.getString("deltaconfirmed"));
             if (stateName.toLowerCase().equals("total")) {
-                holder.state.setText(stateName + " : India cases");
                 holder.mView.setVisibility(View.GONE);
             } else {
                 holder.mView.setVisibility(View.VISIBLE);
