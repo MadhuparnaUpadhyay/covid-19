@@ -31,9 +31,9 @@
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:text="Top districts"
+                android:text="Top 5 districts"
                 android:textColor="@color/textColorStatConfirmed"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -124,7 +124,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:ellipsize="end"
                                 android:gravity="center"
+                                android:maxLines="1"
                                 android:textColor="@android:color/white"
                                 android:textSize="18dp"
                                 tools:text="Karnataka" />
@@ -186,7 +188,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:ellipsize="end"
                                 android:gravity="center"
+                                android:maxLines="1"
                                 android:textColor="@android:color/white"
                                 android:textSize="18dp"
                                 tools:text="Karnataka" />
@@ -249,7 +253,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:ellipsize="end"
                                 android:gravity="center"
+                                android:maxLines="1"
                                 android:textColor="@android:color/white"
                                 android:textSize="18dp"
                                 tools:text="Karnataka" />
@@ -311,7 +317,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:ellipsize="end"
                                 android:gravity="center"
+                                android:maxLines="1"
                                 android:textColor="@android:color/white"
                                 android:textSize="18dp"
                                 tools:text="Karnataka" />
@@ -373,7 +381,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:ellipsize="end"
                                 android:gravity="center"
+                                android:maxLines="1"
                                 android:textColor="@android:color/white"
                                 android:textSize="18dp"
                                 tools:text="Karnataka" />

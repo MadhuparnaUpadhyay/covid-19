@@ -3,6 +3,8 @@ package live.combatemic.app;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
 
     private TextView textView;
     private CardView cardView;
+    private RecyclerView recyclerView;
+    private StateDetailsFragment.OnListFragmentInteractionListener mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,26 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
             this.getSupportActionBar().setDisplayShowCustomEnabled(true);
             this.getSupportActionBar().setCustomView(R.layout.custom_toolbar);
             View view = getSupportActionBar().getCustomView();
+
+
+            recyclerView = (RecyclerView) findViewById(R.id.list);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(layoutManager);
+
+            mListener = new StateDetailsFragment.OnListFragmentInteractionListener() {
+                @Override
+                public void onListFragmentInteraction(int position, JSONObject finalStateDetail) {
+                    StateDetailFragment fragmentDemos = (StateDetailFragment)
+                            getSupportFragmentManager().findFragmentById(R.id.current);
+                    fragmentDemos.setData(finalStateDetail, new JSONObject());
+                    try {
+                        textView.setText(finalStateDetail.getString("state"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
 
             ImageView imageView = (ImageView) view.findViewById(R.id.back_button);
             textView = view.findViewById(R.id.toolbar_title);
@@ -54,6 +78,11 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
         try {
             JSONObject jsonCity = new JSONObject(intent.getStringExtra("city"));
             JSONObject jsonState = new JSONObject(intent.getStringExtra("state"));
+            JSONArray jsonArray = new JSONArray(intent.getStringExtra("states"));
+
+            recyclerView.setAdapter(new StateListAdapter(jsonArray, new JSONObject(), mListener));
+            recyclerView.setNestedScrollingEnabled(false);
+            recyclerView.setHasFixedSize(false);
 
             textView.setText(jsonState.getString("state"));
 
@@ -70,4 +99,5 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
             startActivity(intent);
         }
     }
+
 }

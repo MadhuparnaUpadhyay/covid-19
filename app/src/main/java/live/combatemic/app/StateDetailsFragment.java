@@ -130,7 +130,7 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         if (address.length() == 0) {
             address = "Your location has not been yet updated";
         } else {
-            getSetCurrentState();
+//            getSetCurrentState();
         }
         lastLocation.setText(address);
 
@@ -139,6 +139,7 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
             public void onListFragmentInteraction(int position, JSONObject finalStateDetail) {
                 Intent intent = new Intent(getContext(), StateDetailActivity.class);
                 intent.putExtra("state", finalStateDetail.toString());
+                intent.putExtra("states", statewise.toString());
                 intent.putExtra("city", citywise.toString());
                 startActivity(intent);
             }
@@ -240,14 +241,14 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         VollyServerCall controller = new VollyServerCall();
         final String MAIN_URL_STATE = "data";
         final String MAIN_URL_CITY = "detail-data";
-        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
-                    @Override
-                    public void onSuccess(JSONObject response) {
-                        // do stuff here
-                        citywise = response;
-                    }
-                }
-        );
+//        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
+//                    @Override
+//                    public void onSuccess(JSONObject response) {
+//                        // do stuff here
+//                        citywise = response;
+//                    }
+//                }
+//        );
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {

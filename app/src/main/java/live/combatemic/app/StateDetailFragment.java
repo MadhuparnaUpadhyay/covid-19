@@ -167,9 +167,9 @@ public class StateDetailFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        JSONArray cities = getCity(stateName);
+//        JSONArray cities = getCity(stateName);
         Intent intent = new Intent(getContext(), CityScrollingActivity.class);
-        intent.putExtra("city", cities.toString());
+//        intent.putExtra("city", cities.toString());
         intent.putExtra("state", stateName);
         intent.putExtra("code", statecode);
         startActivity(intent);

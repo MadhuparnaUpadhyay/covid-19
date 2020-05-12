@@ -1,82 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".StateDetailActivity">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/current"
-        android:name="live.combatemic.app.StateDetailFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".StateDetailActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/creativity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="5dp"
-        card_view:cardMaxElevation="10dp"
-        tools:ignore="MissingConstraints">
-
-
-        <LinearLayout
+        <fragment
+            android:id="@+id/current"
+            android:name="live.combatemic.app.StateDetailFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:orientation="horizontal"
-            android:padding="@dimen/text_margin"
-            android:weightSum="1">
+            tools:ignore="MissingConstraints" />
 
-            <live.combatemic.app.Common.SquareImageView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="2dp"
-                android:layout_weight="0.2"
-                android:background="@mipmap/ic_sing_song"
-                android:gravity="center" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/creativity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp"
+            tools:ignore="MissingConstraints">
+
 
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.75"
-                android:orientation="vertical">
+                android:background="@color/colorAccent"
+                android:orientation="horizontal"
+                android:padding="@dimen/text_margin"
+                android:weightSum="1">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <live.combatemic.app.Common.SquareImageView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:gravity="left"
-                    android:text="Activities for engagement during Lockdown"
-                    android:textColor="@android:color/white"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.2"
+                    android:background="@mipmap/ic_sing_song"
+                    android:gravity="center" />
 
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Lockdown? Feeling Lonely? Don’t worry we have some interesting tasks for exploring your talent. Tap for details."
-                    android:textColor="@android:color/white" />
+                    android:layout_weight="0.75"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="left"
+                        android:text="Activities for engagement during Lockdown"
+                        android:textColor="@android:color/white"
+                        android:textSize="17dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Lockdown? Feeling Lonely? Don’t worry we have some interesting tasks for exploring your talent. Tap for details."
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+                <live.combatemic.app.Common.CustomTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.05"
+                    android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
+                    android:gravity="center"
+                    app:drawableTint="@color/colorBackground" />
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <live.combatemic.app.Common.CustomTextView
-                android:layout_width="0dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/white"
+            card_view:cardCornerRadius="3dp"
+            card_view:cardElevation="5dp"
+            card_view:cardMaxElevation="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.05"
-                android:drawableRight="@drawable/ic_arrow_forward_black_24dp"
-                android:gravity="center"
-                app:drawableTint="@color/colorBackground" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                android:padding="@dimen/text_margin"
+                app:layoutManager="LinearLayoutManager"
+                tools:context="live.combatemic.app.StateDetailsFragment"
+                tools:listitem="@layout/state_name_list_fragment" />
 
-</LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import live.combatemic.app.Common.ServerCallback;
 import live.combatemic.app.Common.Utils;
+import live.combatemic.app.Common.VollyServerCall;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
 public class CityScrollingActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, View.OnClickListener, ExpandableListView.OnGroupExpandListener, ExpandableListView.OnGroupClickListener {
@@ -43,6 +46,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     private ConstraintLayout constraintLayout;
     private ExpandableListView expListView;
     private int lastExpandedPosition = -1;
+    private String stateName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 
         Intent intent = getIntent();
         String jsonArray = intent.getStringExtra("city");
-        String stateName = intent.getStringExtra("state");
+        stateName = intent.getStringExtra("state");
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -108,13 +112,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
             });
         }
 
-        try {
-            cities = new JSONArray(jsonArray);
-            JSONArray jsonArray1 = sortCities(cities);
-            CityExpandableListAdapter cityExpandableListAdapter = new CityExpandableListAdapter(this, cities);
-            expListView.setAdapter(cityExpandableListAdapter);
-//            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
-//            listView.setAdapter(adapter);
+        getData();
 
 //            ViewTreeObserver vto = expListView.getViewTreeObserver();
 //
@@ -138,10 +136,6 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 //                }
 //            });
 
-            setTopDistrict(jsonArray1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     JSONArray sortCities(JSONArray jsonArray) {
@@ -289,14 +283,49 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 
     @Override
     public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//        ImageView groupIndicator = (ImageView) v.findViewById(R.id.help_group_indicator);
-//        if (parent.isGroupExpanded(groupPosition)) {
-//            parent.collapseGroup(groupPosition);
-//            groupIndicator.setImageResource(R.drawable.down_icon);
-//        } else {
-//            parent.expandGroup(groupPosition);
-//            groupIndicator.setImageResource(R.drawable.up_icon);
-//        }
         return true;
+    }
+
+    void setAdapter() {
+        //            cities = new JSONArray(jsonArray);
+        JSONArray jsonArray1 = sortCities(cities);
+        CityExpandableListAdapter cityExpandableListAdapter = new CityExpandableListAdapter(this, jsonArray1);
+        expListView.setAdapter(cityExpandableListAdapter);
+//            final CityAdapter<JSONArray> adapter = new CityAdapter<JSONArray>(this, 0, jsonArray1);
+//            listView.setAdapter(adapter);
+        setTopDistrict(jsonArray1);
+    }
+
+    private void getData() {
+        VollyServerCall controller = new VollyServerCall();
+        final String MAIN_URL_CITY = "detail-data";
+        controller.JsonObjectRequest(this, MAIN_URL_CITY, new ServerCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        getCity(response);
+                        setAdapter();
+                    }
+                }
+        );
+    }
+
+    private void getCity(JSONObject cityDetail) {
+        cities = new JSONArray();
+        try {
+            final JSONObject city = cityDetail.getJSONObject(stateName).getJSONObject("districtData");
+            Iterator<String> keys = city.keys();
+            while (keys.hasNext()) {
+                String key = keys.next();
+                if (city.get(key) instanceof JSONObject) {
+                    JSONObject person = new JSONObject();
+                    person.put("name", key);
+                    person.putOpt("detail", city.getJSONObject(key));
+                    // do something with jsonObject here
+                    cities.put(person);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

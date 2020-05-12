@@ -104,7 +104,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
         jsonArray = zoneFragment.getZones(mParam2);
         int count = zoneFragment.getZonesCount();
 
-        textViewCount.setText(count + "");
+        textViewCount.setText(jsonArray.length() + "");
         recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
 
 
@@ -127,11 +127,12 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
     }
 
     void displayReceivedData(JSONArray jsonArray) {
+        textViewCount.setText(jsonArray.length() + "");
         recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
     }
 
     void displayReceivedCount(int count) {
-        textViewCount.setText(count + "");
+//        textViewCount.setText(count + "");
     }
 
     @Override
@@ -179,7 +180,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
 
         int count = zoneFragment.getZonesCount();
 
-        textViewCount.setText(count + "");
+        textViewCount.setText(jsonArray.length() + "");
 
         if (mParam2.equals("Red")) {
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.red_zone));

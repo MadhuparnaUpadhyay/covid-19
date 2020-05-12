@@ -27,6 +27,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -154,7 +155,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                             String newVesion = response.getString("current");
                             int compare = Version.compare(versionName, newVesion);
                             if (compare == -1) {
-                                openDownloadDialog();
+                                openDownloadDialog(newVesion);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -164,7 +165,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         );
     }
 
-    void openDownloadDialog() {
+    void openDownloadDialog(String versionName) {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.download_dialog);
@@ -173,6 +174,9 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
 
         dialog.getWindow().setLayout(width, Toolbar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = dialog.findViewById(R.id.upgrade_text);
+        textView.setText("Upgrade to version v" + versionName);
         // set the custom dialog components - text, image and button
         ImageView image = (ImageView) dialog.findViewById(R.id.close_image);
         image.setOnClickListener(new View.OnClickListener() {
@@ -181,12 +185,20 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                 dialog.dismiss();
             }
         });
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+        TextView dialogButton = (TextView) dialog.findViewById(R.id.dialogButtonOK);
+        TextView dialogCancel = dialog.findViewById(R.id.dialogIgnore);
         // if button is clicked, close the custom dialog
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 downloadApk();
+                dialog.dismiss();
+            }
+        });
+
+        dialogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog.dismiss();
             }
         });
@@ -215,7 +227,22 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item.getItemId() == R.id.action_notifications) {
+                View view = MenuItemCompat.getActionView(item);
+                if (view != null) {
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), Notification.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        }
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
