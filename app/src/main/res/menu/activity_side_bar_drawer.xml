@@ -39,5 +39,10 @@
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="Settings" />
 
+        <item
+            android:id="@+id/update_app"
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:title="Update App" />
+
     </group>
 </menu>

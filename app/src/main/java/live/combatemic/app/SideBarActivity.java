@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -69,6 +70,8 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     private TabLayout tabLayout;
     private TextView textView;
     private DrawerLayout drawer;
+    private String currentVersion;
+    private String newVersion;
     private NavController navController;
     private static final String[] tabArray = {"Statistics", "Video", "Zone"};//Tab title array
     private static final Integer[] tabIcons = {R.drawable.ic_insert_chart_black_24dp, R.drawable.ic_video_library_black_24dp, R.drawable.ic_map_black_24dp};//Tab icons array
@@ -95,8 +98,8 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
         TextView textViewVersion = findViewById(R.id.version);
         int versionCode = BuildConfig.VERSION_CODE;
-        String versionName = BuildConfig.VERSION_NAME;
-        textViewVersion.setText("v" + versionName);
+        currentVersion = BuildConfig.VERSION_NAME;
+        textViewVersion.setText("v" + currentVersion);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -148,11 +151,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getData(versionName);
+        getData();
 
     }
 
-    private void getData(final String versionName) {
+    private void getData() {
         final String MAIN_URL = "https://combatemic.live";
         final String MAIN_URL_ZONE = "/version";
 
@@ -162,10 +165,13 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                     public void onSuccess(JSONObject response) {
                         // do stuff here
                         try {
-                            String newVesion = response.getString("current");
-                            int compare = Version.compare(versionName, newVesion);
+                            newVersion = response.getString("current");
+                            int compare = Version.compare(currentVersion, newVersion);
                             if (compare == -1) {
-                                openDownloadDialog(newVesion);
+                                openDownloadDialog(newVersion);
+                            } else {
+//                                MenuItem nav_item2 = menu.findItem(R.id.update_app);
+//                                nav_item2.setVisible(false);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -300,9 +306,47 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         } else if (id == R.id.aboutus) {
             intent = new Intent(this, AboutusActivity.class);
             startActivity(intent);
+        } else if (id == R.id.update_app) {
+            int compare = Version.compare(currentVersion, newVersion);
+            if (compare == 1) {
+                if (checkPermissions()) {
+                    downloadApk();
+                } else {
+                    requestPermissions();
+                }
+            } else {
+                customAlert(false);
+            }
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    void customAlert(Boolean str) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        if (!str) {
+            dialog.setContentView(R.layout.custom_alert);
+        } else {
+            dialog.setContentView(R.layout.custom_alert_un);
+        }
+
+        int width = (int) (getResources().getDisplayMetrics().widthPixels * 0.95);
+
+        dialog.getWindow().setLayout(width, Toolbar.LayoutParams.WRAP_CONTENT);
+
+        TextView textView1 = dialog.findViewById(R.id.text1);
+
+        TextView dialogCancel = dialog.findViewById(R.id.dialogClose);
+
+        dialogCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
@@ -422,6 +466,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                 } else {
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
                 }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    if (!getPackageManager().canRequestPackageInstalls())
+                        customAlert(true);
+                }
                 intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
                 ctxt.startActivity(intent);
                 unregisterReceiver(this);
@@ -458,10 +506,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     public boolean dispatchTouchEvent(MotionEvent event) {
         // Setup onTouchEvent for detecting type of touch gesture
         int position = mViewPager.getCurrentItem();
-        if(position == 0){
+        if (position == 0) {
             StateDetailsFragment f = (StateDetailsFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
             f.setupDispatchTouchEvent(event);
-        } else if (position == 2){
+        } else if (position == 2) {
             ZoneFragment f = (ZoneFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
             f.setupDispatchTouchEvent(event);
         }

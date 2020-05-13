@@ -1,6 +1,7 @@
 package live.combatemic.app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import live.combatemic.app.Common.ServerCallback;
@@ -25,6 +26,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.github.florent37.viewtooltip.ViewTooltip;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +76,12 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         textViewSt3 = findViewById(R.id.state_name2);
         textViewSt4 = findViewById(R.id.state_name4);
         textViewSt5 = findViewById(R.id.state_name5);
+
+        textViewSt1.setOnClickListener(this);
+        textViewSt2.setOnClickListener(this);
+        textViewSt3.setOnClickListener(this);
+        textViewSt4.setOnClickListener(this);
+        textViewSt5.setOnClickListener(this);
 
         searchButton = findViewById(R.id.search_button);
         searchButton.setOnClickListener(this);
@@ -267,10 +276,35 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         }
     }
 
+    void showToolTip(TextView textView) {
+        ViewTooltip
+                .on(this, textView)
+                .autoHide(true, 1000)
+                .clickToHide(true)
+                .align(ViewTooltip.ALIGN.CENTER)
+                .position(ViewTooltip.Position.BOTTOM)
+                .text((String) textView.getText())
+                .textColor(Color.WHITE)
+                .color(R.color.colorBackground)
+                .corner(10)
+                .show();
+
+    }
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.search_button) {
+        if (searchButton.equals(v)) {
             constraintLayout.setVisibility(View.VISIBLE);
+        } else if (textViewSt1.equals(v)) {
+            showToolTip(textViewSt1);
+        } else if (textViewSt2.equals(v)) {
+            showToolTip(textViewSt2);
+        } else if (textViewSt3.equals(v)) {
+            showToolTip(textViewSt3);
+        } else if (textViewSt4.equals(v)) {
+            showToolTip(textViewSt4);
+        } else if (textViewSt5.equals(v)) {
+            showToolTip(textViewSt5);
         }
     }
 

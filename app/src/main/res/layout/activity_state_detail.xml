@@ -85,25 +85,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@android:color/white"
-            card_view:cardCornerRadius="3dp"
-            card_view:cardElevation="5dp"
-            card_view:cardMaxElevation="10dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/text_margin"
-                app:layoutManager="LinearLayoutManager"
-                tools:context="live.combatemic.app.StateDetailsFragment"
-                tools:listitem="@layout/state_name_list_fragment" />
-
-        </androidx.cardview.widget.CardView>
+        <include layout="@layout/other_states" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

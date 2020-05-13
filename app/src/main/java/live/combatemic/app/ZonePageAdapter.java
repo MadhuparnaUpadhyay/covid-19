@@ -20,9 +20,9 @@ public class ZonePageAdapter  extends FragmentPagerAdapter {
         if (position == 0) {
             return ZoneListFragment.newInstance(position, "Red");
         } else if (position == 1) {
-            return ZoneListFragment.newInstance(position, "Green");
-        } else {
             return ZoneListFragment.newInstance(position, "Orange");
+        } else {
+            return ZoneListFragment.newInstance(position, "Green");
         }
     }
 
@@ -37,9 +37,9 @@ public class ZonePageAdapter  extends FragmentPagerAdapter {
             case 0:
                 return "Red";
             case 1:
-                return "Green";
-            case 2:
                 return "Orange";
+            case 2:
+                return "Green";
         }
         return null;
     }

@@ -168,11 +168,11 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.red_zone));
             ZoneListFragment.newInstance(position, "Red");
         } else if (position == 1) {
-            tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.green_zone));
-            ZoneListFragment.newInstance(position, "Green");
-        } else {
             tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
             ZoneListFragment.newInstance(position, "Orange");
+        } else {
+            tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(getContext(), R.color.green_zone));
+            ZoneListFragment.newInstance(position, "Green");
         }
     }
 
@@ -191,13 +191,13 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
             tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#F9617A"));
             ZoneListFragment.newInstance(position, "Red");
         } else if (position == 1) {
-//            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_zone));
-            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#70BF82"));
-            ZoneListFragment.newInstance(position, "Green");
-        } else {
-//            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
+            //            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
             tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#F8A867"));
             ZoneListFragment.newInstance(position, "Orange");
+        } else {
+            //            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_zone));
+            tabLayout.setTabTextColors(Color.parseColor("#FFFFFF"), Color.parseColor("#70BF82"));
+            ZoneListFragment.newInstance(position, "Green");
         }
     }
 
