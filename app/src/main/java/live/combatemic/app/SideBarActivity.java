@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -37,7 +37,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,8 +47,15 @@ import live.combatemic.app.Common.Utils;
 import live.combatemic.app.Common.Version;
 import live.combatemic.app.Common.VollyServerCall;
 
+
 public class SideBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener,
         ViewPager.OnPageChangeListener, TabLayout.OnTabSelectedListener {
+
+    int PERMISSION_ID = 44;
+    public static final int INSTALL_REPLACE_EXISTING = 0x00000002;
+    private static final String TAG = "SideBarActivity";
+    static final String NAME_APK_FILE = "combatemic.apk";
+    public static final int REQUEST_INSTALL = 0;
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView nameTextView, emailPhoneTextView;
@@ -362,13 +368,13 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         //TODO: First I wanted to store my update .apk file on internal storage for my app but apparently android does not allow you to open and install
         //aplication with existing package from there. So for me, alternative solution is Download directory in external storage. If there is better
         //solution, please inform us in comment
-        String destination = "file://" + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/";
+        String destination = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) + "/";
         String fileName = "combatemic.apk";
         destination += fileName;
-        final Uri uri = Uri.parse(destination);
+        final Uri uri = Uri.parse("file://" + destination);
 
         //Delete update file if exists
-        File file = new File(destination);
+        final File file = new File(destination);
         if (file.exists())
             //file.delete() - test this, I think sometimes it doesnt work
             file.delete();
@@ -393,19 +399,19 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         final String finalDestination = destination;
         BroadcastReceiver onComplete = new BroadcastReceiver() {
             public void onReceive(Context ctxt, Intent intent) {
-                File file = new File(finalDestination);
                 intent = new Intent(Intent.ACTION_VIEW);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // without this flag android returned a intent error!
+                intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    File file = new File(finalDestination);
+                    Uri apkURI = FileProvider.getUriForFile(ctxt, BuildConfig.APPLICATION_ID + ".provider", file);
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    Uri apkURI = FileProvider.getUriForFile(context, BuildConfig.APPLICATION_ID + ".provider", file);
                     intent.setDataAndType(apkURI, "application/vnd.android.package-archive");
                 } else {
                     intent.setDataAndType(uri, "application/vnd.android.package-archive");
                 }
                 intent.putExtra(Intent.EXTRA_NOT_UNKNOWN_SOURCE, true);
-                startActivity(intent);
-
+                ctxt.startActivity(intent);
                 unregisterReceiver(this);
 //                finish();
             }
@@ -413,6 +419,18 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         //register receiver for when .apk download is compete
         registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+            } else {
+
+            }
+        }
     }
 
 }
