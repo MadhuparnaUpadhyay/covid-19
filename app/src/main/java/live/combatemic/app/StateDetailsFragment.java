@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -350,5 +352,22 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
         constraintLayout.setVisibility(View.GONE);
         linearLayout.setVisibility(View.VISIBLE);
         searchview.setQuery("", false);
+    }
+
+    void setupDispatchTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (Utils.inViewInBounds(constraintLayout, (int) event.getRawX(), (int) event.getRawY())) {
+                // User moved outside bounds
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else if (Utils.inViewInBounds(searchButton, (int) event.getRawX(), (int) event.getRawY())) {
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else {
+                linearLayout.setVisibility(View.VISIBLE);
+                constraintLayout.setVisibility(View.GONE);
+                Log.e("dispatchTouchEvent", "you touched outside button");
+            }
+
+        }
     }
 }

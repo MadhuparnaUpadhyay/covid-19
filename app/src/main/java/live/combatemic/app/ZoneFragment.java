@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -231,5 +232,15 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
 //        void onListFragmentInteraction(DummyItem item);
+    }
+
+    void setupDispatchTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (mViewPager != null) {
+                ZoneListFragment f = (ZoneListFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, mViewPager.getCurrentItem());
+                f.setupDispatchTouchEvent(event);
+            }
+        }
     }
 }

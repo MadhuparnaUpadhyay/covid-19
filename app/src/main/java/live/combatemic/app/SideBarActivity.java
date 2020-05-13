@@ -17,6 +17,7 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -199,7 +200,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkPermissions()) {
+                if (checkPermissions()) {
                     downloadApk();
                 } else {
                     requestPermissions();
@@ -388,6 +389,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         //get url of app on server
         final String url = "https://combatemic.live/combatemic_v0.9.5.apk";
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            if (!getPackageManager().canRequestPackageInstalls())
+                startActivity(new Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, Uri.parse("package:" + getPackageName())));
+        }
         //set downloadmanager
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
 //        request.setDescription(Main.this.getString(R.string.notification_description));
@@ -446,6 +451,15 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                 downloadApk();
             }
         }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        // Setup onTouchEvent for detecting type of touch gesture
+        //Sensey.getInstance().setupDispatchTouchEvent(event);
+        StateDetailsFragment.newInstance(0).setupDispatchTouchEvent(event);
+        ZoneFragment.newInstance(0).setupDispatchTouchEvent(event);
+        return super.dispatchTouchEvent(event);
     }
 
 }

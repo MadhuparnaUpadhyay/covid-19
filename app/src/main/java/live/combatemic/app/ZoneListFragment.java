@@ -10,7 +10,9 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -194,8 +196,8 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
         if (searchview != null) {
             CharSequence text = searchview.getQuery();
 //            if (text.length() == 0) {
-                constraintLayout.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
+            constraintLayout.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
 //            }
             searchview.clearFocus();
         }
@@ -206,6 +208,23 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
         if (v.getId() == R.id.search_button) {
             constraintLayout.setVisibility(View.VISIBLE);
             linearLayout.setVisibility(View.GONE);
+        }
+    }
+
+    void setupDispatchTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (Utils.inViewInBounds(constraintLayout, (int) event.getRawX(), (int) event.getRawY())) {
+                // User moved outside bounds
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else if (Utils.inViewInBounds(searchButton, (int) event.getRawX(), (int) event.getRawY())) {
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else {
+                linearLayout.setVisibility(View.VISIBLE);
+                constraintLayout.setVisibility(View.GONE);
+                Log.e("dispatchTouchEvent", "you touched outside button");
+            }
+
         }
     }
 

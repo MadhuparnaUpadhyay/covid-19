@@ -1,7 +1,6 @@
 package live.combatemic.app;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import live.combatemic.app.Common.ServerCallback;
@@ -13,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.ViewTreeObserver;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
@@ -328,4 +329,23 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (Utils.inViewInBounds(constraintLayout, (int) event.getRawX(), (int) event.getRawY())) {
+                // User moved outside bounds
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else if (Utils.inViewInBounds(searchButton, (int) event.getRawX(), (int) event.getRawY())) {
+                Log.e("dispatchTouchEvent", "you touched inside button");
+            } else {
+                constraintLayout.setVisibility(View.GONE);
+                Log.e("dispatchTouchEvent", "you touched outside button");
+            }
+
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
 }
