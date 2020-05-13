@@ -1,5 +1,6 @@
 package live.combatemic.app;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DownloadManager;
@@ -25,6 +26,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.view.GravityCompat;
 import androidx.core.view.MenuItemCompat;
@@ -197,7 +199,11 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                downloadApk();
+                if(checkPermissions()) {
+                    downloadApk();
+                } else {
+                    requestPermissions();
+                }
                 dialog.dismiss();
             }
         });
@@ -421,14 +427,23 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
     }
 
+    private boolean checkPermissions() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(
+                this,
+                new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PERMISSION_ID
+        );
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-
+                downloadApk();
             }
         }
     }

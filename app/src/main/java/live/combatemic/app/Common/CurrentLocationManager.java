@@ -35,9 +35,9 @@ import java.util.List;
 public class CurrentLocationManager implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     private Context mContext;
-    int PERMISSION_ID = 44;
-    FusedLocationProviderClient mFusedLocationClient;
-    List<android.location.Address> geocodeMatches = null;
+    private int PERMISSION_ID = 44;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private List<android.location.Address> geocodeMatches = null;
     private SharedPreferences sharedPref;
     private boolean isconnected = false;
     private OnLocationUpdateListener onLocationUpdateListener;
@@ -104,7 +104,7 @@ public class CurrentLocationManager implements ActivityCompat.OnRequestPermissio
 
     }
 
-    public void SaveLocation(Location location) {
+    private void SaveLocation(Location location) {
         LatLng current = new LatLng(location.getLatitude(), location.getLongitude());
         SharedPreferences.Editor myEdit = sharedPref.edit();
 
