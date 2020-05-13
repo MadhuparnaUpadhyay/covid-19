@@ -48,6 +48,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     private ExpandableListView expListView;
     private int lastExpandedPosition = -1;
     private String stateName;
+    private SearchView searchview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         listView = (ListView) findViewById(R.id.city_list);
-        SearchView searchview = (SearchView) findViewById(R.id.search_view);
+        searchview = (SearchView) findViewById(R.id.search_view);
         searchview.setQueryHint("Search district...");
         searchview.setOnQueryTextListener(this);
 
@@ -340,7 +341,9 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
             } else if (Utils.inViewInBounds(searchButton, (int) event.getRawX(), (int) event.getRawY())) {
                 Log.e("dispatchTouchEvent", "you touched inside button");
             } else {
-                constraintLayout.setVisibility(View.GONE);
+                if (searchview.getQuery().length() == 0) {
+                    constraintLayout.setVisibility(View.GONE);
+                }
                 Log.e("dispatchTouchEvent", "you touched outside button");
             }
 

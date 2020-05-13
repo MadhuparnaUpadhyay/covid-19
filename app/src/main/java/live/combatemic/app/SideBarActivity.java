@@ -59,6 +59,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     private static final String TAG = "SideBarActivity";
     static final String NAME_APK_FILE = "combatemic.apk";
     public static final int REQUEST_INSTALL = 0;
+    private SectionsPagerAdapter mSectionsPagerAdapter;
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView nameTextView, emailPhoneTextView;
@@ -99,7 +100,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.view_pager_container);
@@ -456,9 +457,14 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         // Setup onTouchEvent for detecting type of touch gesture
-        //Sensey.getInstance().setupDispatchTouchEvent(event);
-        StateDetailsFragment.newInstance(0).setupDispatchTouchEvent(event);
-        ZoneFragment.newInstance(0).setupDispatchTouchEvent(event);
+        int position = mViewPager.getCurrentItem();
+        if(position == 0){
+            StateDetailsFragment f = (StateDetailsFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
+            f.setupDispatchTouchEvent(event);
+        } else if (position == 2){
+            ZoneFragment f = (ZoneFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
+            f.setupDispatchTouchEvent(event);
+        }
         return super.dispatchTouchEvent(event);
     }
 

@@ -363,8 +363,10 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
             } else if (Utils.inViewInBounds(searchButton, (int) event.getRawX(), (int) event.getRawY())) {
                 Log.e("dispatchTouchEvent", "you touched inside button");
             } else {
-                linearLayout.setVisibility(View.VISIBLE);
-                constraintLayout.setVisibility(View.GONE);
+                if (searchview.getQuery().length() == 0) {
+                    linearLayout.setVisibility(View.VISIBLE);
+                    constraintLayout.setVisibility(View.GONE);
+                }
                 Log.e("dispatchTouchEvent", "you touched outside button");
             }
 

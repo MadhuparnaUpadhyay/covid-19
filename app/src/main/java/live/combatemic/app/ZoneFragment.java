@@ -3,15 +3,11 @@ package live.combatemic.app;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -27,10 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import live.combatemic.app.Common.ServerCallback;
-import live.combatemic.app.Common.Utils;
 import live.combatemic.app.Common.VollyServerCall;
-
-import java.util.List;
 
 /**
  * A fragment representing a list of Items.
@@ -52,6 +45,7 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     private JSONArray orangeZones = new JSONArray();
     private JSONArray userArray = new JSONArray();
     private ZonePageAdapter mSectionsPagerAdapter;
+    @SuppressLint("StaticFieldLeak")
     private static ZoneFragment fragment;
     private TextView textViewCount;
     private CardView cardView;
@@ -111,6 +105,9 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     }
 
     private void getData() {
+        redZones = new JSONArray();
+        greenZones = new JSONArray();
+        orangeZones = new JSONArray();
         final String MAIN_URL = "https://api.covid19india.org";
         final String MAIN_URL_ZONE = "/zones.json";
 
