@@ -308,7 +308,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             startActivity(intent);
         } else if (id == R.id.update_app) {
             int compare = Version.compare(currentVersion, newVersion);
-            if (compare == 1) {
+            if (compare == -1) {
                 if (checkPermissions()) {
                     downloadApk();
                 } else {

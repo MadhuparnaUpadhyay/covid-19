@@ -201,6 +201,12 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        youTubePlayerFragment.initialize(Config.YOUTUBE_API_KEY, this);
+    }
+
+    @Override
     public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
         if (youTubeInitializationResult.isUserRecoverableError()) {
             youTubeInitializationResult.getErrorDialog(getActivity(), RECOVERY_REQUEST).show();
