@@ -149,7 +149,12 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
 
     void displayReceivedData(JSONArray jsonArray) {
         textViewCount.setText(jsonArray.length() + "");
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+        if (searchview != null) {
+            CharSequence text = searchview.getQuery();
+            if (text.length() == 0) {
+                recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+            }
+        }
     }
 
     void displayReceivedCount(int count) {
@@ -211,13 +216,14 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
         }
 
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
         if (searchview != null) {
             CharSequence text = searchview.getQuery();
-//            if (text.length() == 0) {
-            constraintLayout.setVisibility(View.GONE);
-            linearLayout.setVisibility(View.VISIBLE);
-//            }
+            if (text.length() == 0) {
+                recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+
+                constraintLayout.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.VISIBLE);
+            }
             searchview.clearFocus();
         }
     }

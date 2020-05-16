@@ -546,4 +546,12 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         return super.dispatchTouchEvent(event);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (mViewPager.getCurrentItem() != 0) {
+            mViewPager.setCurrentItem(0);
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
