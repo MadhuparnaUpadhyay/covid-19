@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -255,7 +254,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getApplicationContext(), Notification.class);
+                            Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
                             startActivity(intent);
                         }
                     });
@@ -271,7 +270,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         Intent intent;
         switch (item.getItemId()) {
             case R.id.action_notifications:
-                intent = new Intent(this, Notification.class);
+                intent = new Intent(this, NotificationActivity.class);
                 startActivity(intent);
                 return true;
             default:
@@ -307,15 +306,46 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             intent = new Intent(this, AboutusActivity.class);
             startActivity(intent);
         } else if (id == R.id.update_app) {
-            int compare = Version.compare(currentVersion, newVersion);
-            if (compare == -1) {
-                if (checkPermissions()) {
-                    downloadApk();
-                } else {
-                    requestPermissions();
+            if (newVersion == null) {
+                if (Utils.getConnectivityStatusString(this)) {
+                    final String MAIN_URL = "https://combatemic.live";
+                    final String MAIN_URL_ZONE = "/version";
+
+                    VollyServerCall controller = new VollyServerCall(MAIN_URL);
+                    controller.JsonObjectRequest(this, MAIN_URL_ZONE, new ServerCallback() {
+                                @Override
+                                public void onSuccess(JSONObject response) {
+                                    // do stuff here
+                                    try {
+                                        newVersion = response.getString("current");
+                                        int compare = Version.compare(currentVersion, newVersion);
+                                        if (compare == -1) {
+                                            if (checkPermissions()) {
+                                                downloadApk();
+                                            } else {
+                                                requestPermissions();
+                                            }
+                                        } else {
+                                            customAlert(false);
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                    );
                 }
             } else {
-                customAlert(false);
+                int compare = Version.compare(currentVersion, newVersion);
+                if (compare == -1) {
+                    if (checkPermissions()) {
+                        downloadApk();
+                    } else {
+                        requestPermissions();
+                    }
+                } else {
+                    customAlert(false);
+                }
             }
         }
         drawer.closeDrawer(GravityCompat.START);

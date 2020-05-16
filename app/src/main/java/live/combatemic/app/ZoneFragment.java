@@ -148,6 +148,12 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
+    @Override
     public void onTabUnselected(TabLayout.Tab tab) {
 
     }

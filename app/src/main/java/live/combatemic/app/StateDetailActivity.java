@@ -3,6 +3,7 @@ package live.combatemic.app;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
     private CardView cardView;
     private RecyclerView recyclerView;
     private StateDetailsFragment.OnListFragmentInteractionListener mListener;
+    private NestedScrollView nestedScrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
 
 
             recyclerView = (RecyclerView) findViewById(R.id.list);
+            nestedScrollView = findViewById(R.id.scrollView);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
             layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             recyclerView.setLayoutManager(layoutManager);
@@ -54,6 +57,7 @@ public class StateDetailActivity extends AppCompatActivity implements View.OnCli
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                    nestedScrollView.scrollTo(0, 0);
                 }
             };
 

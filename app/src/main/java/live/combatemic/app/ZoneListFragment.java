@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -44,7 +45,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
     private RecyclerView recyclerView;
     private JSONArray jsonArray;
     private ImageButton searchButton;
-    private LinearLayout linearLayout;
+    private RelativeLayout linearLayout;
     private ConstraintLayout constraintLayout;
     private SearchView searchview;
     private TextView textViewCount;

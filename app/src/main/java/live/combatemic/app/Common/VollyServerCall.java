@@ -3,17 +3,26 @@ package live.combatemic.app.Common;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+
+import live.combatemic.app.ErrorActivity;
 import live.combatemic.app.R;
 
 import org.json.JSONArray;
@@ -37,11 +46,11 @@ public class VollyServerCall {
     private static final String TAG = "VollyServerCall";
     private RequestQueue mRequestQueue;
 
-    public  VollyServerCall() {
+    public VollyServerCall() {
 
     }
 
-    public  VollyServerCall(String BASE_URL) {
+    public VollyServerCall(String BASE_URL) {
         this.BASE_URL = BASE_URL;
     }
 
@@ -71,8 +80,22 @@ public class VollyServerCall {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                System.out.println(error);
-                // hide the progress dialog
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof AuthFailureError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof ServerError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof NetworkError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof ParseError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                }
                 pDialog.hide();
             }
         });
@@ -112,7 +135,22 @@ public class VollyServerCall {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                System.out.println(error);
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof AuthFailureError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof ServerError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof NetworkError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                } else if (error instanceof ParseError) {
+                    Intent intent = new Intent(myContext, ErrorActivity.class);
+                    myContext.startActivity(intent);
+                }
                 // hide the progress dialog
                 pDialog.hide();
             }
@@ -131,7 +169,7 @@ public class VollyServerCall {
      * Enables https connections
      */
     @SuppressLint("TrulyRandom")
-    public static void handleSSLHandshake() {
+    private static void handleSSLHandshake() {
         try {
             TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
                 @Override
