@@ -23,6 +23,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import live.combatemic.app.Common.Utils;
@@ -50,6 +51,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
     private SearchView searchview;
     private TextView textViewCount;
     private CardView cardView;
+    private OnListFragmentInteractionListener mListener;
 
     public ZoneListFragment() {
         // Required empty public constructor
@@ -108,7 +110,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
         int count = zoneFragment.getZonesCount();
 
         textViewCount.setText(jsonArray.length() + "");
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
+        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
 
 
         int searchCloseButtonId = searchview.getContext().getResources()
@@ -125,13 +127,29 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             }
         });
 
+        mListener = new OnListFragmentInteractionListener() {
+            @Override
+            public void onListFragmentInteraction(JSONObject jsonObject) {
+                try {
+                    String statecode = jsonObject.getString("statecode");
+                    String stateName = jsonObject.getString("state");
+                    Intent intent = new Intent(getContext(), CityScrollingActivity.class);
+                    intent.putExtra("state", stateName);
+                    intent.putExtra("code", statecode);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
 
         return view;
     }
 
     void displayReceivedData(JSONArray jsonArray) {
         textViewCount.setText(jsonArray.length() + "");
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
+        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
     }
 
     void displayReceivedCount(int count) {
@@ -146,7 +164,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public boolean onQueryTextChange(String newText) {
         JSONArray jsonArray = filterZone(newText);
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
+        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
         return false;
     }
 
@@ -193,7 +211,7 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
         }
 
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, null));
+        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
         if (searchview != null) {
             CharSequence text = searchview.getQuery();
 //            if (text.length() == 0) {
@@ -229,6 +247,11 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             }
 
         }
+    }
+
+    public interface OnListFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onListFragmentInteraction(JSONObject item);
     }
 
 }

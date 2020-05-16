@@ -49,7 +49,7 @@ public class NotificationActivity extends AppCompatActivity {
 
 
     void getData() {
-        VollyServerCall controller = new VollyServerCall("https://api.covid19india.org");
+        VollyServerCall controller = new VollyServerCall();
         final String MAIN_URL_NOTIFICATION = "/updatelog/log.json";
         controller.JsonArrayRequest(this, MAIN_URL_NOTIFICATION, new ServerCallbackArray() {
                     @Override

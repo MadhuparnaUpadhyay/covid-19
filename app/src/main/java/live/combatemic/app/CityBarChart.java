@@ -100,7 +100,7 @@ public class CityBarChart extends Fragment {
     }
 
     private void getData() {
-        VollyServerCall controller = new VollyServerCall("https://api.covid19india.org");
+        VollyServerCall controller = new VollyServerCall();
         final String MAIN_URL_STATE = "/states_daily.json";
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @Override

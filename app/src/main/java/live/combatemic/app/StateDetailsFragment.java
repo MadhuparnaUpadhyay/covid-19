@@ -241,8 +241,8 @@ public class StateDetailsFragment extends Fragment implements SwipeRefreshLayout
 
     private void getData() {
         VollyServerCall controller = new VollyServerCall();
-        final String MAIN_URL_STATE = "data";
-        final String MAIN_URL_CITY = "detail-data";
+        final String MAIN_URL_STATE = "/data.json";
+        final String MAIN_URL_CITY = "/state_district_wise.json";
 //        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
 //                    @Override
 //                    public void onSuccess(JSONObject response) {

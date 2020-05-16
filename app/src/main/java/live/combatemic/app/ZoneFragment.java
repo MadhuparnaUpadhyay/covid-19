@@ -28,7 +28,7 @@ import live.combatemic.app.Common.VollyServerCall;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link}
  * interface.
  */
 public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedListener, ViewPager.OnPageChangeListener {
@@ -37,7 +37,6 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private OnListFragmentInteractionListener mListener;
     private TabLayout tabLayout;
     private ViewPager mViewPager;
     private JSONArray redZones = new JSONArray();
@@ -101,17 +100,15 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
     }
 
     private void getData() {
         redZones = new JSONArray();
         greenZones = new JSONArray();
         orangeZones = new JSONArray();
-        final String MAIN_URL = "https://api.covid19india.org";
         final String MAIN_URL_ZONE = "/zones.json";
 
-        VollyServerCall controller = new VollyServerCall(MAIN_URL);
+        VollyServerCall controller = new VollyServerCall();
         controller.JsonObjectRequest(getContext(), MAIN_URL_ZONE, new ServerCallback() {
                     @Override
                     public void onSuccess(JSONObject response) {
@@ -220,21 +217,6 @@ public class ZoneFragment extends Fragment implements TabLayout.OnTabSelectedLis
 
     int getZonesCount() {
         return userArray.length();
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-//        void onListFragmentInteraction(DummyItem item);
     }
 
     void setupDispatchTouchEvent(MotionEvent event) {

@@ -7,15 +7,9 @@ import android.content.Intent;
 import android.util.Log;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkError;
-import com.android.volley.NoConnectionError;
-import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.ServerError;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -42,7 +36,7 @@ import javax.net.ssl.X509TrustManager;
 
 public class VollyServerCall {
 
-    private String BASE_URL = "https://combatemic.live/api/v1/";
+    private String BASE_URL = "https://api.covid19india.org";
     private static final String TAG = "VollyServerCall";
     private RequestQueue mRequestQueue;
 
@@ -80,19 +74,7 @@ public class VollyServerCall {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof AuthFailureError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof ServerError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof NetworkError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof ParseError) {
+                if (!Utils.getConnectivityStatusString(myContext)) {
                     Intent intent = new Intent(myContext, ErrorActivity.class);
                     myContext.startActivity(intent);
                 }
@@ -135,19 +117,7 @@ public class VollyServerCall {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
-                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof AuthFailureError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof ServerError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof NetworkError) {
-                    Intent intent = new Intent(myContext, ErrorActivity.class);
-                    myContext.startActivity(intent);
-                } else if (error instanceof ParseError) {
+                if (!Utils.getConnectivityStatusString(myContext)) {
                     Intent intent = new Intent(myContext, ErrorActivity.class);
                     myContext.startActivity(intent);
                 }

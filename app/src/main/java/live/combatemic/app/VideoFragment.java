@@ -136,7 +136,7 @@ public class VideoFragment extends Fragment implements YouTubePlayer.OnInitializ
         String state = sharedPref.getString("state", "");
         String city = sharedPref.getString("city", "");
         String pincode = sharedPref.getString("zipcode", "");
-        VollyServerCall controller = new VollyServerCall();
+        VollyServerCall controller = new VollyServerCall("https://combatemic.live/api/v1/");
         final String MAIN_URL_STATE = "videos?location=" + state + "&state=" + state + "&city=" + city + "&pincode=" + pincode;
         controller.JsonObjectRequest(getContext(), MAIN_URL_STATE, new ServerCallback() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

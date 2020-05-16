@@ -66,7 +66,7 @@ public class ContactListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             final RecyclerView recyclerView = (RecyclerView) view;
-            VollyServerCall controller = new VollyServerCall();
+            VollyServerCall controller = new VollyServerCall("https://combatemic.live/api/v1/");
             final String MAIN_URL = "emergency";
             controller.JsonArrayRequest(getContext(), MAIN_URL, new ServerCallbackArray() {
                         @Override
