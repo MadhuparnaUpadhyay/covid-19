@@ -122,6 +122,11 @@ public class StateDetailFragment extends Fragment implements View.OnClickListene
             } else {
                 todayConfirmed.setVisibility(View.INVISIBLE);
             }
+//            if (stateDetail.getString("deltaactive").equals("0")) {
+//                todayConfirmed.setText(stateDetail.getString("deltaactive"));
+//            } else {
+//                todayConfirmed.setVisibility(View.INVISIBLE);
+//            }
             recovered.setText(stateDetail.getString("recovered"));
             if (!stateDetail.getString("deltarecovered").equals("0")) {
                 todayRecovered.setText(stateDetail.getString("deltarecovered"));

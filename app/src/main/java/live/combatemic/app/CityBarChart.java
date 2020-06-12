@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.BarLineChartBase;
@@ -50,6 +51,7 @@ public class CityBarChart extends Fragment {
     private BarChart chart;
     private JSONArray statewise = new JSONArray();
     private String code;
+    private TextView noBar;
 
     public CityBarChart() {
         // Required empty public constructor
@@ -87,8 +89,9 @@ public class CityBarChart extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_city_bar_chart, container, false);
-        chart =
-                view.findViewById(R.id.barchart);
+
+        chart = view.findViewById(R.id.barchart);
+        noBar = view.findViewById(R.id.no_bar);
 
 //        List<BarEntry> NoOfEmp = new ArrayList<BarEntry>();
 //
@@ -121,15 +124,19 @@ public class CityBarChart extends Fragment {
 
     private void setBarChart() {
         final int MAX_SIZE_GRAPH = 5;
+        boolean isNoBar = true;
         final List<String> list_x_axis_name = new ArrayList<String>(MAX_SIZE_GRAPH);
         final List<BarEntry> barEntries = new ArrayList<BarEntry>(MAX_SIZE_GRAPH);
-        for (int i = statewise.length() - 1; barEntries.size() < MAX_SIZE_GRAPH; i--) {
+        for (int i = statewise.length() - 1; i > 0 && barEntries.size() < MAX_SIZE_GRAPH; i--) {
             try {
-                String state = statewise.getJSONObject(i).getString(code.toLowerCase());
+                String todayCase = statewise.getJSONObject(i).getString(code.toLowerCase());
                 String status = statewise.getJSONObject(i).getString("status");
                 String[] date = statewise.getJSONObject(i).getString("date").split(("-"));
                 if (status.equals("Confirmed")) {
-                    barEntries.add(new BarEntry(Float.parseFloat(state), barEntries.size()));
+                    if(Integer.parseInt(todayCase) > 0) {
+                        isNoBar = false;
+                    }
+                    barEntries.add(new BarEntry(Float.parseFloat(todayCase), barEntries.size()));
                     list_x_axis_name.add(date[0] + " " + date[1]);
                 }
             } catch (JSONException e) {
@@ -167,6 +174,13 @@ public class CityBarChart extends Fragment {
         chart.setExtraBottomOffset(4);
         chart.setDescription("");
         chart.setData(data);
+        if(isNoBar) {
+            noBar.setVisibility(View.VISIBLE);
+            chart.setVisibility(View.GONE);
+        } else {
+            noBar.setVisibility(View.GONE);
+            chart.setVisibility(View.VISIBLE);
+        }
     }
 
     void doSomething(String param) {

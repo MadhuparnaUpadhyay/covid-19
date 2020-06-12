@@ -20,7 +20,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         } else if (position == 1) {
             return VideoFragment.newInstance(position);
         } else {
-            return ZoneFragment.newInstance(position);
+            return new ZoneListFragment();
+//            return ZoneFragment.newInstance(position);
         }
     }
 

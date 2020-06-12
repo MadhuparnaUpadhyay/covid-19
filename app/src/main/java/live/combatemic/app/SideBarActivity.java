@@ -408,7 +408,8 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             VideoFragment.newInstance(position);
             textView.setText(R.string.video);
         } else {
-            ZoneFragment.newInstance(position);
+//            ZoneFragment.newInstance(position);
+            new ZoneListFragment();
             textView.setText("Zone");
         }
     }
@@ -429,7 +430,8 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             VideoFragment.newInstance(position);
             textView.setText(R.string.video);
         } else {
-            ZoneFragment.newInstance(position);
+//            ZoneFragment.newInstance(position);
+            new ZoneListFragment();
             textView.setText(("Zone"));
         }
         Utils.CloseKeyboard(this, SideBarActivity.this);
@@ -540,7 +542,8 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             StateDetailsFragment f = (StateDetailsFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
             f.setupDispatchTouchEvent(event);
         } else if (position == 2) {
-            ZoneFragment f = (ZoneFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
+//            ZoneFragment f = (ZoneFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
+            ZoneListFragment f = (ZoneListFragment) mSectionsPagerAdapter.instantiateItem(mViewPager, position);
             f.setupDispatchTouchEvent(event);
         }
         return super.dispatchTouchEvent(event);

@@ -18,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.ViewTreeObserver;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 import android.view.Menu;
@@ -46,6 +47,7 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
     private TextView textView1, textView2, textView3, textView4, textView5;
     private TextView textViewTo1, textViewTo2, textViewTo3, textViewTo4, textViewTo5;
     private TextView textViewSt1, textViewSt2, textViewSt3, textViewSt4, textViewSt5;
+    private LinearLayout cardViewSt1, cardViewSt2, cardViewSt3, cardViewSt4, cardViewSt5;
     private ImageButton searchButton;
     private ConstraintLayout constraintLayout;
     private ExpandableListView expListView;
@@ -76,6 +78,12 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
         textViewSt3 = findViewById(R.id.state_name2);
         textViewSt4 = findViewById(R.id.state_name4);
         textViewSt5 = findViewById(R.id.state_name5);
+
+        cardViewSt1 = findViewById(R.id.card1);
+        cardViewSt2 = findViewById(R.id.card2);
+        cardViewSt3 = findViewById(R.id.card3);
+        cardViewSt4 = findViewById(R.id.card4);
+        cardViewSt5 = findViewById(R.id.card5);
 
         textViewSt1.setOnClickListener(this);
         textViewSt2.setOnClickListener(this);
@@ -176,7 +184,6 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
                     e.printStackTrace();
                 }
 
-                System.out.println(valA + " , " + valB);
                 return valB - valA;
             }
         });
@@ -250,22 +257,27 @@ public class CityScrollingActivity extends AppCompatActivity implements SearchVi
                 String string = jsonObject1.getString("confirmed");
                 String string1 = jsonObject1.getJSONObject("delta").getString("confirmed");
                 if (i == 0) {
+                    cardViewSt1.setVisibility(View.VISIBLE);
                     textView1.setText(string);
                     textViewTo1.setText(string1);
                     textViewSt1.setText(state);
                 } else if (i == 1) {
+                    cardViewSt2.setVisibility(View.VISIBLE);
                     textView2.setText(string);
                     textViewTo2.setText(string1);
                     textViewSt2.setText(state);
                 } else if (i == 2) {
+                    cardViewSt3.setVisibility(View.VISIBLE);
                     textView3.setText(string);
                     textViewTo3.setText(string1);
                     textViewSt3.setText(state);
                 } else if (i == 3) {
+                    cardViewSt4.setVisibility(View.VISIBLE);
                     textView4.setText(string);
                     textViewTo4.setText(string1);
                     textViewSt4.setText(state);
                 } else if (i == 4) {
+                    cardViewSt5.setVisibility(View.VISIBLE);
                     textView5.setText(string);
                     textViewTo5.setText(string1);
                     textViewSt5.setText(state);

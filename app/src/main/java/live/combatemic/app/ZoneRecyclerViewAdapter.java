@@ -45,21 +45,21 @@ public class ZoneRecyclerViewAdapter extends RecyclerView.Adapter<ZoneRecyclerVi
         try {
             jsonObject = mValues.getJSONObject(position);
             String district = jsonObject.getString("district");
-            String Zone = jsonObject.getString("zone");
+//            String Zone = jsonObject.getString("zone");
             holder.district.setText(district);
             holder.state.setText(jsonObject.getString("state"));
 
             GradientDrawable gradientDrawable = (GradientDrawable) holder.firstChar.getBackground().mutate();
-            if (Zone.equals("Red")) {
+//            if (Zone.equals("Red")) {
 //                holder.mView.setBackgroundColor(Color.parseColor("#FFFF4444"));
                 gradientDrawable.setStroke(7, Color.parseColor("#FFFF4444"));
-            } else if (Zone.equals("Orange")) {
-//                holder.mView.setBackgroundColor(Color.parseColor("#FFFF8800"));
-                gradientDrawable.setStroke(7, Color.parseColor("#FFFF8800"));
-            } else {
-//                holder.mView.setBackgroundColor(Color.parseColor("#FF99CC00"));
-                gradientDrawable.setStroke(7, Color.parseColor("#FF99CC00"));
-            }
+//            } else if (Zone.equals("Orange")) {
+////                holder.mView.setBackgroundColor(Color.parseColor("#FFFF8800"));
+//                gradientDrawable.setStroke(7, Color.parseColor("#FFFF8800"));
+//            } else {
+////                holder.mView.setBackgroundColor(Color.parseColor("#FF99CC00"));
+//                gradientDrawable.setStroke(7, Color.parseColor("#FF99CC00"));
+//            }
             holder.firstChar.setText(district.charAt(0) + "");
 //            holder.mContentView.setText(jsonObject.getString("location"));
         } catch (JSONException e) {

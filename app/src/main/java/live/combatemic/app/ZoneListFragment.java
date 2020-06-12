@@ -26,7 +26,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+import live.combatemic.app.Common.ServerCallback;
 import live.combatemic.app.Common.Utils;
+import live.combatemic.app.Common.VollyServerCall;
 
 
 /**
@@ -89,6 +97,11 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zone_list2, container, false);
+
+
+//        getData();
+
+
         recyclerView = (RecyclerView) view.findViewById(R.id.zone_list);
 
         searchview = (SearchView) view.findViewById(R.id.search_view);
@@ -105,12 +118,12 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
         cardView = view.findViewById(R.id.count);
 
         // Set the adapter
-        ZoneFragment zoneFragment = ZoneFragment.newInstance(2);
-        jsonArray = zoneFragment.getZones(mParam2);
-        int count = zoneFragment.getZonesCount();
-
-        textViewCount.setText(jsonArray.length() + "");
-        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+//        ZoneFragment zoneFragment = ZoneFragment.newInstance(2);
+//        jsonArray = zoneFragment.getZones(mParam2);
+//        int count = zoneFragment.getZonesCount();
+//
+//        textViewCount.setText(jsonArray.length() + "");
+//        recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
 
 
         int searchCloseButtonId = searchview.getContext().getResources()
@@ -131,11 +144,11 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             @Override
             public void onListFragmentInteraction(JSONObject jsonObject) {
                 try {
-                    String statecode = jsonObject.getString("statecode");
+//                    String statecode = jsonObject.getString("statecode");
                     String stateName = jsonObject.getString("state");
                     Intent intent = new Intent(getContext(), CityScrollingActivity.class);
                     intent.putExtra("state", stateName);
-                    intent.putExtra("code", statecode);
+//                    intent.putExtra("code", statecode);
                     startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -201,28 +214,29 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
     @Override
     public void onResume() {
         super.onResume();
-        ZoneFragment zoneFragment = ZoneFragment.newInstance(2);
-        JSONArray jsonArray = zoneFragment.getZones(mParam2);
-
-        int count = zoneFragment.getZonesCount();
-
-        textViewCount.setText(jsonArray.length() + "");
-
-        if (mParam2.equals("Red")) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.red_zone));
-        } else if (mParam2.equals("Green")) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_zone));
-        } else {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
-        }
-
+//        ZoneFragment zoneFragment = ZoneFragment.newInstance(2);
+//        JSONArray jsonArray = zoneFragment.getZones(mParam2);
+//
+//        int count = zoneFragment.getZonesCount();
+//
+//        textViewCount.setText(jsonArray.length() + "");
+//
+//        if (mParam2.equals("Red")) {
+//            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.red_zone));
+//        } else if (mParam2.equals("Green")) {
+//            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.green_zone));
+//        } else {
+//            cardView.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.orange_zone));
+//        }
+//
         if (searchview != null) {
             CharSequence text = searchview.getQuery();
             if (text.length() == 0) {
-                recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+//                recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
 
                 constraintLayout.setVisibility(View.GONE);
                 linearLayout.setVisibility(View.VISIBLE);
+                getData();
             }
             searchview.clearFocus();
         }
@@ -235,6 +249,95 @@ public class ZoneListFragment extends Fragment implements SearchView.OnQueryText
             linearLayout.setVisibility(View.GONE);
         }
     }
+
+    private void getData() {
+        jsonArray = new JSONArray();
+        VollyServerCall controller = new VollyServerCall();
+        final String MAIN_URL_CITY = "/state_district_wise.json";
+        controller.JsonObjectRequest(getContext(), MAIN_URL_CITY, new ServerCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Iterator<String> keys = response.keys();
+
+                        while(keys.hasNext()) {
+                            String key = keys.next();
+                            try {
+                                if (response.get(key) instanceof JSONObject) {
+                                    // do something with jsonObject here
+                                    JSONArray zoneArray = sortCities(response.getJSONObject(key), key);
+                                    recyclerView.setAdapter(new ZoneRecyclerViewAdapter(jsonArray, mListener));
+                                    textViewCount.setText(jsonArray.length() + "");
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+        );
+    }
+
+    private JSONArray sortCities(JSONObject jsonObject, String state) {
+        JSONArray sortedJsonArray = new JSONArray();
+
+        List<JSONObject> jsonValues = new ArrayList<JSONObject>();
+
+        Iterator<String> keys = null;
+        JSONObject districtData = null;
+        try {
+            districtData = jsonObject.getJSONObject("districtData");
+            keys = districtData.keys();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        assert keys != null;
+        while(keys.hasNext()) {
+            String key = keys.next();
+            try {
+                if (districtData.get(key) instanceof JSONObject) {
+                    // do something with jsonObject here
+                    JSONObject jsonObject1 = districtData.getJSONObject(key);
+                    jsonObject1.put("district", key + "");
+                    jsonObject1.put("state", state);
+                    jsonValues.add(jsonObject1);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Collections.sort(jsonValues, new Comparator<JSONObject>() {
+            //You can change "Name" with "ID" if you want to sort by ID
+            private static final String KEY_NAME = "active";
+
+            @Override
+            public int compare(JSONObject a, JSONObject b) {
+                int valA = -1;
+                int valB = -1;
+
+                try {
+                    valA = Integer.parseInt(a.getString(KEY_NAME));
+                    valB = Integer.parseInt(b.getString(KEY_NAME));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                return valB - valA;
+            }
+        });
+
+        for (int i = 0; i < 3 && i < jsonValues.size(); i++) {
+            try {
+                if(jsonValues.get(i).getInt("active") > 40) {
+                    jsonArray.put(jsonValues.get(i));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return sortedJsonArray;
+    }
+
 
     void setupDispatchTouchEvent(MotionEvent event) {
 

@@ -61,7 +61,7 @@ public class VollyServerCall {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(TAG, response.toString());
+//                        Log.d(TAG, response.toString());
 //                        pDialog.hide();
                         try {
                             callback.onSuccess(response);

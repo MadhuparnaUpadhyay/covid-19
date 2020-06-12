@@ -58,6 +58,7 @@ public class CityExpandableListAdapter extends BaseExpandableListAdapter {
         TextView cityToRecovered = (TextView) convertView.findViewById(R.id.today_recovered);
         TextView cityToDeath = (TextView) convertView.findViewById(R.id.today_death);
         TextView cityToConfi = (TextView) convertView.findViewById(R.id.today_confirmed);
+        TextView cityToActive = (TextView) convertView.findViewById(R.id.today_active);
         try {
             confirmed.setText(cityDetail.getString("confirmed"));
             cityRecovered.setText(cityDetail.getString("recovered"));
@@ -66,6 +67,7 @@ public class CityExpandableListAdapter extends BaseExpandableListAdapter {
             cityToConfi.setText(cityDetail.getJSONObject("delta").getString("confirmed"));
             cityToRecovered.setText(cityDetail.getJSONObject("delta").getString("recovered"));
             cityToDeath.setText(cityDetail.getJSONObject("delta").getString("deceased"));
+//            cityToActive.setText(cityDetail.getJSONObject("delta").getString("active"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

@@ -8,6 +8,18 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="200dp" />
+
+    <TextView
+        android:id="@+id/no_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/text_margin"
+        android:textColor="@android:color/black"
+        android:text="No record found in last 5 days"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </FrameLayout>

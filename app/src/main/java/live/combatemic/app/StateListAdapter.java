@@ -53,10 +53,12 @@ public class StateListAdapter extends RecyclerView.Adapter<StateListAdapter.View
         JSONObject stateDetail = null;
         String stateName = null;
         String statecode = null;
+        int stateConfirmed = 0;
         try {
             stateDetail = statewise.getJSONObject(position);
             stateName = stateDetail.getString("state");
             statecode = stateDetail.getString("statecode");
+            stateConfirmed = Integer.parseInt(stateDetail.getString("confirmed"));
             holder.state.setText(stateName);
             holder.confirmed.setText(stateDetail.getString("deltaconfirmed"));
             if (stateName.toLowerCase().equals("total")) {
